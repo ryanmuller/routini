@@ -1,4 +1,8 @@
 Routini::Application.routes.draw do
+  get "roles/create"
+
+  get "roles/destroy"
+
   devise_for :users
 
   root :to => "pages#index"

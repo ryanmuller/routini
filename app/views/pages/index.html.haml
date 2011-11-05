@@ -16,6 +16,17 @@
 %h2
   Roles
 
+%ul
+  - @roles.each do |t|
+    %li
+      = t.name
+
+= form_for(@role) do |f|
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p 
+    = f.submit "Add role"
 
 
 %h2 
