@@ -1,22 +1,22 @@
 %h2
   Tasks
 
-  %ul
-    - @tasks.each do |t|
-      %li
-        t.name
+%ul
+  - @tasks.each do |t|
+    %li
+      = t.name
 
-  = form_for(@task) do |f|
-    %p
-      = f.label :name
-      = f.text_field :name
-    %p 
-      = f.submit "Add task"
+= form_for(@task) do |f|
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p 
+    = f.submit "Add task"
 
 %h2
-  Add roles
+  Roles
 
 
 
 %h2 
-  Add contexts
+  Contexts
