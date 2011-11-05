@@ -35,6 +35,7 @@ gem 'devise'
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
   gem "capybara"
+  gem "factory_girl_rails"
 end
 
 group :test do
