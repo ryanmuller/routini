@@ -23,5 +23,6 @@ class TasksController < ApplicationController
 
     redirect_to root_path if tasks.empty?
     @task = tasks[rand(tasks.count)]
+    @point = Point.new
   end
 end
