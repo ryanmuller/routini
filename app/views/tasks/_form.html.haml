@@ -1,0 +1,21 @@
+= form_for(@task) do |f|
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p
+    = f.label :description
+    = f.text_area :description, :size => "30x3"
+  %p 
+    = f.label :time
+    = f.text_field :time, :size => 4
+    seconds
+  %p
+    = f.fields_for :task_roles do |ff|
+      %p 
+        Attribute to 
+        = ff.select :role_id, role_options
+        for
+        = ff.select :points, [[1,1],[2,2],[3,3]]
+        points
+  %p 
+    = f.submit "Add routine"

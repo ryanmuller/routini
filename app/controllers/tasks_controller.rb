@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     @task.user = current_user
 
     if @task.save 
-      redirect_to root_path, notice: 'Task added.'
+      redirect_to root_path, :notice => 'Task added.'
     else
       render 'pages/index'
     end
@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
 
-    redirect_to root_path, notice: 'Removed task.'
+    redirect_to root_path, :notice => 'Removed task.'
   end
 
   def index
@@ -32,5 +32,9 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @point = Point.new
+  end
+
+  def edit
+    @task = Task.find(params[:id])
   end
 end

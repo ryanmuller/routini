@@ -19,3 +19,6 @@
 
   %form{ :action => tasks_path, :method => "GET" }
     %input{ :type => "submit", :value => "Skip" }
+
+%p
+  = link_to "Edit this routine", edit_task_path(@path)
