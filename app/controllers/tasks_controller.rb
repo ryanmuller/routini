@@ -17,4 +17,11 @@ class TasksController < ApplicationController
 
     redirect_to root_path, notice: 'Removed task.'
   end
+
+  def index
+    tasks = Task.where(:user_id => current_user.id)
+
+    redirect_to root_path if tasks.empty?
+    @task = tasks[rand(tasks.count)]
+  end
 end

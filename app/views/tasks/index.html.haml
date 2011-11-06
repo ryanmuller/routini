@@ -1,0 +1,9 @@
+%p
+  = @task.name
+
+#timer
+  = @task.time
+
+#actions
+  = link_to "Finished", tasks_path
+  = link_to "I give up", tasks_path
