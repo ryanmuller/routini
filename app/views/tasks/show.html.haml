@@ -1,6 +1,9 @@
 %h1
   = @task.name
 
+%p
+  = auto_link @task.description
+
 #points
   - @task.task_roles.each do |tr|
     +#{tr.points} #{tr.role.name}

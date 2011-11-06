@@ -32,6 +32,7 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'haml-rails'
+gem 'rails_autolink'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
