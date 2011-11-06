@@ -10,6 +10,8 @@
  
 #actions-timeup
   = form_for @point do |f|
+
+    = f.hidden_field :task_id, @task.id
     %p 
       = f.submit "Finished!"
 
