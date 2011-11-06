@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111106000125) do
+ActiveRecord::Schema.define(:version => 20111106015205) do
+
+  create_table "logs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.integer  "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "points", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.integer  "user_id"

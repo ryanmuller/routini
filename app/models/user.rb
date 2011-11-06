@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :tasks
   has_many :roles
+  has_many :logs
+  has_many :points
 end
+
