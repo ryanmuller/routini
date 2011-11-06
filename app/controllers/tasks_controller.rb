@@ -21,8 +21,16 @@ class TasksController < ApplicationController
   def index
     tasks = Task.where(:user_id => current_user.id)
 
-    redirect_to root_path if tasks.empty?
-    @task = tasks[rand(tasks.count)]
+    if tasks.empty?
+      redirect_to root_path
+    else
+      @task = tasks[rand(tasks.count)]
+      redirect_to task_path(@task)
+    end
+  end
+
+  def show
+    @task = Task.find(params[:id])
     @point = Point.new
   end
 end

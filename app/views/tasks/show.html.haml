@@ -1,0 +1,18 @@
+%h1
+  = @task.name
+
+#points
+  - @task.task_roles.each do |tr|
+    +#{tr.points} #{tr.role.name}
+
+#timer
+  = @task.time
+
+#actions
+  = form_for @point do |f|
+    = f.hidden_field :task_id, { :value => @task.id }
+    %p 
+      = f.submit "Finished!"
+
+  %form{ :action => tasks_path, :method => "GET" }
+    %input{ :type => "submit", :value => "Skip" }

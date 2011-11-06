@@ -2,16 +2,16 @@
   Routini
   
 %h2
-  Tasks
+  Routines
 
-= link_to "Go!", tasks_path
+= link_to "Shuffle!", tasks_path
 
 %ul
   - @tasks.each do |t|
     %li
-      = t.name
+      = link_to t.name, task_path(t)
       %span.time
-        for #{t.time} s
+        (#{t.time/60} min)
       - t.task_roles.each do |tr|
         %span.role
           +#{tr.points} #{tr.role.name}
