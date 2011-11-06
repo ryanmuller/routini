@@ -8,6 +8,7 @@ Routini::Application.routes.draw do
   root :to => "pages#index"
 
   resources :tasks, :only => [ :create, :destroy ]
+  resources :roles, :only => [ :create, :destroy ]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

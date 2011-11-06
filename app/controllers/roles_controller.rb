@@ -14,7 +14,7 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     @role.destroy
 
-    redirect_to root_path, :notice: 'Removed role.'
+    redirect_to root_path, notice: 'Removed role.'
   end
 
 end

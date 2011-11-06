@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111105235521) do
+ActiveRecord::Schema.define(:version => 20111106000125) do
 
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20111105235521) do
     t.string   "name"
     t.integer  "user_id"
     t.float    "weight"
+    t.integer  "time",       :default => 600
   end
 
   create_table "users", :force => true do |t|

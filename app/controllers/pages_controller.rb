@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
     @tasks = Task.where("user_id = ?", current_user.id)
     @task = Task.new
-    #@roles = Role.find_by_user_id
+    @roles = Role.where("user_id = ?", current_user.id)
+    @role = Role.new
   end
 end
