@@ -1,0 +1,2 @@
+class TaskRolesController < ApplicationController
+end

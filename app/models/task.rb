@@ -5,5 +5,7 @@ class Task < ActiveRecord::Base
   has_many :task_roles
   has_many :roles, :through => :task_roles
 
+  accepts_nested_attributes_for :task_roles
+
   validates :name, :presence => true
 end

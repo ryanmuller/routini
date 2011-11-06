@@ -1,19 +1,18 @@
-%p
+%h1
   = @task.name
+
+#points
+  - @task.task_roles.each do |tr|
+    +#{tr.points} #{tr.role.name}
 
 #timer
   = @task.time
 
 #actions
-  = link_to "Finished early!", tasks_path
-  = link_to "I give up", tasks_path
- 
-#actions-timeup
   = form_for @point do |f|
-
-    = f.hidden_field :task_id, @task.id
+    = f.hidden_field :task_id, { :value => @task.id }
     %p 
       = f.submit "Finished!"
 
-  = link_to "Give up", tasks_path
-  = link_to "More time", "#"
+  %form{ :action => tasks_path, :method => "GET" }
+    %input{ :type => "submit", :value => "Skip" }

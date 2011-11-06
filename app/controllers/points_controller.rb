@@ -2,9 +2,10 @@ class PointsController < ApplicationController
 
   def create 
     @task = Task.find_by_id(params[:point][:task_id])
-    task_roles = TaskRole.where("task_id = ? AND user_id = ?",
-                                @task.id,
-                                current_user.id)
+
+    redirect_to tasks_path if @task.user != current_user
+
+    task_roles = TaskRole.where("task_id = ?", @task.id)
 
     msg = "Earned"
 
@@ -17,6 +18,8 @@ class PointsController < ApplicationController
         msg += " +#{tr.points} for #{tr.role}!"
       end
     end
+
+    asdfasdf if task_roles.empty?
 
     msg = "" if msg == "Earned"
 

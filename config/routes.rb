@@ -1,8 +1,4 @@
 Routini::Application.routes.draw do
-  get "roles/create"
-
-  get "roles/destroy"
-
   devise_for :users
 
   root :to => "pages#index"
@@ -11,6 +7,7 @@ Routini::Application.routes.draw do
   resources :roles, :only => [ :create, :destroy ]
   resources :logs, :only => [ :create ]
   resources :points, :only => [ :create ]
+  resources :task_roles, :only => [ :create, :destroy ]
 
 
   # The priority is based upon order of creation:
