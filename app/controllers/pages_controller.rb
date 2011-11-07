@@ -15,6 +15,25 @@ class PagesController < ApplicationController
     end
     @role = Role.new
     @points = Point.where("user_id = ?", current_user.id)
+
+    @role_points = []
+    @rp_xmax = @roles.length
+    @rp_json = "["
+    @rp_ticks = "["
+
+    @roles.each_with_index do |role, i|
+      points = Point.where("role_id = ? AND user_id = ?", 
+                           role.id, current_user.id).sum("points")
+
+      @role_points << [role.name, points]
+      @rp_json += ", " unless @rp_json == "["
+      @rp_ticks += ", " unless @rp_ticks == "["
+      @rp_json += "[#{i},#{points}]"
+      @rp_ticks += "[#{i},\"#{role.name}\"]"
+      #@rp_json += "{ label: \"#{role.name}\", data: [[#{i},#{points}]] }"
+    end
+    @rp_json += "]"
+    @rp_ticks += "]"
   end
 
   def must_log_in

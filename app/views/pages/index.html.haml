@@ -40,6 +40,11 @@
 %h2 
   Points
 
+#point-chart{ :style       => "width:500px;height:300px;", 
+              "data-pts"   => @rp_json, 
+              "data-ticks" => @rp_ticks }
+
+
 %ul 
   - @points.each do |p|
     %li
