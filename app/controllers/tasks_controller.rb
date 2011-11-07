@@ -37,4 +37,14 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
   end
+
+  def update
+    @task = Task.find(params[:id])
+
+    if @task.update_attributes(params[:task])
+      redirect_to task_path(@task)
+    else
+      render 'edit'
+    end
+  end
 end
