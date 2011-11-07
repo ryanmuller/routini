@@ -4,7 +4,11 @@
 
 setInterval(() ->
   time = parseInt($('#timer').text())
+
   $('#timer').text(time-1) if time > 0
+
+  snd = new Audio('/timer.wav')
+  snd.play() if time == 1
 , 1000)
     
 
