@@ -11,11 +11,14 @@
     seconds
   %p
     = f.fields_for :task_roles do |ff|
-      %p 
-        Attribute to 
-        = ff.select :role_id, role_options
-        for
-        = ff.select :points, [[1,1],[2,2],[3,3]]
-        points
+      Attribute to 
+      = ff.select :role_id, role_options
+      for
+      = ff.select :points, [[1,1],[2,2],[3,3]]
+      points
+  %p
+    = f.fields_for :task_contexts do |ff|
+      Display in context
+      = ff.select :context_id, context_options
   %p 
-    = f.submit "Add routine"
+    = f.submit "Save routine"

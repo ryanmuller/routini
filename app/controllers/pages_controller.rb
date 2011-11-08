@@ -4,9 +4,11 @@ class PagesController < ApplicationController
   
   def index
 
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.includes(:task_contexts => :context, :task_roles => :role)
     @task = Task.new
+    task_context = @task.task_contexts.build
     task_role = @task.task_roles.build
+
     @roles = current_user.roles
 
     @role_options = []
@@ -14,7 +16,7 @@ class PagesController < ApplicationController
       @role_options << [role.name, role.id]
     end
     @role = Role.new
-    @points = Point.where("user_id = ?", current_user.id)
+    @points = current_user.points.includes(:role, :task, :user)
 
     @role_points = []
     @rp_xmax = @roles.length

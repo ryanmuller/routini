@@ -19,13 +19,23 @@ class TasksController < ApplicationController
   end
 
   def index
-    tasks = current_user.tasks
+    if params[:context]
+      context = current_user.contexts.find(params[:context])
+      tasks = context.tasks
+    else 
+      tasks = current_user.tasks
+    end
 
     if tasks.empty?
       redirect_to root_path
     else
       @task = tasks[rand(tasks.count)]
-      redirect_to task_path(@task)
+
+      if params[:context]
+        redirect_to task_path(@task, { :context => context })
+      else 
+        redirect_to task_path(@task)
+      end
     end
   end
 
@@ -36,6 +46,9 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+
+    @task.task_roles.build if @task.task_roles == []
+    @task.task_contexts.build if @task.task_contexts == []
   end
 
   def update

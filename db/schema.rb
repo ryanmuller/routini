@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108012018) do
+ActiveRecord::Schema.define(:version => 20111108014523) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(:version => 20111108012018) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
+  end
+
+  create_table "task_contexts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "task_id"
+    t.integer  "context_id"
   end
 
   create_table "task_roles", :force => true do |t|

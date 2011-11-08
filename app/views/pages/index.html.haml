@@ -9,13 +9,17 @@
 %ul
   - @tasks.each do |t|
     %li
+      - t.task_contexts.each do |tc|
+        %span.context
+          =tc.context.name
+
       = link_to t.name, task_path(t)
       %span.small
         (#{t.time/60} min)
       - t.task_roles.each do |tr|
         %span.role
           +#{tr.points} #{tr.role.name}
-
+      
 #new-task-area.new-item
   = render "tasks/form"
 
@@ -59,9 +63,11 @@
 %ul 
   - @points.each do |p|
     %li
-      #{time_ago_in_words(p.created_at)} ago:
-      + 
-      = p.points  
-      = p.role.name 
+      %span.small
+        #{time_ago_in_words(p.created_at)} ago:
+      %span.role
+        + 
+        = p.points  
+        = p.role.name 
       for 
       = p.task.name
