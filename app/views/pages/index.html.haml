@@ -36,6 +36,18 @@
 %h2 
   Contexts
 
+%ul
+  - @contexts.each do |c|
+    %li= link_to c.name, tasks_path({:context => c})
+
+#new-context-area.new-item
+  = form_for @context do |f|
+    %p
+      = f.label :name
+      = f.text_field :name
+    = f.submit "Add context"
+
+
 %h2 
   Points
 

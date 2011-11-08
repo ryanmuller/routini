@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    tasks = Task.where(:user_id => current_user.id)
+    tasks = current_user.tasks
 
     if tasks.empty?
       redirect_to root_path

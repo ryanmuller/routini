@@ -8,6 +8,7 @@ Routini::Application.routes.draw do
   resources :logs, :only => [ :create ]
   resources :points, :only => [ :create ]
   resources :task_roles, :only => [ :create, :destroy ]
+  resources :contexts, :only => [ :create, :destroy ]
 
 
   # The priority is based upon order of creation:

@@ -12,5 +12,6 @@ class User < ActiveRecord::Base
   has_many :logs
   has_many :points
   has_many :task_roles
+  has_many :contexts
 end
 

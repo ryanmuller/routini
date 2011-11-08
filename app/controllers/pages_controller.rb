@@ -4,10 +4,10 @@ class PagesController < ApplicationController
   
   def index
 
-    @tasks = Task.where("user_id = ?", current_user.id)
+    @tasks = current_user.tasks
     @task = Task.new
     task_role = @task.task_roles.build
-    @roles = Role.where("user_id = ?", current_user.id)
+    @roles = current_user.roles
 
     @role_options = []
     @roles.each do |role|
@@ -30,10 +30,12 @@ class PagesController < ApplicationController
       @rp_ticks += ", " unless @rp_ticks == "["
       @rp_json += "[#{i},#{points}]"
       @rp_ticks += "[#{i},\"#{role.name}\"]"
-      #@rp_json += "{ label: \"#{role.name}\", data: [[#{i},#{points}]] }"
     end
     @rp_json += "]"
     @rp_ticks += "]"
+
+    @contexts = current_user.contexts
+    @context = Context.new
   end
 
   def must_log_in

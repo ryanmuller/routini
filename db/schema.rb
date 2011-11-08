@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107214017) do
+ActiveRecord::Schema.define(:version => 20111108012018) do
+
+  create_table "contexts", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "logs", :force => true do |t|
     t.integer  "user_id"
