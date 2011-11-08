@@ -1,5 +1,7 @@
 %h1
   = @task.name
+  %span.small
+    = link_to "edit", edit_task_path(@path)
 
 %p
   = auto_link @task.description
@@ -20,5 +22,6 @@
   %form{ :action => tasks_path, :method => "GET" }
     %input{ :type => "submit", :value => "Skip" }
 
-%p
-  = link_to "Edit this routine", edit_task_path(@path)
+or
+= link_to "choose your own", root_path
+
