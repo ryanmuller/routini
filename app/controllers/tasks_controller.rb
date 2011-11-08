@@ -48,7 +48,12 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     @task.task_roles.build if @task.task_roles == []
-    @task.task_contexts.build if @task.task_contexts == []
+
+    current_user.contexts.each do |context|
+      unless tc = @task.task_contexts.find_by_context_id(context.id)
+        @task.task_contexts.build(:context_id => context.id)
+      end
+    end
   end
 
   def update

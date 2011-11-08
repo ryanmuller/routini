@@ -5,11 +5,15 @@ class PagesController < ApplicationController
   def index
 
     @tasks = current_user.tasks.includes(:task_contexts => :context, :task_roles => :role)
+    @contexts = current_user.contexts
+    @roles = current_user.roles
+
     @task = Task.new
-    task_context = @task.task_contexts.build
     task_role = @task.task_roles.build
 
-    @roles = current_user.roles
+    @contexts.each do |context|
+      @task.task_contexts.build(:context_id => context.id)
+    end
 
     @role_options = []
     @roles.each do |role|
@@ -36,7 +40,6 @@ class PagesController < ApplicationController
     @rp_json += "]"
     @rp_ticks += "]"
 
-    @contexts = current_user.contexts
     @context = Context.new
   end
 

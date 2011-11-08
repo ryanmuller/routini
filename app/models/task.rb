@@ -7,7 +7,8 @@ class Task < ActiveRecord::Base
   has_many :task_contexts
   has_many :contexts, :through => :task_contexts
 
-  accepts_nested_attributes_for :task_roles, :task_contexts
+  accepts_nested_attributes_for :task_roles
+  accepts_nested_attributes_for :task_contexts, :allow_destroy => true
 
   validates :name, :presence => true
 end

@@ -17,8 +17,16 @@
       = ff.select :points, [[1,1],[2,2],[3,3]]
       points
   %p
+    Use in context:
+
     = f.fields_for :task_contexts do |ff|
-      Display in context
-      = ff.select :context_id, context_options
+      = ff.object.context.name
+      = ff.hidden_field :context_id, { :value => ff.object.context.id } 
+      - unless ff.object.new_record?
+        = ff.check_box :_destroy, { :checked => true },  "0", "1"
+      - else 
+        = ff.check_box :_destroy, {}, "0", "1"
+       
+      =# ff.select :context_id, context_options
   %p 
     = f.submit "Save routine"
