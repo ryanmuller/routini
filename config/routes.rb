@@ -4,7 +4,7 @@ Routini::Application.routes.draw do
   root :to => "pages#index"
 
   resources :tasks, :only => [ :create, :destroy, :index, :show, :edit, :update ]
-  resources :roles, :only => [ :create, :destroy ]
+  resources :roles, :only => [ :create, :destroy, :edit, :update ]
   resources :logs, :only => [ :create ]
   resources :points, :only => [ :create ]
   resources :task_roles, :only => [ :create, :destroy ]

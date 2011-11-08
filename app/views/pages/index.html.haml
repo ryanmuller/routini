@@ -10,29 +10,28 @@
   - @tasks.each do |t|
     %li
       = link_to t.name, task_path(t)
-      %span.time
+      %span.small
         (#{t.time/60} min)
       - t.task_roles.each do |tr|
         %span.role
           +#{tr.points} #{tr.role.name}
 
-= render "tasks/form"
+#new-task-area.new-item
+  = render "tasks/form"
 
 %h2
   Roles
 
 %ul
-  - @roles.each do |t|
+  - @roles.each do |r|
     %li
-      = t.name
+      #{r.name} - #{r.description}
+      %span.small= link_to "edit", edit_role_path(r)
+      %span.small= link_to "remove", { :controller => "roles", :action => "destroy", :id => r.id }, :confirm => "Are you sure?", :method => "delete"
 
-= form_for(@role) do |f|
-  %p
-    = f.label :name
-    = f.text_field :name
-  %p 
-    = f.submit "Add role"
 
+#new-role-area.new-item
+  = render "roles/form"
 
 %h2 
   Contexts
