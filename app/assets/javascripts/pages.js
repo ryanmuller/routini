@@ -1,9 +1,10 @@
 
 $(document).ready(function() {
 
-  $.plot($('#point-chart'), [ $('#point-chart').data('pts') ],
-         { bars  : { show : true, align : "center" },
-           xaxis : { tickColor : "#ffffff", ticks : $('#point-chart').data('ticks') },
+  console.log($('#point-chart').data('pts'));
+  $.plot($('#point-chart'), eval('('+$('#point-chart').data('pts')+')'),
+         { 
+           xaxis : { tickColor : "#ffffff"},
            grid  : { borderWidth: 0, hoverable: true }});
 });
 

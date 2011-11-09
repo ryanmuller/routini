@@ -20,7 +20,7 @@ class PagesController < ApplicationController
       @role_options << [role.name, role.id]
     end
     @role = Role.new
-    @points = current_user.points.includes(:role, :task, :user)
+    @points = current_user.points.includes(:role, :task, :user).from_day(Time.now.to_date)
 
     @role_points = []
     @rp_xmax = @roles.length
@@ -39,6 +39,8 @@ class PagesController < ApplicationController
     end
     @rp_json += "]"
     @rp_ticks += "]"
+
+    @rp_json = Point.plot_data_stacked(current_user, @roles).to_json.gsub(/"label"/, "label").gsub(/"data"/, "data") 
 
     @context = Context.new
   end
