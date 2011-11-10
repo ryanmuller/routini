@@ -4,13 +4,14 @@
 %h2
   Routines
 
-Shuffle: 
-%ul
-  %li= link_to "all", tasks_path(:all => true) 
+%p 
+  Shuffle
+  = link_to "all", tasks_path(:all => true) 
   - @contexts.each do |c|
-    %li= link_to c.name, c 
+    = link_to c.name, c 
 
-or choose a routine:
+%p
+  or choose a routine:
 
 %ul
   - @tasks.each do |t|
