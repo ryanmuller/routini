@@ -8,7 +8,9 @@ Routini::Application.routes.draw do
   resources :logs, :only => [ :create ]
   resources :points, :only => [ :create ]
   resources :task_roles, :only => [ :create, :destroy ]
-  resources :contexts, :only => [ :create, :destroy, :show ]
+  resources :situations, :only => [ :create, :destroy, :show ]
+
+  match "/contexts/:id" => "situations#show"
 
 
   # The priority is based upon order of creation:

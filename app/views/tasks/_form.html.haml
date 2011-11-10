@@ -20,8 +20,8 @@
     Use in context:
 
     = f.fields_for :task_contexts do |ff|
-      = ff.object.context.name
-      = ff.hidden_field :context_id, { :value => ff.object.context.id } 
+      = ff.object.situation.name
+      = ff.hidden_field :situation_id, { :value => ff.object.situation.id } 
       - unless ff.object.new_record?
         = ff.check_box :_destroy, { :checked => true },  "0", "1"
       - else 

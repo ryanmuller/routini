@@ -27,7 +27,7 @@
   Shuffling
   %span.context
     - if session[:context]
-      = Routini::Context.find(session[:context]).name
+      = Situation.find(session[:context]).name
     - else
       all
 

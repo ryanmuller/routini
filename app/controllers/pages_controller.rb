@@ -4,15 +4,15 @@ class PagesController < ApplicationController
   
   def index
 
-    @tasks = current_user.tasks.includes(:task_contexts => :context, :task_roles => :role)
-    @contexts = current_user.contexts
+    @tasks = current_user.tasks.includes(:task_contexts => :situation, :task_roles => :role)
+    @contexts = current_user.situations
     @roles = current_user.roles
 
     @task = Task.new
     task_role = @task.task_roles.build
 
     @contexts.each do |context|
-      @task.task_contexts.build(:context_id => context.id)
+      @task.task_contexts.build(:situation_id => context.id)
     end
 
     @role_options = []
@@ -42,7 +42,7 @@ class PagesController < ApplicationController
 
     @rp_json = Point.plot_data_stacked(current_user, @roles).to_json.gsub(/"label"/, "label").gsub(/"data"/, "data") 
 
-    @context = Context.new
+    @context = Situation.new
   end
 
   def must_log_in

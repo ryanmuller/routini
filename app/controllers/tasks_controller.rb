@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 
   def index
     if session[:context] and not params[:all]
-      context = current_user.contexts.find(session[:context])
+      context = current_user.situations.find(session[:context])
       tasks = context.tasks
     else 
       session[:context] = nil
@@ -46,9 +46,9 @@ class TasksController < ApplicationController
 
     @task.task_roles.build if @task.task_roles == []
 
-    current_user.contexts.each do |context|
-      unless tc = @task.task_contexts.find_by_context_id(context.id)
-        @task.task_contexts.build(:context_id => context.id)
+    current_user.situations.each do |context|
+      unless tc = @task.task_contexts.find_by_situation_id(context.id)
+        @task.task_contexts.build(:situation_id => context.id)
       end
     end
   end

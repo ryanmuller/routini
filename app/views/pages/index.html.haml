@@ -2,7 +2,7 @@
   Shuffle
   = link_to "all", tasks_path(:all => true) 
   - @contexts.each do |c|
-    = link_to c.name, c 
+    = link_to c.name, "/contexts/#{c.id}" 
 
 %div.row
   #task-list.span6
@@ -14,7 +14,7 @@
         %li
           - t.task_contexts.each do |tc|
             %span.context
-              =tc.context.name
+              =tc.situation.name
 
           = link_to t.name, task_path(t)
           %span.small
