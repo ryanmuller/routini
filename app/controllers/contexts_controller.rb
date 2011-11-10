@@ -18,4 +18,11 @@ class ContextsController < ApplicationController
 
     redirect_to root_path, :notice => 'Removed context.'
   end
+
+  def show 
+    @context = Context.find(params[:id])
+    session[:context] = @context.id
+    redirect_to tasks_path
+  end
 end
+
