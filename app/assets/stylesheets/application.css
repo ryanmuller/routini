@@ -6,4 +6,30 @@
  *= require_tree . 
 */
 
+header {
+  background: #444;
+  padding: 0 150px 0 150px;
+}
+
+header h1 {
+  color: white;
+  display: inline;
+}
+
+nav { 
+  display: inline;
+}
+
+nav ul {
+  display: inline;
+}
+nav ul li {
+  display: inline;
+}
+
+#main {
+  padding-top: 20px;
+}
+
+
 

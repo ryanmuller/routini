@@ -1,37 +1,38 @@
   
-%h1
-  = @task.name
-  %span.small
-    = link_to "edit", edit_task_path(@path)
-
-%p
-  = auto_link @task.description
-
-#points
-  - @task.task_roles.each do |tr|
-    +#{tr.points} #{tr.role.name}
-
-#timer
-  = @task.time
-
-#actions
-  = form_for @point do |f|
-    = f.hidden_field :task_id, { :value => @task.id }
-    %p 
-      = f.submit "Finished!"
-
-  %form{ :action => tasks_path, :method => "GET" }
-    %input{ :type => "submit", :value => "Skip" }
-
-%p.small
-  Shuffling
-  %span.context
+%div.row
+  %div.span12
+    Shuffling
     - if session[:context]
-      = Situation.find(session[:context]).name
+      = Situation.find(session[:context]).name + "."
     - else
-      all
+      all.
+    = link_to "Choose another", root_path
+  %div.span4
+    = link_to "Edit this task", edit_task_path(@path)
 
-  or
-  = link_to "choose your own", root_path
+#task-name.row
+  = @task.name
+
+%div.row
+  #countdown.span3
+    #timer
+      = @task.time
+    
+    #actions
+      = form_for @point do |f|
+        = f.hidden_field :task_id, { :value => @task.id }
+        = f.submit "Finished!"
+
+      %form{ :action => tasks_path, :method => "GET" }
+        %input{ :type => "submit", :value => "Skip" }
+
+  #info.span13
+    #points
+      - @task.task_roles.each do |tr|
+        %spak.task_role
+          +#{tr.points} #{tr.role.name}
+    %p
+      = auto_link @task.description
+
 
 

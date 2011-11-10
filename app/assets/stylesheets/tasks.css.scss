@@ -3,5 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #timer {
-  font-size: 200%;
+  font-size: 400%;
+  padding: 40px;
 }
+
+#task-name {
+  background: #f8f8f8;
+  padding: 30px;
+  font-size: 3em;
+  text-align: center;
+}
+
+#actions form {
+  display: inline;
+}
+
+@mixin rounded-corners($amount) {
+  -moz-border-radius: $amount;
+  -webkit-border-radius: $amount;
+  border-radius: $amount;
+}
+
+#points {
+  padding: 10px;
+}
+.task_role {
+  font-size: 1.5em;
+  color: white;
+  background: #6699ff;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  @include rounded-corners(5px);
+}
+

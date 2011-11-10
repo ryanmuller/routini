@@ -1,5 +1,5 @@
 #shuffler.row
-  Shuffle
+  Shuffle:
   = link_to "all", tasks_path(:all => true) 
   - @contexts.each do |c|
     = link_to c.name, "/contexts/#{c.id}" 
