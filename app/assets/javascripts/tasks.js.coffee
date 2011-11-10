@@ -5,6 +5,7 @@
 setInterval(() ->
   time = parseInt($('#timer').text())
 
+  console.log(time)
   $('#timer').text(time-1) if time > 0
 
   snd = new Audio('/timer.wav')

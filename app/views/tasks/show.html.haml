@@ -1,3 +1,4 @@
+  
 %h1
   = @task.name
   %span.small
@@ -22,6 +23,15 @@
   %form{ :action => tasks_path, :method => "GET" }
     %input{ :type => "submit", :value => "Skip" }
 
-or
-= link_to "choose your own", root_path
+%p.small
+  Shuffling
+  %span.context
+    - if session[:context]
+      = Routini::Context.find(session[:context]).name
+    - else
+      all
+
+  or
+  = link_to "choose your own", root_path
+
 
