@@ -44,7 +44,7 @@ class Point < ActiveRecord::Base
       data << { :label => role.name, :data => roledata }
     end
 
-    return data
+    return data.reverse
 
   end
 end
