@@ -34,5 +34,17 @@
     %p
       = auto_link @task.description
 
+    %h3
+      Actions
+
+    #microtasks
+      - @task.microtasks.each do |a|
+        = render a, :locals => { :microtask => a }
+
+    = form_for [@task, @task.microtasks.build], :remote => true do |f|
+      = f.text_field :name
+      = f.submit "Add"
+
+
 
 

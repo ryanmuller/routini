@@ -1,0 +1,3 @@
+console.log('<%= @microtask.name %>');
+$('#microtasks').append('<%= escape_javascript render @microtask, :locals => { :microtask => @microtask } %>');
+

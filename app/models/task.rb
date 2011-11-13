@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   has_many :roles, :through => :task_roles
   has_many :task_contexts
   has_many :contexts, :through => :task_contexts
+  has_many :microtasks, :dependent => :destroy
 
   accepts_nested_attributes_for :task_roles
   accepts_nested_attributes_for :task_contexts, :allow_destroy => true

@@ -39,6 +39,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @point = Point.new
+    @microtask = @task.microtasks.build
   end
 
   def edit
