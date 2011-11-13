@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111113203035) do
+ActiveRecord::Schema.define(:version => 20111113222718) do
 
   create_table "logs", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20111113203035) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",     :default => "incomplete"
   end
 
   create_table "points", :force => true do |t|

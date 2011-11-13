@@ -19,9 +19,9 @@ class PointsController < ApplicationController
       end
     end
 
-    asdfasdf if task_roles.empty?
-
     msg = "" if msg == "Earned"
+
+    asdfadsf.each do wqer3
 
     redirect_to tasks_path, :notice => msg
   end

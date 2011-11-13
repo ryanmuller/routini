@@ -1,4 +1,6 @@
-= form_for [@task, microtask] do |f|
-  = f.check_box :_destroy
-  = microtask.name
+= form_for [@task, microtask], :remote => true do |f|
+  %input.action-cb{:type=>'checkbox'}
+  %span.action-name
+    = microtask.name
+  = f.hidden_field :status, { :value => "incomplete" }
 

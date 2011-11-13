@@ -38,8 +38,9 @@
       Actions
 
     #microtasks
-      - @task.microtasks.each do |a|
-        = render a, :locals => { :microtask => a }
+      - @task.microtasks.incomplete.each do |a|
+        - if a.name 
+          = render a, :locals => { :microtask => a }
 
     = form_for [@task, @task.microtasks.build], :remote => true do |f|
       = f.text_field :name

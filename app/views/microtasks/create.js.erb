@@ -1,3 +1,15 @@
 console.log('<%= @microtask.name %>');
 $('#microtasks').append('<%= escape_javascript render @microtask, :locals => { :microtask => @microtask } %>');
+$('#microtasks').find('.action-cb').last().change(function() {
+  if ($(this).is(':checked')) {
+    $(this).next().css('text-decoration', 'line-through');
+    $(this).next().next().attr('value', 'complete');
+  } else {
+    $(this).next().css('text-decoration', 'none');
+    $(this).next().next().attr('value', 'incomplete');
+  }
+
+  $(this).parent().submit();
+});
+
 
