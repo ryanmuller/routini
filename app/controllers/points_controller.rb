@@ -21,8 +21,6 @@ class PointsController < ApplicationController
 
     msg = "" if msg == "Earned"
 
-    asdfadsf.each do wqer3
-
     redirect_to tasks_path, :notice => msg
   end
 end
