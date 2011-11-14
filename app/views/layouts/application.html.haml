@@ -11,10 +11,12 @@
   %body{:class => params[:controller]}
     %header
       %h1
-        Shuff
+        <a href="/">Shuff</a>
       %nav
+        = link_to 'Help', '/help'
+        = "/"
         - if user_signed_in?
-          = link_to('Edit account', edit_user_registration_path)
+          = link_to('Account', edit_user_registration_path)
         - else
           = link_to('Sign up', new_user_registration_path)
         ="/"

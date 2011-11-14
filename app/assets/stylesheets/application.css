@@ -12,9 +12,23 @@ header {
 }
 
 header h1 {
-  color: white;
   display: inline;
+  padding-right: 1em;
 }
+
+header h1 a {
+  color: white;
+}
+
+header h1 a:visited {
+  color: white;
+}
+
+header h1 a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 
 nav { 
   display: inline;
@@ -25,6 +39,15 @@ nav ul {
 }
 nav ul li {
   display: inline;
+}
+
+nav a {
+  color: #ddd;
+  font-size: .8em;
+}
+
+nav a:hover {
+  color: #fff;
 }
 
 #main {
