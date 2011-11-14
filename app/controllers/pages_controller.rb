@@ -45,6 +45,9 @@ class PagesController < ApplicationController
     @context = Situation.new
   end
 
+  def help
+  end
+
   def must_log_in
     redirect_to new_user_session_path unless user_signed_in?
   end
