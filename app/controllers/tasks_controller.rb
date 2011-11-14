@@ -40,6 +40,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @point = Point.new
     @microtask = @task.microtasks.build
+    @contexts = current_user.situations
   end
 
   def edit

@@ -1,17 +1,28 @@
   
-%div.row
-  %div.span12
-    Shuffling
-    - if session[:context]
-      = Situation.find(session[:context]).name + "."
-    - else
-      all.
-    = link_to "Choose another", root_path
-  %div.span4
-    = link_to "Edit this task", edit_task_path(@path)
+#shuffler-task.row
+  %div.span16
+    Shuffling 
+    %strong 
+      #{context = session[:context] ? Situation.find(session[:context]).name : "all"}.
+
+    Switch:
+    - if context != "all"
+      = link_to "all", tasks_path(:all => true) 
+    - @contexts.each do |c|
+      - if c.name != context
+        = link_to c.name, "/contexts/#{c.id}" 
+
 
 #task-name.row
-  = @task.name
+  %div.span12
+    %h2
+      = @task.name
+  %div.span4
+    #points
+      - @task.task_roles.each do |tr|
+        %spak.task_role
+          +#{tr.points} #{tr.role.name}
+    = link_to "Edit this task", edit_task_path(@path)
 
 %div.row
   #countdown.span3
@@ -27,10 +38,6 @@
         %input{ :type => "submit", :value => "Skip" }
 
   #info.span13
-    #points
-      - @task.task_roles.each do |tr|
-        %spak.task_role
-          +#{tr.points} #{tr.role.name}
     %p
       = auto_link @task.description
 

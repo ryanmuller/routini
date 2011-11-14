@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin rounded-corners($amount) {
+  -moz-border-radius: $amount;
+  -webkit-border-radius: $amount;
+  border-radius: $amount;
+}
+
 #timer {
   font-size: 400%;
   padding: 40px;
@@ -9,20 +15,24 @@
 
 #task-name {
   background: #f8f8f8;
-  padding: 30px;
-  font-size: 3em;
+  padding-top: 30px;
+  padding-bottom: 30px;
   text-align: center;
+
+  h2 {
+    font-size: 3em;
+  }
+}
+
+#shuffler-task {
+  padding: .5em;
+//  background-color: lighten(#0069D6, 50%);
 }
 
 #actions form {
   display: inline;
 }
 
-@mixin rounded-corners($amount) {
-  -moz-border-radius: $amount;
-  -webkit-border-radius: $amount;
-  border-radius: $amount;
-}
 
 #points {
   padding: 10px;
