@@ -10,7 +10,18 @@
 
 #timer {
   font-size: 400%;
-  padding: 40px;
+  padding-top: 35px;
+  text-align: center;
+}
+
+#timeviz-box {
+  margin-top: -1.5em;
+  height: 2em;
+}
+
+#timeviz-fill {
+  height: 2em;
+  background: #cfc;
 }
 
 #task-name {

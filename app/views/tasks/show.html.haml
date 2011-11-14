@@ -26,8 +26,16 @@
 
 %div.row
   #countdown.span3
-    #timer
-      = @task.time
+    #timer{"data-maxtime" => @task.time}
+      = format_time @task.time
+    #timeviz-box
+      #timeviz-fill
+    %br
+    #time-control
+      %a#pause{:href => '#'}
+        pause
+      %a#reset{:href => '#'}
+        reset
     
     #actions
       = form_for @point do |f|
