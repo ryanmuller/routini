@@ -41,7 +41,7 @@ formatTime = (time) ->
 
 getSeconds = (time) ->
   if time.indexOf(':') >= 0
-    parseInt(time.split(':')[0])*60 + parseInt(time.split(':')[1])
+    parseInt(time.split(':')[0], 10)*60 + parseInt(time.split(':')[1], 10)
   else
     parseInt(time)
 
@@ -51,6 +51,7 @@ setInterval(() ->
   return if $('#timer').data('pause') == 'true'
 
   seconds = getSeconds($('#timer').text())
+  console.log(seconds)
 
   $('#timer').text(formatTime(seconds-1)) if seconds > 0
 
