@@ -59,7 +59,9 @@
         %ul
           - @roles.each do |r|
             %li
-              #{r.name} - #{r.description}
+              %strong
+                #{r.name} 
+              = r.description
               %span.small= link_to "edit", edit_role_path(r)
               %span.small= link_to "remove", { :controller => "roles", :action => "destroy", :id => r.id }, :confirm => "Are you sure?", :method => "delete"
 
@@ -71,10 +73,12 @@
 
         #new-context-area.new-item
           = form_for @context do |f|
-            %p
+            %div.clearfix
               = f.label :name
-              = f.text_field :name
-            = f.submit "Add context"
+              %div.input
+                = f.text_field :name, :class => "span3"
+            %div.actions
+              = f.submit "Add context", :class => "btn"
 
         %ul
           - @contexts.each do |c|

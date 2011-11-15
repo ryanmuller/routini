@@ -4,5 +4,5 @@
 = render "form"
 
 = form_for @task, :html => { :method => :delete } do |f|
-  = f.submit "Remove"
+  = f.submit "Remove", :class => [ "btn", "danger" ]
 

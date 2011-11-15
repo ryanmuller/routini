@@ -1,9 +1,11 @@
 = form_for(@role) do |f|
-  %p
+  %div.clearfix
     = f.label :name
-    = f.text_field :name
-  %p
+    %div.input
+      = f.text_field :name, :class => "span3"
+  %div.clearfix
     = f.label :description
-    = f.text_field :description
-  %p 
-    = f.submit "Add role"
+    %div.input
+      = f.text_field :description, :class => "span3"
+  %div.actions
+    = f.submit "Add role", :class => "btn"

@@ -23,8 +23,17 @@
 .new-item { 
   background-color: #f8f8f8;
   border: 1px solid #efefef;
-  margin: 1em;
-  padding: 1em;
+  padding-top: 1em;
+  margin-bottom: 1em;
+
+  form {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+
+  .actions {
+    margin-bottom: 0px;
+  }
 }
 
 table {

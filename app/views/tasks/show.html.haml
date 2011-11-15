@@ -44,10 +44,10 @@
     #actions
       = form_for @point do |f|
         = f.hidden_field :task_id, { :value => @task.id }
-        = f.submit "Finished!"
+        = f.submit "Finished!", :class => [ "btn", "success" ]
 
       %form{ :action => tasks_path, :method => "GET" }
-        %input{ :type => "submit", :value => "Skip" }
+        %input{ :type => "submit", :value => "Skip", :class => [ "btn" ]  }
 
   #info.span13
     %p
@@ -63,7 +63,7 @@
 
     = form_for [@task, @task.microtasks.build], :remote => true do |f|
       = f.text_field :name
-      = f.submit "Add"
+      = f.submit "Add", :class => "btn"
 
 
 

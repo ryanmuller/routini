@@ -1,32 +1,38 @@
 = form_for(@task) do |f|
-  %p
+  %div.clearfix
     = f.label :name
-    = f.text_field :name
-  %p
+    %div.input
+      = f.text_field :name, :class => "span3"
+  %div.clearfix
     = f.label :description
-    = f.text_area :description, :size => "30x3"
-  %p 
+    %div.input
+      = f.text_area :description, :class => "span3", :rows => "3"
+  %div.clearfix
     = f.label :time
-    = f.text_field :time, :size => 4
-    seconds
-  %p
-    = f.fields_for :task_roles do |ff|
-      Attribute to 
-      = ff.select :role_id, role_options
-      for
-      = ff.select :points, [[1,1],[2,2],[3,3]]
-      points
-  %p
-    Use in context:
+    %div.input 
+      = f.text_field :time, :class => "span2"
+      seconds
 
-    = f.fields_for :task_contexts do |ff|
-      = ff.object.situation.name
-      = ff.hidden_field :situation_id, { :value => ff.object.situation.id } 
-      - unless ff.object.new_record?
-        = ff.check_box :_destroy, { :checked => true },  "0", "1"
-      - else 
-        = ff.check_box :_destroy, {}, "0", "1"
-       
-      =# ff.select :context_id, context_options
-  %p 
-    = f.submit "Save task"
+  = f.fields_for :task_roles do |ff|
+    %div.clearfix
+      %label
+        Attribute  
+      %div.input 
+        = ff.select :points, [[1,1],[2,2],[3,3]], {}, :class => "span1"
+        point(s)
+        to
+        = ff.select :role_id, role_options, {}, :class => "span2"
+  %div.clearfix
+    %label
+      Context(s)
+
+    %div.input
+      = f.fields_for :task_contexts do |ff|
+        = ff.object.situation.name
+        = ff.hidden_field :situation_id, { :value => ff.object.situation.id } 
+        - unless ff.object.new_record?
+          = ff.check_box :_destroy, { :checked => true },  "0", "1"
+        - else 
+          = ff.check_box :_destroy, {}, "0", "1"
+  %div.actions 
+    = f.submit :class => "btn"

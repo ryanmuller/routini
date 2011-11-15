@@ -54,5 +54,15 @@ nav a:hover {
   padding-top: 20px;
 }
 
+label {
+  width: 80px;
+}
 
+form .input {
+  margin-left: 90px;
+}
+
+.actions {
+  padding-left: 90px;
+} 
 
