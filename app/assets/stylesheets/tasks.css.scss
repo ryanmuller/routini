@@ -15,14 +15,19 @@
 }
 
 #timeviz-box {
-  margin-top: -1.5em;
-  height: 2em;
+  display: inline;
+  height: 1em;
 }
 
 #timeviz-fill {
-  height: 2em;
+  height: 1em;
   background: #cfc;
 }
+
+#time-control {
+  float: right;
+}
+
 
 #task-name {
   background: #f8f8f8;

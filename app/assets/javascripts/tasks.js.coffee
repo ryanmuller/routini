@@ -19,10 +19,10 @@ $ ->
   $('#pause').click(() ->
     if $('#timer').data('pause') == 'true'
       $('#timer').data('pause','false')
-      $('#pause').text('pause')
+      $('#pause > img').attr('src', '/assets/pause.png')
     else
       $('#timer').data('pause','true')
-      $('#pause').text('resume')
+      $('#pause > img').attr('src', '/assets/play.png')
   )
 
   $('#reset').click(() ->

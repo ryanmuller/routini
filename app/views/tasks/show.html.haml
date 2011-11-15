@@ -28,14 +28,18 @@
   #countdown.span3
     #timer{"data-maxtime" => @task.time}
       = format_time @task.time
+
+    #time-control
+      %a#pause.time-control{:href => '#'}
+        %img{:src => '/assets/pause.png'}
+      %a#reset.time-control{:href => '#'}
+        %img{:src => '/assets/undo.png'}
+
+    %br
     #timeviz-box
       #timeviz-fill
+
     %br
-    #time-control
-      %a#pause{:href => '#'}
-        pause
-      %a#reset{:href => '#'}
-        reset
     
     #actions
       = form_for @point do |f|
