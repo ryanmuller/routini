@@ -48,10 +48,10 @@ getSeconds = (time) ->
 snd = new Audio('/timer.wav')
 
 setInterval(() ->
+  return if $('#timer').length == 0
   return if $('#timer').data('pause') == 'true'
 
   seconds = getSeconds($('#timer').text())
-  console.log(seconds)
 
   $('#timer').text(formatTime(seconds-1)) if seconds > 0
 
