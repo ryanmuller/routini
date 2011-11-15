@@ -1,5 +1,5 @@
-console.log('<%= @microtask.name %>');
 $('#microtasks').append('<%= escape_javascript render @microtask, :locals => { :microtask => @microtask } %>');
+$('#microtask_name').val('');
 $('#microtasks').find('.action-cb').last().change(function() {
   if ($(this).is(':checked')) {
     $(this).next().css('text-decoration', 'line-through');
