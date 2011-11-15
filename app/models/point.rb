@@ -8,6 +8,7 @@ class Point < ActiveRecord::Base
   end
 
   def self.from_day(day)
+    day = day.to_date.to_time.utc
     where("created_at > ? AND created_at < ?", day, day + 1.days) 
   end
 

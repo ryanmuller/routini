@@ -20,7 +20,7 @@ class PagesController < ApplicationController
       @role_options << [role.name, role.id]
     end
     @role = Role.new
-    @points = current_user.points.includes(:role, :task, :user).from_day(Time.now.to_date)
+    @points = current_user.points.includes(:role, :task, :user).from_day(Time.now)
 
     @role_points = []
     @rp_xmax = @roles.length
