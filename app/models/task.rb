@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
   has_many :contexts, :through => :task_contexts
   has_many :microtasks, :dependent => :destroy
 
-  accepts_nested_attributes_for :task_roles
+  accepts_nested_attributes_for :task_roles, :reject_if => proc { |attributes| attributes['role_id'].blank? }
   accepts_nested_attributes_for :task_contexts, :allow_destroy => true
 
   validates :name, :presence => true

@@ -15,10 +15,6 @@ class PagesController < ApplicationController
       @task.task_contexts.build(:situation_id => context.id)
     end
 
-    @role_options = []
-    @roles.each do |role|
-      @role_options << [role.name, role.id]
-    end
     @role = Role.new
     @points = current_user.points.includes(:role, :task, :user).from_day(Time.now)
 
