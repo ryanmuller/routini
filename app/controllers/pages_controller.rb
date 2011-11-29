@@ -18,24 +18,6 @@ class PagesController < ApplicationController
     @role = Role.new
     @points = current_user.points.includes(:role, :task, :user).from_day(Time.now)
 
-    @role_points = []
-    @rp_xmax = @roles.length
-    @rp_json = "["
-    @rp_ticks = "["
-
-    @roles.each_with_index do |role, i|
-      points = Point.where("role_id = ? AND user_id = ?", 
-                           role.id, current_user.id).sum("points")
-
-      @role_points << [role.name, points]
-      @rp_json += ", " unless @rp_json == "["
-      @rp_ticks += ", " unless @rp_ticks == "["
-      @rp_json += "[#{i},#{points}]"
-      @rp_ticks += "[#{i},\"#{role.name}\"]"
-    end
-    @rp_json += "]"
-    @rp_ticks += "]"
-
     @rp_json = Point.plot_data_stacked(current_user, @roles).to_json.gsub(/"label"/, "label").gsub(/"data"/, "data") 
 
     @context = Situation.new
