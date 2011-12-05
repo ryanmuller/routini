@@ -12,4 +12,6 @@ class Task < ActiveRecord::Base
   accepts_nested_attributes_for :task_contexts, :allow_destroy => true
 
   validates :name, :presence => true
+
+  default_scope :order => 'created_at ASC'
 end
