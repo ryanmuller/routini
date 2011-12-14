@@ -28,7 +28,7 @@ class Point < ActiveRecord::Base
   end
 
   def self.plot_data_stacked(user, roles)
-    range = [Time.now.to_date - first_day, 14].min
+    range = Time.now.to_date - first_day
     data = []
 
     roles.each_with_index do |role, j|
