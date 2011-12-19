@@ -1,0 +1,10 @@
+- task.task_contexts.each do |tc|
+  %span.context
+    =tc.situation.name
+
+= link_to task.name, task_path(task)
+%span.small
+  (#{task.time/60} min)
+- task.task_roles.each do |tr|
+  %span.role
+    +#{tr.points} #{tr.role.name}

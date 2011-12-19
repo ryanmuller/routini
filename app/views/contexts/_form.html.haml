@@ -1,0 +1,7 @@
+= form_for @context do |f|
+  %div.clearfix
+    = f.label :name
+    %div.input
+      = f.text_field :name, :class => "span3"
+  %div.actions
+    = f.submit "Add context", :class => "btn"

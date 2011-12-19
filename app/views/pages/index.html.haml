@@ -11,17 +11,7 @@
 
     %ul
       - @tasks.each do |t|
-        %li
-          - t.task_contexts.each do |tc|
-            %span.context
-              =tc.situation.name
-
-          = link_to t.name, task_path(t)
-          %span.small
-            (#{t.time/60} min)
-          - t.task_roles.each do |tr|
-            %span.role
-              +#{tr.points} #{tr.role.name}
+        %li= render t
 
     #new-task-area.new-item
       = render "tasks/form"
@@ -41,14 +31,7 @@
 
       %ul 
         - @points.each do |p|
-          %li
-            %span.small
-              #{time_ago_in_words(p.created_at)} ago:
-            %span.role
-              + 
-              = p.points  
-              = p.role.name 
-            = "for " + p.task.name if p.task
+          %li= render p
             
 
     %div.row
@@ -62,27 +45,14 @@
 
         %ul
           - @roles.each do |r|
-            %li
-              %strong
-                #{r.name} 
-              = r.description
-              %span.small= link_to "edit", edit_role_path(r)
-              %span.small= link_to "remove", { :controller => "roles", :action => "destroy", :id => r.id }, :confirm => "Are you sure?", :method => "delete"
-
-
+            %li= render r
 
       #contexts.span5
         %h3 
           Contexts
 
         #new-context-area.new-item
-          = form_for @context do |f|
-            %div.clearfix
-              = f.label :name
-              %div.input
-                = f.text_field :name, :class => "span3"
-            %div.actions
-              = f.submit "Add context", :class => "btn"
+          = render "contexts/form"
 
         %ul
           - @contexts.each do |c|

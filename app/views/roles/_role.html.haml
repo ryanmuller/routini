@@ -1,0 +1,5 @@
+%strong
+  #{role.name} 
+= role.description
+%span.small= link_to "edit", edit_role_path(role)
+%span.small= link_to "remove", { :controller => "roles", :action => "destroy", :id => role.id }, :confirm => "Are you sure?", :method => "delete"

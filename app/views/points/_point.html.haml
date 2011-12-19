@@ -1,0 +1,7 @@
+%span.small
+  #{time_ago_in_words(point.created_at)} ago:
+%span.role
+  + 
+  = point.points  
+  = point.role.name 
+= "for " + point.task.name if point.task
