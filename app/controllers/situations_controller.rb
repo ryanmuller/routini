@@ -19,6 +19,20 @@ class SituationsController < ApplicationController
     redirect_to root_path, :notice => 'Removed context.'
   end
 
+  def edit
+    @context = Situation.find(params[:id])
+  end
+
+  def update
+    @context = Situation.find(params[:id])
+
+    if @context.update_attributes(params[:situation])
+      redirect_to root_path, :notice => "Context updated."
+    else
+      render 'edit'
+    end
+  end
+
   def show 
     @context = Situation.find(params[:id])
     session[:context] = @context.id

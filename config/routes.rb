@@ -12,7 +12,7 @@ Routini::Application.routes.draw do
   resources :logs, :only => [ :create ]
   resources :points, :only => [ :create ]
   resources :task_roles, :only => [ :create, :destroy ]
-  resources :situations, :only => [ :create, :destroy, :show ]
+  resources :situations, :only => [ :create, :destroy, :show, :edit, :update ]
 
   match "/contexts/:id" => "situations#show"
 

@@ -52,10 +52,10 @@
           Contexts
 
         #new-context-area.new-item
-          = render "contexts/form"
+          = render "situations/form"
 
         %ul
           - @contexts.each do |c|
-            %li= c.name
+            %li= render c
 
 

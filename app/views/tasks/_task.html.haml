@@ -6,5 +6,6 @@
 %span.small
   (#{task.time/60} min)
 - task.task_roles.each do |tr|
-  %span.role
-    +#{tr.points} #{tr.role.name}
+  - if tr.role
+    %span.role
+      +#{tr.points} #{tr.role.name}
