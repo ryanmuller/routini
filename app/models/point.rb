@@ -7,10 +7,14 @@ class Point < ActiveRecord::Base
     first.created_at.to_date
   end
 
-  def self.from_day(day)
+  def self.from_time(time, user)
     time_offset = user.time_offset || 0
-    day = day.to_date.to_time.utc
-    where("created_at > ? AND created_at < ?", day + time_offset, day + 1.days + time_offset) 
+    day = time.to_date
+    if time < day + time_offset.hours
+      where("created_at > ? AND created_at < ?", day - 1.days + time_offset.hours, day + time_offset.hours) 
+    else
+      where("created_at > ? AND created_at < ?", day + time_offset.hours, day + 1.days + time_offset.hours) 
+    end
   end
 
   def self.plot_data(user, roles)
@@ -29,41 +33,47 @@ class Point < ActiveRecord::Base
   end
 
   def self.plot_data_stacked(user, roles)
-    range = Time.now.to_date - first_day
     data = []
 
 
     roles.each_with_index do |role, j|
-      roledata = []
-      i = -1
-      last_pt = nil
-      reset_time = nil
+      roledata = [[0,0]]
+      i = 0
+      reset_time = user.points.first.created_at.to_date + user.time_offset.hours
 
-      where("user_id => ? AND role_id = ?", user.id, role.id).each do |pt|
-        last_pt ||= pt
-        reset_time = last_pt.created_at.to_date.to_utc + time_offset
+      # add up points from each
+      where("user_id = ? AND role_id = ?", user.id, role.id).each do |pt|
+        reset_time ||= pt.created_at.to_date + user.time_offset.hours
 
-        if i == -1 or (reset_time < pt.created_at)
+        while reset_time < pt.created_at
           i += 1
-          roledata << [i, pt.points]
-        else
-          roledata.last += pt.points
+          roledata << [i, 0]
+          reset_time += 1.day
         end
-
-        last_pt = pt
+        
+        roledata.last[1] += pt.points
+      end
+      
+      # fill in zeros until today
+      while reset_time < Time.now.utc
+        i += 1
+        roledata << [i, 0]
+        reset_time += 1.day
       end
 
       # add totals from before to make stack
       if j > 0
         roledata.each_with_index do |rd, i|
-          roledata[i] += data[j-1][:data][i][1]
+          rd[1] += data[j-1][:data][i][1]
         end
       end
 
+
       data << { :label => role.name, :data => roledata }
+    end
 
       
-
+'''
       (0..range).each do |i|
         pts = where("user_id = ? AND role_id = ?", user.id, role.id).from_day(Time.now.to_date - (range - i).days).sum("points")
         if j == 0
@@ -74,8 +84,8 @@ class Point < ActiveRecord::Base
       end
       data << { :label => role.name, :data => roledata }
     end
+'''
 
     return data.reverse
-
   end
 end

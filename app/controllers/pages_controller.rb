@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     end
 
     @role = Role.new
-    @points = current_user.points.includes(:role, :task, :user).from_day(Time.now)
+    @points = current_user.points.includes(:role, :task, :user).from_time(Time.now.utc, current_user)
 
     @rp_json = Point.plot_data_stacked(current_user, @roles).to_json.gsub(/"label"/, "label").gsub(/"data"/, "data") 
 
