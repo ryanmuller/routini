@@ -3,7 +3,6 @@ Routini::Application.routes.draw do
 
   root :to => "pages#index"
   match '/help' => 'pages#help'
-  
 
   resources :tasks, :only => [ :create, :destroy, :index, :show, :edit, :update ] do
     resources :microtasks, :only => [ :create, :update ]

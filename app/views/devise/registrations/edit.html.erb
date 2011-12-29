@@ -1,0 +1,50 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+  <%= devise_error_messages! %>
+
+  <div class="clearfix">
+    <%= f.label :email %>
+    <div class="input">
+      <%= f.email_field :email %>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+    <div class="input">
+      <%= f.password_field :password %>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <%= f.label :password_confirmation %>
+    <div class="input">
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <%= f.label :time_offset, "Time to reset day for graphing points" %>
+    <div class="input">
+      <%= f.select :time_offset, [["12 AM GMT",0],["1 AM GMT",1],["2 AM GMT",2],["3 AM GMT",3],["4 AM GMT",4],["5 AM GMT",5],["6 AM GMT",6],["7 AM GMT",7],["8 AM GMT",8],["9 AM GMT",9],["10 AM GMT",10],["11 AM GMT",11],["12 PM GMT",12],["1 PM GMT",13],["2 PM GMT",14],["3 PM GMT",15],["4 PM GMT",16],["5 PM GMT",17],["6 PM GMT",18],["7 PM GMT",19],["8 PM GMT",20],["9 PM GMT",21],["10 PM GMT",22],["11 AM GMT",23]] %>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+    <div class="input">
+      <%= f.password_field :current_password %>
+    </div>
+  </div>
+
+
+  <div class="actions"><%= f.submit "Update", :class => "btn" %></div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+
+<%= link_to "Back", :back %>
