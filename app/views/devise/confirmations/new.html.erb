@@ -3,10 +3,14 @@
 <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="clearfix">
+    <%= f.label :email %>
+    <div class="input">
+      <%= f.email_field :email %>
+    </div>
+  </div>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
+  <div class="actions"><%= f.submit "Resend confirmation instructions", :class => "btn" %></div>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
