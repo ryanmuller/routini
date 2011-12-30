@@ -63,3 +63,20 @@
   @include rounded-corners(5px);
 }
 
+.finish_btn input.btn {
+  width: 80px;
+}
+
+.skip_btn input.btn {
+  float: right;
+  width: 70px;
+}
+
+.repeat_btn input.btn {
+  margin-top: 10px;
+  width: 160px;
+}
+
+
+
+

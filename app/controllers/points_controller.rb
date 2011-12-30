@@ -21,6 +21,10 @@ class PointsController < ApplicationController
 
     msg = "" if msg == "Earned"
 
-    redirect_to tasks_path, :notice => msg
+    if params[:next_task_id]
+      redirect_to Task.find(params[:next_task_id])
+    else
+      redirect_to tasks_path, :notice => msg
+    end
   end
 end

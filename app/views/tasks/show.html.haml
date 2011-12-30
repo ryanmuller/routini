@@ -42,12 +42,18 @@
     %br
     
     #actions
-      = form_for @point do |f|
+      = form_for @point, :html => { :class => "finish_btn" } do |f|
         = f.hidden_field :task_id, { :value => @task.id }
         = f.submit "Finished!", :class => [ "btn", "success" ]
 
-      %form{ :action => tasks_path, :method => "GET" }
+      %form{ :action => tasks_path, :method => "GET", :class => "skip_btn" }
         %input{ :type => "submit", :value => "Skip", :class => [ "btn" ]  }
+
+      %br
+      = form_for @point, :html => { :class => "repeat_btn" } do |f|
+        = f.hidden_field :task_id, { :value => @task.id }
+        = hidden_field_tag :next_task_id, @task.id
+        = f.submit "Log and repeat", :class => [ "btn" ]
 
   #info.span13
     %p
