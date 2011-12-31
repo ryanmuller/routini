@@ -13,7 +13,7 @@ class PointsController < ApplicationController
 
     @offset = params[:offset].nil? ? 0 : Integer(params[:offset])
     
-    @points = Point.from_time(Time.now - @offset.days, current_user)
+    @points = current_user.points.from_time(Time.now - @offset.days, current_user)
     @rp_json = []
     @roles.all.each_with_index do |role, i|
       @rp_json << { :label => role.name, :data => [[i, @points.where("role_id = ?", role.id).count]] , :bars => { :show => :true } }
