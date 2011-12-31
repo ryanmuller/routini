@@ -24,6 +24,10 @@
         from the last 
         %input#chart_days{:type => 'text', :value => '14'}
         days
+      %div.manage-points.small
+        (
+        = link_to "Manage", points_path 
+        )
 
       #point-chart{ :style       => "width:500px;height:300px;", 
                     "data-pts"   => @rp_json }

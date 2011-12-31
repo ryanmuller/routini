@@ -9,7 +9,7 @@ Routini::Application.routes.draw do
   end
   resources :roles, :only => [ :create, :destroy, :edit, :update ]
   resources :logs, :only => [ :create ]
-  resources :points, :only => [ :create ]
+  resources :points, :only => [ :destroy, :create, :index ]
   resources :task_roles, :only => [ :create, :destroy ]
   resources :situations, :only => [ :create, :destroy, :show, :edit, :update ]
 

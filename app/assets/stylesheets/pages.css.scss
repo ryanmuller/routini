@@ -79,9 +79,20 @@ ul.a li {
   display: inline;
   font-size: 80%;
 }
+#chart-options form {
+  display: inline;
+}
 
-#chart_days {
+#chart-options input.btn {
+  padding: 3px;
+  font-size: 80%;
+}
+
+#chart-options input {
   width: 3em;
 }
 
+.manage-points {
+  display: inline;
+}
 
