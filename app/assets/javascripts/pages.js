@@ -4,6 +4,17 @@ $(document).ready(function() {
   plotPoints();
 
   $('#chart_days').change(plotPoints);
+
+  $('#shuffler a').hover(function() {
+    var context = $(this).text();
+
+    if (context == 'all') {
+      $('#task-list li').show();
+    } else {
+      $('#task-list li').hide();
+      $('#task-list li .context:contains('+context+')').parent().show();
+    }
+  });
 });
 
 plotPoints = function() {
