@@ -15,6 +15,21 @@ $(document).ready(function() {
       $('#task-list li .context:contains('+context+')').parent().show();
     }
   });
+
+  $('.editor').hide();
+  $('.activator').show();
+
+  $('.activator').hover(function() {
+    $(this).next('.editor').show();
+    $(this).hide();
+  });
+
+  $('.editor').mouseleave(function() {
+    $(this).prev('.activator').show();
+    $(this).hide();
+  });
+
+
 });
 
 plotPoints = function() {

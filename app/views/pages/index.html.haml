@@ -13,7 +13,10 @@
       - @tasks.each do |t|
         %li= render t
 
-    #new-task-area.new-item
+    #tasks-activate.activator
+      Edit tasks
+
+    #new-task-area.new-item.editor
       = render "tasks/form"
 
   #chart.span10
@@ -41,25 +44,35 @@
     %div.row
 
       #roles.span5
-        %h3
-          Roles
 
-        #new-role-area.new-item
-          = render "roles/form"
+        #roles-activate.activator
+          Edit roles
 
-        %ul
-          - @roles.each do |r|
-            %li= render r
+        #roles-editor.editor
+          %h3
+            Roles
+
+          #new-role-area.new-item
+            = render "roles/form"
+
+          %ul
+            - @roles.each do |r|
+              %li= render r
 
       #contexts.span5
-        %h3 
-          Contexts
 
-        #new-context-area.new-item
-          = render "situations/form"
+        #context-activate.activator
+          Edit contexts
 
-        %ul
-          - @contexts.each do |c|
-            %li= render c
+        #contexts-editor.editor
+          %h3 
+            Contexts
+
+          #new-context-area.new-item
+            = render "situations/form"
+
+          %ul
+            - @contexts.each do |c|
+              %li= render c
 
 
