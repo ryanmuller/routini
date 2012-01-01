@@ -14,11 +14,13 @@ class PointsController < ApplicationController
     @offset = params[:offset].nil? ? 0 : Integer(params[:offset])
     
     @points = current_user.points.from_time(Time.now - @offset.days, current_user)
-    @rp_json = []
+    @rpdaily_json = []
     @roles.all.each_with_index do |role, i|
-      @rp_json << { :label => role.name, :data => [[i, @points.where("role_id = ?", role.id).sum('points')]] , :bars => { :show => :true } }
+      @rpdaily_json << { :label => role.name, :data => [[i, @points.where("role_id = ?", role.id).sum('points')]] , :bars => { :show => :true } }
     end
-    @rp_json = @rp_json.reverse.to_json.gsub(/"label"/, "label").gsub(/"data"/, "data").gsub(/"bars"/, "bars") 
+    @rpdaily_json = @rpdaily_json.reverse.to_json.gsub(/"label"/, "label").gsub(/"data"/, "data").gsub(/"bars"/, "bars") 
+
+    @rp_json = Point.plot_data_stacked(current_user, @roles).to_json.gsub(/"label"/, "label").gsub(/"data"/, "data") 
 
   end
 

@@ -1,31 +1,39 @@
 %div.row
-  #chart.span16
-    %div.row
-      %h3
-        Points from 
-        - if @offset == 0
-          today
-        - elsif @offset == 1
-          yesterday
-        - else 
-          #{@offset} days ago
+  %div.chart.span10
+    %h3
+      Points from 
+      - if @offset == 0
+        today
+      - elsif @offset == 1
+        yesterday
+      - else 
+        #{@offset} days ago
 
-      #chart-options
-        %form{:method => 'get', :action => '/points'}
-          See
-          %input#days_ago{:type => 'text', :value => @offset, :name => 'offset'}
-          day(s) ago
-          %input{:type => 'submit', :class => 'btn', :value => 'Go'}
+    .chart-options
+      %form{:method => 'get', :action => '/points'}
+        See
+        %input#days_ago{:type => 'text', :value => @offset, :name => 'offset'}
+        day(s) ago
+        %input{:type => 'submit', :class => 'btn', :value => 'Go'}
 
-      
+    
 
-      #point-chart{ :style       => "width:500px;height:300px;", 
-                    "data-pts"   => @rp_json }
+    #daily-chart{ :style       => "width:500px;height:300px;", 
+                  "data-pts"   => @rpdaily_json }
 
 
-      %ul 
-        - @points.each do |p|
-          %li
-            = render p 
-            %span.small= link_to "remove", { :controller => "points", :action => "destroy", :id => p.id }, :confirm => "Are you sure?", :method => "delete"
+    %ul 
+      - @points.each do |p|
+        %li
+          = render p 
+          %span.small= link_to "remove", { :controller => "points", :action => "destroy", :id => p.id }, :confirm => "Are you sure?", :method => "delete"
 
+  %div.chart.span6
+    %h3
+      Points
+    .chart-options
+      from the last 
+      %input#chart_days{:type => 'text', :value => '14'}
+      days
+    #point-chart{ :style       => "width:320px;height:192px;", 
+                  "data-pts"   => @rp_json }
