@@ -9,8 +9,10 @@ $(document).ready(function() {
     var context = $(this).text();
 
     if (context == 'all') {
+      $('#task-list h3').text('Tasks');
       $('#task-list li').show();
     } else {
+      $('#task-list h3').text('Tasks ('+context+')');
       $('#task-list li').hide();
       $('#task-list li .context:contains('+context+')').parent().show();
     }
