@@ -29,16 +29,25 @@
 }
 
 
-#task-name {
+#task-show {
   background: #f8f8f8;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  text-align: center;
+
+  #task-name {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 
   h2 {
     font-size: 3em;
   }
+
+  #points {
+    padding-top: 30px;
+    text-align: right;
+  }
 }
+
 
 #shuffler-task {
   padding: .5em;
@@ -50,16 +59,16 @@
 }
 
 
-#points {
-  padding: 10px;
-}
+
+
 .task_role {
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: white;
   background: #6699ff;
   text-align: center;
   padding: 5px;
-  margin: 5px;
+  line-height: 30px;
+  margin-right: 5px;
   @include rounded-corners(5px);
 }
 

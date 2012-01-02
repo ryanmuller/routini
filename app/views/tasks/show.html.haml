@@ -13,16 +13,16 @@
         = link_to c.name, "/contexts/#{c.id}" 
 
 
-#task-name.row
-  %div.span12
+#task-show.row
+  #task-name.span9
     %h2
       = @task.name
-  %div.span4
-    #points
-      - @task.task_roles.each do |tr|
-        %spak.task_role
-          +#{tr.points} #{tr.role.name}
-    = link_to "Edit this task", edit_task_path(@path)
+  #points.span7
+    - @task.task_roles.each do |tr|
+      %span.task_role
+        +#{tr.points}&nbsp;#{tr.role.name}
+    #edit-task-link
+      = link_to "Edit this task", edit_task_path(@path)
 
 %div.row
   #countdown.span3

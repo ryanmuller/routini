@@ -15,13 +15,10 @@
 
   = f.fields_for :task_roles do |ff|
     %div.clearfix
-      %label
-        Attribute  
-      %div.input 
-        = ff.select :points, [[1,1],[2,2],[3,3]], {}, :class => "span1"
-        point(s)
-        to
-        = ff.select :role_id, role_options, {}, :class => "span2"
+      = render 'task_role_fields', :f => ff
+  %div.clearfix
+    %div.input
+      = link_to_add_fields "Add points for another role", f, :task_roles
   %div.clearfix
     %label
       Context(s)
