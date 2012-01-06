@@ -9,9 +9,12 @@
 }
 
 #timer {
-  font-size: 400%;
-  padding-top: 35px;
+  font-size: 48px;
+  line-height: 48px;
+
   text-align: center;
+  display: inline-block;
+  width: 120px;
 }
 
 #timeviz-box {
@@ -25,7 +28,9 @@
 }
 
 #time-control {
-  float: right;
+  display: inline-block;
+  text-align: right;
+  width: 30px;
 }
 
 

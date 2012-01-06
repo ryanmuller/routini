@@ -1,11 +1,14 @@
 --- 
 chart.png: chart-cc97055896522b8f36e5af69209fb837.png
-pause.png: pause-d93335c80b892dcc8e3e6cc8f799617f.png
+pause.png: pause-6b9aa63efd8226ddaff3579edde28e32.png
 pausealt.png: pausealt-bfa17df7fb2b78e6636c72b359737df9.png
-play.png: play-cbeae09d317c8f2dedbd8532752164aa.png
+pausesmall.png: pausesmall-d93335c80b892dcc8e3e6cc8f799617f.png
+play.png: play-dd3e19131eba7a1d44623b0210d2e489.png
 playalt.png: playalt-cbce2273d0bac912f53915d8fd0ddb03.png
+playsmall.png: playsmall-cbeae09d317c8f2dedbd8532752164aa.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
-undo.png: undo-b7d8cf18c96e1bba553081372864c6ef.png
+reset.png: reset-afa43a80dbbcab76efa041e7137a910b.png
 undoalt.png: undoalt-89f1f84faea316e07bf094c1c868352c.png
-application.js: application-34a67be1bf8be14e8700cc60ffe9677b.js
-application.css: application-6f1c072c5f2b374f6ce37e4ea7c1d48e.css
+undosmall.png: undosmall-b7d8cf18c96e1bba553081372864c6ef.png
+application.js: application-360c50d87120783fe4961a84c59994e3.js
+application.css: application-9aaf68f5796dbbd271afe9e0d5b6b043.css
