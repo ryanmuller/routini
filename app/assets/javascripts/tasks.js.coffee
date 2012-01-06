@@ -26,6 +26,7 @@ $ ->
   )
 
   $('#reset').click(() ->
+    $('#beep').removeClass('beeped')
     $('#timer').text(formatTime($('#timer').data('maxtime')))
   )
 
@@ -45,7 +46,6 @@ getSeconds = (time) ->
   else
     parseInt(time)
 
-snd = new Audio('/timer.wav')
 
 setInterval(() ->
   return if $('#timer').length == 0
@@ -59,7 +59,10 @@ setInterval(() ->
   $('#timeviz-fill').width(fillwidth + "%")
   $('#timeviz-fill').css('background', '#fcc') if fillwidth < 10
 
-  snd.play() if seconds == 1
+  if seconds <= 1 and not $('#beep').hasClass('beeped')
+    $('#beep').get(0).play()
+    $('#beep').addClass('beeped')
+
 , 1000)
 
 

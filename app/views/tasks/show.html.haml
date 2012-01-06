@@ -26,6 +26,9 @@
 
 %div.row
   #countdown.span3
+    %audio#beep{"preload" => "auto", "autobuffer" => "autobuffer"}
+      %source{:src => "https://s3.amazonaws.com/shuff/timer.wav"}
+
     #timer{"data-maxtime" => @task.time}
       = format_time @task.time
 
