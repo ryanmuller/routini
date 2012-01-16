@@ -4,6 +4,8 @@
 
 
 $ ->
+  plotLogs()
+
   $('.action-cb').change(() ->
 
     if $(this).is(':checked') 
@@ -66,6 +68,16 @@ setInterval(() ->
 , 1000)
 
 
-   
+plotLogs = () ->
 
+  points = JSON.parse($('#log-chart').data('pts'))
+
+  $.plot($('#log-chart'), points)
+  
+ # , {
+#             lines : { show: true, fill: 0 },
+#             xaxis : { tickColor : "#ffffff"},
+#             grid  : { borderWidth: 0, hoverable: true }})
+#
+plotLogs()
 

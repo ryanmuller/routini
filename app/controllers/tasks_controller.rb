@@ -53,6 +53,8 @@ class TasksController < ApplicationController
         @task.task_contexts.build(:situation_id => context.id)
       end
     end
+
+    @log_json = Log.plot_data(current_user, @task).to_json
   end
 
   def update
