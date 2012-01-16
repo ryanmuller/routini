@@ -70,14 +70,15 @@ setInterval(() ->
 
 plotLogs = () ->
 
-  points = JSON.parse($('#log-chart').data('pts'))
+  points = []
+  points.push($('#log-chart').data('pts'))
+  console.log(points)
 
-  $.plot($('#log-chart'), points)
-  
- # , {
-#             lines : { show: true, fill: 0 },
-#             xaxis : { tickColor : "#ffffff"},
-#             grid  : { borderWidth: 0, hoverable: true }})
+  $.plot($('#log-chart'), points, {
+             lines : { show: true, fill: 0 },
+             xaxis : { tickColor : "#ffffff"},
+             yaxis : { tickColor : "#ffffff"},
+             grid  : { borderWidth: 0, hoverable: true }})
 #
 plotLogs()
 

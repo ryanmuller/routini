@@ -41,6 +41,7 @@ class TasksController < ApplicationController
     @log = Log.new
     @microtask = @task.microtasks.build
     @contexts = current_user.situations
+    @log_json = Log.plot_data(current_user, @task).to_json
   end
 
   def edit
@@ -54,7 +55,6 @@ class TasksController < ApplicationController
       end
     end
 
-    @log_json = Log.plot_data(current_user, @task).to_json
   end
 
   def update

@@ -43,6 +43,10 @@ class Log < ActiveRecord::Base
       reset_time += 1.day
     end
 
+    data.each do |pt|
+      pt[0] = pt[0] - i
+    end
+
     return data
   end
 end
