@@ -38,7 +38,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    @point = Point.new
+    @log = Log.new
     @microtask = @task.microtasks.build
     @contexts = current_user.situations
   end
