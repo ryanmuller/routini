@@ -39,7 +39,10 @@ class Point < ActiveRecord::Base
     roles.each_with_index do |role, j|
       roledata = [[0,0]]
       i = 0
-      reset_time = user.points.first.created_at.to_date + user.time_offset.hours
+      if user.points.empty?
+        reset_time = 0
+      else
+        reset_time = user.points.first.created_at.to_date + user.time_offset.hours
 
       # add up points from each
       where("user_id = ? AND role_id = ?", user.id, role.id).each do |pt|
