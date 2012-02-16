@@ -40,7 +40,7 @@ class Point < ActiveRecord::Base
       roledata = [[0,0]]
       i = 0
       if user.points.empty?
-        reset_time = 0
+        reset_time = Time.now.to_date
       else
         reset_time = user.points.first.created_at.to_date + user.time_offset.hours
       end
