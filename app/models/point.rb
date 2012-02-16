@@ -43,6 +43,7 @@ class Point < ActiveRecord::Base
         reset_time = 0
       else
         reset_time = user.points.first.created_at.to_date + user.time_offset.hours
+      end
 
       # add up points from each
       where("user_id = ? AND role_id = ?", user.id, role.id).each do |pt|
