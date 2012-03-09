@@ -21,6 +21,7 @@ class Log < ActiveRecord::Base
   def self.plot_data(user, task)
     data = [[0,0]]
     i = 0
+    return data if user.logs.empty?
     reset_time = user.logs.first.created_at.to_date + user.time_offset.hours
 
     task.logs.each do |log|
