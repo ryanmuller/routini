@@ -15,6 +15,10 @@
   text-align: center;
   display: inline-block;
   width: 120px;
+
+  &.over {
+    color: red;
+  }
 }
 
 #timeviz-box {
