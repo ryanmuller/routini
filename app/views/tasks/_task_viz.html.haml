@@ -1,0 +1,19 @@
+%h3
+  = link_to t.name, t
+
+- if t.display_type == "binary"
+  = "✓" if t.done_today > 0
+- elsif t.display_type == "ntoday"
+  = "✓" * t.done_today
+- elsif t.display_type == "inout"
+  = t.microtasks.complete.updated_today(current_user.time_offset.hours).count
+  completed
+  = t.microtasks.created_today(current_user.time_offset.hours).count
+  added
+  %br
+  = t.microtasks.incomplete.count
+  remaining
+
+
+
+

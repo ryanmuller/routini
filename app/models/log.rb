@@ -3,6 +3,7 @@ class Log < ActiveRecord::Base
   belongs_to :task
 
   default_scope :order => 'created_at ASC'
+  scope :today, lambda { |offset| where("created_at > ?", Time.now.utc - offset) }
 
   before_save :create_points
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229172444) do
+ActiveRecord::Schema.define(:version => 20120328205744) do
 
   create_table "logs", :force => true do |t|
     t.integer  "user_id"
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(:version => 20111229172444) do
     t.string   "name"
     t.integer  "user_id"
     t.float    "weight"
-    t.integer  "time",        :default => 600
+    t.integer  "time",         :default => 600
     t.string   "description"
+    t.string   "display_type"
   end
 
   create_table "users", :force => true do |t|

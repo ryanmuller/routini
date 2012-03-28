@@ -14,4 +14,10 @@ class Task < ActiveRecord::Base
   validates :name, :presence => true
 
   default_scope :order => 'created_at ASC'
+
+  def done_today
+    logs.today(user.time_offset.hours).count
+  end
+
+
 end

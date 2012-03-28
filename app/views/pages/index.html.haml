@@ -1,78 +1,14 @@
-#shuffler.row
-  Shuffle:
-  = link_to "all", tasks_path(:all => true) 
-  - @contexts.each do |c|
-    = link_to c.name, "/contexts/#{c.id}" 
+%h1
+  = Time.now.strftime("%A, %B %d, %Y")
+
+%h2
+  = @contexts.first.name
+= link_to "all", tasks_path(:all => true) 
+- @contexts.each do |c|
+  = link_to c.name, "/contexts/#{c.id}" 
 
 %div.row
-  #task-list.span6
-    %h3
-      Tasks
-
-    %ul
-      - @tasks.each do |t|
-        %li= render t
-
-    #tasks-activate.activator
-      Edit tasks
-
-    #new-task-area.new-item.editor
-      = render "tasks/form"
-
-  %div.chart.span10
-    %div.row
-      %h3
-        Points
-      .chart-options
-        from the last 
-        %input#chart_days{:type => 'text', :value => '14'}
-        days
-      %div.manage-points.small
-        (
-        = link_to "Manage", points_path 
-        )
-
-      #point-chart{ :style       => "width:500px;height:300px;", 
-                    "data-pts"   => @rp_json }
-
-
-      %ul 
-        - @points.each do |p|
-          %li= render p
-            
-
-    %div.row
-
-      #roles.span5
-
-        #roles-activate.activator
-          Edit roles
-
-        #roles-editor.editor
-          %h3
-            Roles
-
-          #new-role-area.new-item
-            = render "roles/form"
-
-          %ul
-            - @roles.each do |r|
-              %li= render r
-
-      #contexts.span5
-
-        #context-activate.activator
-          Edit contexts
-
-        #contexts-editor.editor
-          %h3 
-            Contexts
-
-          #new-context-area.new-item
-            = render "situations/form"
-
-          %ul
-            - @contexts.each do |c|
-              %li= render c
-
-
+  - @contexts.first.tasks.each do |t|
+    %div.span4
+      = render :template => "tasks/_task_viz", :locals => { :t => t }
+    
