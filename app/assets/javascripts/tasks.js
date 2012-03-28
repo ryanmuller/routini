@@ -1,5 +1,30 @@
 var formatTime, getSeconds, plotLogs;
 
+plotLogs = function() {
+  var points;
+  if ($('#log-chart').length != 0) {
+    points = [];
+    points.push($('#log-chart').data('pts'));
+    $.plot($('#log-chart'), points, {
+      bars: { show: true, fill: 1 },
+      xaxis: { tickColor: "#ffffff" },
+      yaxis: { tickColor: "#ffffff" },
+      grid: { borderWidth: 0, hoverable: true }
+    });
+  }
+
+  $('.mini-chart').each(function() {
+    points = [];
+    points.push($(this).data('pts'));
+    $.plot($(this), points, {
+      bars: { show: true, fill: 1 },
+      xaxis: { ticks: 0, tickColor: "#ffffff" },
+      yaxis: { ticks: 0, tickColor: "#ffffff" },
+      grid: { borderWidth: 0, hoverable: true }
+    });
+  });
+};
+
 $(function() {
   plotLogs();
   $('.action-cb').change(function() {
@@ -21,11 +46,12 @@ $(function() {
       return $('#pause > img').attr('src', '/assets/play.png');
     }
   });
-  return $('#reset').click(function() {
+  $('#reset').click(function() {
     $('#beep').removeClass('beeped');
     return $('#timer').data('over', 'false').removeClass('over').text(formatTime($('#timer').data('maxtime')));
   });
 });
+
 formatTime = function(time) {
   var out;
   out = "";
@@ -37,6 +63,7 @@ formatTime = function(time) {
   out += time % 60;
   return out;
 };
+
 getSeconds = function(time) {
   if (time.indexOf(':') >= 0) {
     return parseInt(time.split(':')[0], 10) * 60 + parseInt(time.split(':')[1], 10);
@@ -75,33 +102,5 @@ setInterval(function() {
     return timer.data('over', 'true');
   }
 }, 1000);
-plotLogs = function() {
-  var points;
-  console.log($('#log-chart'));
-  if ($('#log-chart').length === 0) {
-    return;
-  }
-  points = [];
-  points.push($('#log-chart').data('pts'));
-  console.log(points);
-  return $.plot($('#log-chart'), points, {
-    bars: {
-      show: true,
-      fill: 1
-    },
-    xaxis: {
-      tickColor: "#ffffff"
-    },
-    yaxis: {
-      tickColor: "#ffffff"
-    },
-    grid: {
-      borderWidth: 0,
-      hoverable: true
-    }
-  });
-};
 
-$(document).ready(function() {
-  return plotLogs();
-});
+

@@ -4,6 +4,7 @@ class Log < ActiveRecord::Base
 
   default_scope :order => 'created_at ASC'
   scope :today, lambda { |offset| where("created_at > ?", Time.now.utc - offset) }
+  scope :with_value, where("value IS NOT NULL")
 
   before_save :create_points
   

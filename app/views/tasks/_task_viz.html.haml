@@ -2,10 +2,14 @@
   = link_to t.name, t
 
 - if t.display_type == "binary"
-  = "✓" if t.done_today > 0
+  = t.done_today > 0 ? "✓" : "not yet"
 - elsif t.display_type == "ntoday"
   = "✓" * t.done_today
-- elsif t.display_type == "inout"
+- elsif t.display_type == "logs" 
+  = render :template => "tasks/_value_graph", :locals => { :data_json => t.logs_graph } 
+- elsif t.display_type == "values"
+  = render :template => "tasks/_value_graph", :locals => { :data_json => t.values_graph } 
+- elsif t.display_type == "inout" or true
   = t.microtasks.complete.updated_today(current_user.time_offset.hours).count
   completed
   = t.microtasks.created_today(current_user.time_offset.hours).count

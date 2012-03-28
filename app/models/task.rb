@@ -19,5 +19,73 @@ class Task < ActiveRecord::Base
     logs.today(user.time_offset.hours).count
   end
 
+  def logs_graph
+    data = [[0,0]]
+    i = 0
+    return data if logs.empty?
+    reset_time = logs.first.created_at.to_date + user.time_offset.hours
+
+    logs.each do |log|
+      reset_time ||= log.created_at.to_date + user.time_offset.hours
+
+      while reset_time < log.created_at
+        i += 1
+        data << [i,0]
+        reset_time += 1.day
+      end
+
+      data.last[1] += 1
+    end
+
+
+    # fill in zeros until today
+    while reset_time < Time.now.utc
+      i += 1
+      data << [i, 0]
+      reset_time += 1.day
+    end
+
+    data.each do |pt|
+      pt[0] = pt[0] - i
+    end
+
+    return data
+  end
+
+  def values_graph
+    data = [[0,0]]
+    i = 0
+    return data if logs.with_value.empty?
+    reset_time = logs.with_value.first.created_at.to_date + user.time_offset.hours
+
+    logs.with_value.each do |log|
+      reset_time ||= log.created_at.to_date + user.time_offset.hours
+
+      while reset_time < log.created_at
+        i += 1
+        data << [i,0]
+        reset_time += 1.day
+      end
+
+      if log.value
+        data.last[1] = log.value
+      end
+
+    end
+
+
+    # fill in zeros until today
+    while reset_time < Time.now.utc
+      i += 1
+      data << [i, 0]
+      reset_time += 1.day
+    end
+
+    data.each do |pt|
+      pt[0] = pt[0] - i
+    end
+
+    return data
+  end
 
 end

@@ -83,4 +83,4 @@
       History 
     %br
 
-    #log-chart{ :style => "width:940px;height:100px;", "data-pts" => @log_json }
+    = render :template => "tasks/_log_graph", :locals => { :log_json => @log_json } 
