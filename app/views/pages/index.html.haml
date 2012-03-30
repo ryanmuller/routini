@@ -1,13 +1,13 @@
-%h1
+%h2
   = Time.now.strftime("%A, %B %d, %Y")
 
-%h2
+%h3
   = @contexts.first.name
 = link_to "all", tasks_path(:all => true) 
 - @contexts.each do |c|
   = link_to c.name, "/contexts/#{c.id}" 
 
-- @contexts.first.tasks.in_groups_of(4) do |task_group|
+- @contexts.first.tasks.in_groups_of 3  do |task_group|
   %div.row
     - task_group.each do |t|
       - if t
