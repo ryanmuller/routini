@@ -1,16 +1,33 @@
 %h2
-  = Time.now.strftime("%A, %B %d, %Y")
+  = Time.now.strftime("%a %Y.%m.%d")
+  @
+  = @contexts.all[2].name
+  (switch:
+  - @contexts.each do |c|
+    - next if c == @contexts.all[2]
+    = link_to c.name, c
+  = link_to "+", #
+  )
+ 
 
-%h3
-  = @contexts.first.name
-= link_to "all", tasks_path(:all => true) 
-- @contexts.each do |c|
-  = link_to c.name, "/contexts/#{c.id}" 
+%div.row
+  %div.span3
+    %br
+    #daily-chart{ :style       => "width:270px;height:300px;", 
+              "data-pts"   => @rpdaily_json }
+    %br 
+    %br 
+    (current mood)
+    %br
+    %br
+    etc
 
-- @contexts.first.tasks.in_groups_of 3  do |task_group|
-  %div.row
-    - task_group.each do |t|
-      - if t
-        %div.span4
-          = render :template => "tasks/_task_viz", :locals => { :t => t }
+
+  %div.span9
+    - @contexts.all[2].tasks.in_groups_of 3  do |task_group|
+      %div.row
+        - task_group.each do |t|
+          - if t
+            %div.span3
+              = render :template => "tasks/_task_viz", :locals => { :t => t }
     

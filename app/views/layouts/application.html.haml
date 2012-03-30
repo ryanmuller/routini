@@ -12,17 +12,14 @@
       %div.row
         %div.span12
           %h1
-            <a href="/">Shuff.dash</a>
-      %div.row
-        %div.span12
-          = yield
-    %footer
-      = link_to 'Help', '/help'
-      - if user_signed_in?
-        = link_to('Account', edit_user_registration_path)
-      - else
-        = link_to('Sign up', new_user_registration_path)
-      - if user_signed_in?
-        = link_to('Logout', destroy_user_session_path, :method=>'delete')
-      - else
-        = link_to('Login', new_user_session_path)
+            Shuff.dash
+          = link_to 'Help', '/help'
+          - if user_signed_in?
+            = link_to('Account', edit_user_registration_path)
+          - else
+            = link_to('Sign up', new_user_registration_path)
+          - if user_signed_in?
+            = link_to('Logout', destroy_user_session_path, :method=>'delete')
+          - else
+            = link_to('Login', new_user_session_path)
+      = yield

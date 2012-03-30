@@ -20,6 +20,12 @@ class PagesController < ApplicationController
 
     @rp_json = Point.plot_data_stacked(current_user, @roles).to_json.gsub(/"label"/, "label").gsub(/"data"/, "data") 
 
+    @rpdaily_json = []
+    @roles.all.each_with_index do |role, i|
+      @rpdaily_json << { :label => role.name, :data => [[i, current_user.points.from_time(Time.now.utc, current_user).where("role_id = ?", role.id).sum('points')]] , :bars => { :show => :true } }
+    end
+    @rpdaily_json = @rpdaily_json.reverse.to_json.gsub(/"label"/, "label").gsub(/"data"/, "data").gsub(/"bars"/, "bars") 
+
     @context = Situation.new
   end
 
