@@ -9,6 +9,8 @@
   = render :template => "tasks/_value_graph", :locals => { :data_json => t.logs_graph } 
 - elsif t.display_type == "values"
   = render :template => "tasks/_value_graph", :locals => { :data_json => t.values_graph } 
+  Today:
+  = t.logs.with_value.last.value
 - elsif t.display_type == "inout" or true
   = t.microtasks.complete.updated_today(current_user.time_offset.hours).count
   completed

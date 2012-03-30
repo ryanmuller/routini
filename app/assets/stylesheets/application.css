@@ -6,54 +6,6 @@
  *= require_tree . 
 */
 
-header {
-  background: #444;
-  padding: 0 150px 0 150px;
-}
-
-header h1 {
-  display: inline;
-  padding-right: 1em;
-}
-
-header h1 a {
-  color: white;
-}
-
-header h1 a:visited {
-  color: white;
-}
-
-header h1 a:hover {
-  color: white;
-  text-decoration: none;
-}
-
-
-nav { 
-  display: inline;
-}
-
-nav ul {
-  display: inline;
-}
-nav ul li {
-  display: inline;
-}
-
-nav a {
-  color: #ddd;
-  font-size: .8em;
-}
-
-nav a:hover {
-  color: #fff;
-}
-
-#main {
-  padding-top: 20px;
-}
-
 label {
   width: 80px;
 }

@@ -9,20 +9,17 @@
     = javascript_include_tag :application
     = csrf_meta_tags
   %body{:class => params[:controller]}
-    %header
-      %h1
-        <a href="/">Shuff</a>
-      %nav
-        = link_to 'Help', '/help'
-        = "/"
-        - if user_signed_in?
-          = link_to('Account', edit_user_registration_path)
-        - else
-          = link_to('Sign up', new_user_registration_path)
-        ="/"
-        - if user_signed_in?
-          = link_to('Logout', destroy_user_session_path, :method=>'delete')
-        - else
-          = link_to('Login', new_user_session_path)
+    %h1
+      <a href="/">Shuff.dash</a>
     #main.container
       = yield
+    %footer
+      = link_to 'Help', '/help'
+      - if user_signed_in?
+        = link_to('Account', edit_user_registration_path)
+      - else
+        = link_to('Sign up', new_user_registration_path)
+      - if user_signed_in?
+        = link_to('Logout', destroy_user_session_path, :method=>'delete')
+      - else
+        = link_to('Login', new_user_session_path)

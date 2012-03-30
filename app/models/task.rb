@@ -52,13 +52,19 @@ class Task < ActiveRecord::Base
     return data
   end
 
-  def values_graph
+  def values_graph(span=14)
     data = [[0,0]]
     i = 0
     return data if logs.with_value.empty?
-    reset_time = logs.with_value.first.created_at.to_date + user.time_offset.hours
+
+    if Date.today - logs.with_value.first.created_at.to_date > span
+      reset_time = Date.today - span.days + user.time_offset.hours
+    else
+      reset_time = logs.with_value.first.created_at.to_date + user.time_offset.hours
+    end
 
     logs.with_value.each do |log|
+      next if Date.today - log.created_at.to_date > span
       reset_time ||= log.created_at.to_date + user.time_offset.hours
 
       while reset_time < log.created_at
@@ -75,7 +81,7 @@ class Task < ActiveRecord::Base
 
 
     # fill in zeros until today
-    while reset_time < Time.now.utc
+    while reset_time < Time.now.utc - user.time_offset.hours
       i += 1
       data << [i, 0]
       reset_time += 1.day

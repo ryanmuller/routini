@@ -7,8 +7,10 @@
 - @contexts.each do |c|
   = link_to c.name, "/contexts/#{c.id}" 
 
-%div.row
-  - @contexts.first.tasks.each do |t|
-    %div.span4
-      = render :template => "tasks/_task_viz", :locals => { :t => t }
+- @contexts.first.tasks.in_groups_of(4) do |task_group|
+  %div.row
+    - task_group.each do |t|
+      - if t
+        %div.span4
+          = render :template => "tasks/_task_viz", :locals => { :t => t }
     
