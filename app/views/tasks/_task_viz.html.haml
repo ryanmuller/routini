@@ -7,14 +7,24 @@
 - elsif t.display_type == "ntoday"
   = "✓" * t.done_today
 - elsif t.display_type == "todo"
-  = t.microtasks.complete.updated_today(current_user.time_offset.hours).count
-  done ·
-  = t.microtasks.incomplete.count
-  to do
+  - t.microtasks.complete.updated_today(current_user.time_offset.hours).count.times do
+    %i{:class => "icon-plus"}
+  - t.microtasks.incomplete.count.times do
+    %i{:class => "icon-minus"}
 - elsif t.display_type == "values"
   %span.bignum
+    Yesterday:
+    = t.logs.with_value.all[-2].value 
+    Today: 
     = t.logs.with_value.last.value
-    things
+  %div.chart
+  = render :template => "tasks/_value_graph", :locals => { :data_json => t.values_graph } 
+- elsif t.display_type == "values-diff"
+  %span.bignum
+    Yesterday:
+    = t.logs.with_value.all[-2].value 
+    Today: 
+    = t.logs.with_value.last.value
   %div.chart
   = render :template => "tasks/_value_graph", :locals => { :data_json => t.values_graph } 
 - elsif t.display_type == "logs" or true

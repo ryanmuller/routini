@@ -28,6 +28,6 @@
       %div.row
         - task_group.each do |t|
           - if t
-            %div.span3
+            %div.span3.viz
               = render :template => "tasks/_task_viz", :locals => { :t => t }
     
