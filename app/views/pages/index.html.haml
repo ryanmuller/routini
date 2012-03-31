@@ -14,12 +14,17 @@
   %div.span3
     #daily-chart{ :style       => "width:270px;height:300px;", 
               "data-pts"   => @rpdaily_json }
+
+    = current_user.points.from_time(Time.now.utc, current_user).sum('points')
+    total
     %br 
     %br 
-    (current mood)
+    Current mood: Blah
     %br
-    %br
-    etc
+    Set: 
+    - (1..10).each do |i|
+      = link_to i, "#"
+
 
 
   %div.span9
