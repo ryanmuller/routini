@@ -18,7 +18,7 @@
     Today: 
     = t.logs.with_value.last.value
   %div.chart
-  = render :template => "tasks/_value_graph", :locals => { :data_json => t.values_graph } 
+  = render :template => "tasks/_value_graph", :locals => { :task => t, :data_json => t.values_graph } 
 - elsif t.display_type == "values-diff"
   %span.bignum
     Yesterday:
@@ -26,12 +26,12 @@
     Today: 
     = t.logs.with_value.last.value
   %div.chart
-  = render :template => "tasks/_value_graph", :locals => { :data_json => t.values_graph } 
+  = render :template => "tasks/_value_graph", :locals => { :task => t, :data_json => t.values_graph } 
 - elsif t.display_type == "logs" or true
   %div.bignum
     = t.logs.today(current_user.time_offset.hours).count 
     done
-  = render :template => "tasks/_value_graph", :locals => { :data_json => t.logs_graph } 
+  = render :template => "tasks/_value_graph", :locals => { :task => t, :data_json => t.logs_graph } 
 
 
 

@@ -16,12 +16,29 @@ plotLogs = function() {
   $('.mini-chart').each(function() {
     points = [];
     points.push($(this).data('pts'));
-    $.plot($(this), points, {
-      bars: { show: true, fill: 1 },
-      xaxis: { ticks: 0, tickColor: "#ffffff" },
-      yaxis: { ticks: 0, tickColor: "#ffffff" },
-      grid: { borderWidth: 0, hoverable: true }
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: $(this).attr('id'),
+        type: 'spline'
+      },
+      title: {
+        text: null
+      },
+      legend: {
+        enabled: false
+      },
+      series: [{
+        name: 'Points',
+        data: $(this).data('pts')
+      }]
     });
+    //$.plot($(this), points, {
+    //  bars: { show: true, fill: 1 },
+    //  xaxis: { ticks: 0, tickColor: "#ffffff" },
+    //  yaxis: { ticks: 0, tickColor: "#ffffff" },
+    //  grid: { borderWidth: 0, hoverable: true }
+    //});
   });
 };
 

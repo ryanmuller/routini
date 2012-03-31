@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
   end
 
   def values_graph(span=14)
-    data = [[0,0]]
+    data = []
     i = 0
     return data if logs.with_value.empty?
 
@@ -74,18 +74,12 @@ class Task < ActiveRecord::Base
       end
 
       if log.value
-        data.last[1] = log.value
+        data.last[1] = log.value.to_i
       end
 
     end
 
 
-    # fill in zeros until today
-    while reset_time < Time.now.utc - user.time_offset.hours
-      i += 1
-      data << [i, 0]
-      reset_time += 1.day
-    end
 
     data.each do |pt|
       pt[0] = pt[0] - i

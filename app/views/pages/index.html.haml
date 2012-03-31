@@ -12,7 +12,6 @@
 
 %div.row
   %div.span3
-    %br
     #daily-chart{ :style       => "width:270px;height:300px;", 
               "data-pts"   => @rpdaily_json }
     %br 
@@ -28,6 +27,6 @@
       %div.row
         - task_group.each do |t|
           - if t
-            %div.span3.viz
+            %div.span3.viz{:id => "task#{t.id}"}
               = render :template => "tasks/_task_viz", :locals => { :t => t }
     

@@ -6,14 +6,23 @@ $(document).ready(function() {
 plotDaily = function() {
 
   if ($('#daily-chart').length > 0) {
-    var points = eval('('+$('#daily-chart').data('pts')+')');
 
-    $.plot($('#daily-chart'), points,
-           { 
-             lines : { show: true, fill: 1 },
-             legend : { position: "nw" },
-             xaxis : { tickColor : "#ffffff"},
-             grid  : { borderWidth: 0, hoverable: true }});
+    var chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'daily-chart',
+        type: 'pie'
+      },
+      title: {
+        text: "Today's points"
+      },
+      series: [{
+        type: 'pie',
+        name: 'Role points',
+        size: "40%",
+        innerSize: '20%',
+        data: $('#daily-chart').data('pts')
+      }]
+    });
   }
 }
 

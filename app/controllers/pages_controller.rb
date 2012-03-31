@@ -22,7 +22,7 @@ class PagesController < ApplicationController
 
     @rpdaily_json = []
     @roles.all.each_with_index do |role, i|
-      @rpdaily_json << { :label => role.name, :data => [[i, current_user.points.from_time(Time.now.utc, current_user).where("role_id = ?", role.id).sum('points')]] , :bars => { :show => :true } }
+      @rpdaily_json << [role.name, current_user.points.from_time(Time.now.utc, current_user).where("role_id = ?", role.id).sum('points')]
     end
     @rpdaily_json = @rpdaily_json.reverse.to_json.gsub(/"label"/, "label").gsub(/"data"/, "data").gsub(/"bars"/, "bars") 
 
