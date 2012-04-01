@@ -8,4 +8,9 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require highcharts
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/routini
 //= require_tree .
