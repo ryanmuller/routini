@@ -2,7 +2,6 @@ class Shuff.Routers.TasksRouter extends Backbone.Router
   initialize: (options) ->
     @tasks = new Shuff.Collections.Tasks()
     @tasks.reset options.tasks
-    console.log(@tasks)
 
   routes:
     "/tasks/:id" : "show"

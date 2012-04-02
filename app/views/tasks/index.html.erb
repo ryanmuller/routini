@@ -1,5 +1,5 @@
 <%= javascript_tag do %>
-  Shuff.init(<%= @tasks.to_json.html_safe %>);
+  Shuff.init(<%= @tasks.to_json.html_safe %>, <%= @contexts.to_json.html_safe %>);
 <% end -%>
 
 
@@ -7,7 +7,7 @@
   (switch:
   <% @contexts.each do |c| %>
     <% next if c == @context %>
-    <%= link_to c.name, c %>
+    <%= link_to c.name, "/#/contexts/#{c.id}" %>
   <% end %>
   <%= link_to "+", "#" %>
   )
