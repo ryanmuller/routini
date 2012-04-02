@@ -19,21 +19,10 @@ class TasksController < ApplicationController
   end
 
   def index
-    if session[:context] and not params[:all]
-      context = current_user.situations.find(session[:context])
-      tasks = context.tasks
-    else 
-      session[:context] = nil
-      tasks = current_user.tasks
-    end
+    @tasks = current_user.tasks.includes(:task_contexts => :situation, :task_roles => :role)
+    @contexts = current_user.situations
+    @context = current_user.situations.first
 
-    if tasks.empty?
-      redirect_to root_path, :error => 'No tasks to shuffle'
-    else
-      @task = tasks[rand(tasks.count)]
-
-      redirect_to task_path(@task)
-    end
   end
 
   def show

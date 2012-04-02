@@ -1,5 +1,14 @@
 class SituationsController < ApplicationController
 
+  def index
+    @situations = current_user.situations
+    respond_to do |format|
+      format.html
+      format.json { render :json => @situations }
+    end
+  end
+
+
   def create
 
     @context = Situation.new(params[:situation])
@@ -34,9 +43,12 @@ class SituationsController < ApplicationController
   end
 
   def show 
-    @context = Situation.find(params[:id])
-    session[:context] = @context.id
-    redirect_to tasks_path
+    @situation = Situation.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.josn { render :json => @situation }
+    end
   end
 end
 

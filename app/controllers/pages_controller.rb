@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
     @tasks = current_user.tasks.includes(:task_contexts => :situation, :task_roles => :role)
     @contexts = current_user.situations
+    @context = current_user.situations.first
 
     @task = Task.new
 
@@ -13,7 +14,6 @@ class PagesController < ApplicationController
       @task.task_contexts.build(:situation_id => context.id)
     end
 
-    @context = Situation.new
   end
 
   def help

@@ -1,7 +1,5 @@
 class Routini.Models.Situation extends Backbone.Model
-  paramRoot: 'situation'
-
-  defaults:
+  urlRoot: 'situation'
 
 class Routini.Collections.SituationsCollection extends Backbone.Collection
   model: Routini.Models.Situation

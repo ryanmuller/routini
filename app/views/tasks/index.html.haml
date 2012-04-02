@@ -1,0 +1,37 @@
+%h2
+  = Time.now.strftime("%a %Y.%m.%d")
+  @
+  = @contexts.all[2].name
+  (switch:
+  - @contexts.each do |c|
+    - next if c == @contexts.all[2]
+    = link_to c.name, c
+  = link_to "+", #
+  )
+ 
+
+%div.row
+  %div.span3
+    #daily-chart{ :style       => "width:270px;height:300px;", 
+              "data-pts"   => @rpdaily_json }
+
+    = current_user.points.from_time(Time.now.utc, current_user).sum('points')
+    total
+    %br 
+    %br 
+    Current mood: Blah
+    %br
+    Set: 
+    - (1..10).each do |i|
+      = link_to i, "#"
+
+
+
+  %div.span9
+    - @contexts.all[2].tasks.in_groups_of 3  do |task_group|
+      %div.row
+        - task_group.each do |t|
+          - if t
+            %div.span3.viz{:id => "task#{t.id}"}
+              = render :template => "tasks/_task_viz", :locals => { :t => t }
+    
