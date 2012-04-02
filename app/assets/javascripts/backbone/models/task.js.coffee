@@ -1,6 +1,11 @@
 
 class Shuff.Models.Task extends Backbone.Model
-  urlRoot: '/tasks'
+  urlRoot: '/tasks',
+
+  parseMicrotasks: () ->
+    @microtasks = new Shuff.Collections.Microtasks(@get('microtasks'))
+
 
 class Shuff.Collections.Tasks extends Backbone.Collection
-  model: Shuff.Models.Task
+  model: Shuff.Models.Task,
+  url: '/tasks'

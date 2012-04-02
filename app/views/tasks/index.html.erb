@@ -1,9 +1,6 @@
-<script type="text/javascript">
-  $(function() {
-    window.tasks = new Routini.Routers.TasksRouter({tasks: <%= @context.tasks.to_json.html_safe -%>});
-    Backbone.history.start();
-    });
-</script>
+<%= javascript_tag do %>
+  Shuff.init(<%= @tasks.to_json.html_safe %>);
+<% end -%>
 
 
 <h2> <%= Time.now.strftime("%a %Y.%m.%d") %> @ <%= @context.name %>
@@ -17,6 +14,11 @@
 </h2> 
 
 <div class="row">
+  <div class="span12" id="task">
+  </div>
+</div>
+
+<div class="row" id="dashboard">
   <div class="span3">
     <div id="daily-chart" style="width:270px;height:300px;" data-pts="<%= @rpdaily_json %>"></div>
     <%= current_user.points.from_time(Time.now.utc, current_user).sum('points') %> total
@@ -31,16 +33,6 @@
   </div>
 
   <div class="span9" id="context">
-    <% @context.tasks.in_groups_of 3  do |task_group| %>
-      <div class="row">
-        <% task_group.each do |t| %>
-          <% if t %>
-            <div class="span3 viz" id="task<%= t.id %>">
-              <%= render :template => "tasks/_task_viz", :locals => { :t => t } %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
   </div>
+</div>
     

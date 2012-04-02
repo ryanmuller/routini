@@ -12,5 +12,5 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
-//= require backbone/routini
+//= require backbone/shuff
 //= require_tree .
