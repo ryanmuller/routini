@@ -1,8 +1,10 @@
-class Routini.Routers.TasksRouter extends Backbone.Router
+class Shuff.Routers.TasksRouter extends Backbone.Router
 
   routes:
-    "": "index"
+    "/tasks/:id" : "show"
   
-  index: () ->
-    @view = new Routini.Views.Situations.ShowView()
-    $("#context").html(@view.render().el)
+  show: (id) ->
+    alert("task "+id)
+    view = new Shuff.Views.Tasks.ShowView()
+    $('#task').html(view.render().el)
+

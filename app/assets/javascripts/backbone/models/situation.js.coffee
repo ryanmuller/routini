@@ -1,6 +1,5 @@
-class Routini.Models.Situation extends Backbone.Model
-  urlRoot: 'situation'
+class Shuff.Models.Context extends Backbone.Model
+  urlRoot: 'contexts'
 
-class Routini.Collections.SituationsCollection extends Backbone.Collection
-  model: Routini.Models.Situation
-  url: '/situations'
+class Shuff.Collections.Contexts extends Backbone.Collection
+  model: Shuff.Models.Context

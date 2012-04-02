@@ -1,6 +1,6 @@
 
-class Routini.Models.Task extends Backbone.Model
+class Shuff.Models.Task extends Backbone.Model
   urlRoot: '/tasks'
 
-class Routini.Collections.SituationsCollection extends Backbone.Collection
-  model: Routini.Models.Task
+class Shuff.Collections.Tasks extends Backbone.Collection
+  model: Shuff.Models.Task
