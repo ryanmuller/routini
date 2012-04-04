@@ -5,18 +5,21 @@ class Shuff.Models.Task extends Backbone.Model
   parseMicrotasks: () ->
     @microtasks = new Shuff.Collections.Microtasks(@get('microtasks'))
   ,
-   
-  inContext: (contextId) ->
-    return @filtered((task) ->
-      # actually should be "contextId is among task.context_ids"
-      return task.context_id == contextId
-    )
-  ,
 
-  filtered: (criteriaFunction) ->
-    return new Tasks(@select(criteriaFunction))
+  isInContext: (contextId) ->
+    return @get('context_ids').indexOf(contextId) != -1
+   
 
 
 class Shuff.Collections.Tasks extends Backbone.Collection
   model: Shuff.Models.Task,
   url: '/tasks'
+
+  inContext: (contextId) ->
+    return @filtered((task) ->
+      return task.isInContext(contextId)
+    )
+  ,
+
+  filtered: (criteriaFunction) ->
+    return new Tasks(@select(criteriaFunction))

@@ -10,7 +10,7 @@ class Shuff.Routers.ContextsRouter extends Backbone.Router
     "/contexts/:id": "show"
   
   show: (id) ->
-    tasks = @tasks.inContext(id)
+    tasks = @tasks.inContext(parseInt(id))
     view = new Shuff.Views.Tasks.IndexView(collection: tasks)
     $("#context").html(view.render().el)
 

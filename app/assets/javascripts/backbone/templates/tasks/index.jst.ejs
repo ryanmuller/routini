@@ -1,0 +1,4 @@
+<% tasks.each(function(task) { %>
+  <h3><a href="/#/tasks/<%= task.escape("id") %>"><%= task.escape("name") %></a></h3>
+<% }); %>
+

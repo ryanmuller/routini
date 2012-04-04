@@ -11,6 +11,10 @@ class Task < ActiveRecord::Base
 
   default_scope :order => 'created_at ASC'
 
+  def as_json(options={})
+    super.merge({ :context_ids => self.situations.collect { |s| s.id } })
+  end
+
   def done_today
     logs.today(user.time_offset.hours).count
   end

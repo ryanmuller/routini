@@ -9,7 +9,7 @@ window.Shuff =
   Collections: {}
   Routers: {}
   Views: {}
-  init: (tasks) ->
+  init: (tasks, contexts) ->
     new Shuff.Routers.TasksRouter({tasks: tasks})
     new Shuff.Routers.ContextsRouter({contexts: contexts, tasks: tasks})
     Backbone.history.start()
