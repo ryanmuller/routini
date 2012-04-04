@@ -13,12 +13,6 @@
       = f.text_field :time, :class => "span2"
       seconds
 
-  = f.fields_for :task_roles do |ff|
-    %div.clearfix
-      = render 'task_role_fields', :f => ff
-  %div.clearfix
-    %div.input
-      = link_to_add_fields "Add points for another role", f, :task_roles
   %div.clearfix
     %label
       Context(s)

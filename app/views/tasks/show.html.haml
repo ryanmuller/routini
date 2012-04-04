@@ -18,9 +18,6 @@
     %h2
       = @task.name
   #points.span7
-    - @task.task_roles.each do |tr|
-      %span.task_role
-        +#{tr.points}&nbsp;#{tr.role.name}
     #edit-task-link
       = link_to "Edit this task", edit_task_path(@path)
 

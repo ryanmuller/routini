@@ -13,10 +13,8 @@
 %div.row
   %div.span3
     #daily-chart{ :style       => "width:270px;height:300px;", 
-              "data-pts"   => @rpdaily_json }
+      "data-pts"   => ""}
 
-    = current_user.points.from_time(Time.now.utc, current_user).sum('points')
-    total
     %br 
     %br 
     Current mood: Blah

@@ -8,10 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :time_offset
 
   has_many :tasks
-  has_many :roles
   has_many :logs
-  has_many :points
-  has_many :task_roles
   has_many :situations
 end
 

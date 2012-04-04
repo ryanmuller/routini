@@ -6,20 +6,6 @@ class Log < ActiveRecord::Base
   scope :today, lambda { |offset| where("created_at > ?", Time.now.utc - offset) }
   scope :with_value, where("value IS NOT NULL")
 
-  before_save :create_points
-  
-  def create_points
-    return if task.nil?
-    task.task_roles.each do |tr|
-      point = Point.new()
-      point.task = task
-      point.user = user
-      point.role = tr.role
-      point.points = tr.points
-      point.save
-    end
-  end
-
   def self.plot_data(user, task)
     data = [[0,0]]
     i = 0

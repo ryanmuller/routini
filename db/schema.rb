@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328213341) do
+ActiveRecord::Schema.define(:version => 20120404032608) do
 
   create_table "logs", :force => true do |t|
     t.integer   "user_id"
@@ -30,23 +30,6 @@ ActiveRecord::Schema.define(:version => 20120328213341) do
     t.string    "status",     :default => "incomplete"
   end
 
-  create_table "points", :force => true do |t|
-    t.integer   "task_id"
-    t.integer   "user_id"
-    t.integer   "role_id"
-    t.integer   "points"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-  end
-
-  create_table "roles", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "description"
-  end
-
   create_table "situations", :force => true do |t|
     t.string    "name"
     t.integer   "user_id"
@@ -59,15 +42,6 @@ ActiveRecord::Schema.define(:version => 20120328213341) do
     t.timestamp "updated_at"
     t.integer   "task_id"
     t.integer   "situation_id"
-  end
-
-  create_table "task_roles", :force => true do |t|
-    t.integer   "task_id"
-    t.integer   "user_id"
-    t.integer   "role_id"
-    t.integer   "points"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
   end
 
   create_table "tasks", :force => true do |t|

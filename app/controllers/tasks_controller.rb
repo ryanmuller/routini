@@ -47,8 +47,6 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
 
-    @task.task_roles.build if @task.task_roles == []
-
     current_user.situations.each do |context|
       unless tc = @task.task_contexts.find_by_situation_id(context.id)
         @task.task_contexts.build(:situation_id => context.id)
