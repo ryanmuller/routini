@@ -35,6 +35,8 @@ gem 'rails-backbone'
 gem 'devise'
 gem 'haml-rails'
 gem 'rails_autolink'
+gem 'rabl'
+gem 'yajl-ruby'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6"

@@ -8,8 +8,12 @@ class Shuff.Routers.TasksRouter extends Backbone.Router
 
   show: (id) ->
     task = @tasks.get(id)
-    view = new Shuff.Views.Tasks.ShowView(model: task)
-    $('#task').html(view.render().el)
-    $('#task-name').text(task.get("name"))
-    ShuffClock.reset()
+    task.fetch({
+      success: () ->
+        view = new Shuff.Views.Tasks.ShowView(model: task)
+        $('#task').html(view.render().el)
+        $('#task-name').text(task.get("name"))
+        ShuffClock.reset()
+    })
+
 
