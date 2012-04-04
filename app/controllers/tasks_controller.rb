@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = current_user.tasks.includes(:task_contexts => :situation, :task_roles => :role)
+    @tasks = current_user.tasks.includes(:task_contexts => :situation)
     @contexts = current_user.situations
     @context = current_user.situations.first
 
