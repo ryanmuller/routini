@@ -13,6 +13,11 @@ window.ShuffClock =
 
   displayTime: (seconds) ->
     out = ""
+
+    if seconds < 0
+      seconds = -1*seconds
+      out += "-"
+
     out += Math.floor(seconds / 60)
     out += "m "
     if (seconds % 60 < 10)

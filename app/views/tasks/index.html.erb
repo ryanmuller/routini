@@ -31,9 +31,11 @@
     <% end %>
   </div>
 
-  <div class="span9">
+  <div class="span5">
     <div id="task"></div>
-    <hr>
+  </div>
+
+  <div class="span4">
     <h2 id="context-options">
       <% @contexts.each do |c| %>
         <%= link_to c.name, "/#/contexts/#{c.id}", :id => "context#{c.id}", :class => "context-option" %>
