@@ -109,5 +109,35 @@
   line-height: 60px;
 }
 
+a.dash-task {
+  display: block;
+  &:hover {
+    background-color: #f8f8f8;
+    text-decoration: none;
+  }
+}
+
+#rotatescroll { height:150px; position:relative; width:150px; }
+#rotatescroll .viewport{ height:150px; position: relative; margin:0 auto;
+overflow:hidden; width:150px; }
+#rotatescroll .overview { position: absolute; width: 150px; list-style: none;
+margin: 0; padding: 30px;  left: 0; top: 0; }
+#rotatescroll .overview #timer-time { font-size: 25px; }
+#rotatescroll .overlay {background:url(bg-rotatescroll.png) no-repeat 0 0;
+position: absolute; left: 0; top: 0; height:150px; width:150px; }
+#rotatescroll .thumb { background:url(bg-thumb.png) no-repeat 0 0; position: absolute; top: -3px; cursor: pointer; left: 137px; width: 13px; z-index: 200;  height: 13px; }
+#rotatescroll .dot { background:url(bg-dot2.png) no-repeat 0 0; display: none; height: 12px; width: 12px; position: absolute; left: 155px; top: 3px; z-index: 100; }
+#rotatescroll .dot span { display: none; }
+
+#context-options {
+  a {
+    padding: 2px;
+  }
+
+  .selected-context {
+    color: white;
+    background-color: blue;
+  }
+}
 
 

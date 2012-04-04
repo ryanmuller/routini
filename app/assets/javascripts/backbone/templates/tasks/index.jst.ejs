@@ -1,4 +1,15 @@
 <% tasks.each(function(task) { %>
-  <h3><a href="/#/tasks/<%= task.escape("id") %>"><%= task.escape("name") %></a></h3>
+  <div class="span4">
+    <a href="/#/tasks/<%= task.escape("id") %>" class="dash-task">
+      <h3><%= task.escape("name") %></h3>
+      <% if (task.get("display_type") == "binary") { %>
+        <div class="bigcheck">x</div>
+      <% } else if (task.get("display_type") == "values") { %>
+        <div class="mini-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts=""></div>
+      <% } %> 
+    </a>
+
+  </div>
+
 <% }); %>
 

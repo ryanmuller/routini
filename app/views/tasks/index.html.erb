@@ -3,23 +3,23 @@
 <% end -%>
 
 
-<h2> <%= Time.now.strftime("%a %Y.%m.%d") %> @ <%= @context.name %>
-  (switch:
-  <% @contexts.each do |c| %>
-    <% next if c == @context %>
-    <%= link_to c.name, "/#/contexts/#{c.id}" %>
-  <% end %>
-  <%= link_to "+", "#" %>
-  )
-</h2> 
-
-<div class="row">
-  <div class="span12" id="task">
-  </div>
-</div>
-
 <div class="row" id="dashboard">
   <div class="span3">
+    <h1 id="task-name">Doing nothing!</h1>
+    <br />
+    <div id="rotatescroll">
+      <div class="viewport">
+        <div class="overview">
+          <p>Start time: <span id="timer-start"></span></p>
+          <p id="timer-time">0:00</p>
+          <p>End time: <span id="timer-end"></span></p>
+        </div>
+      </div>
+      <div class="dot"></div>
+      <div class="overlay"></div>
+      <div class="thumb"></div>
+    </div>
+
     <div id="daily-chart" style="width:270px;height:300px;" data-pts=""></div>
     <br />
     <br />
@@ -31,7 +31,15 @@
     <% end %>
   </div>
 
-  <div class="span9" id="context">
+  <div class="span9">
+    <div id="task"></div>
+    <hr>
+    <h2 id="context-options">
+      <% @contexts.each do |c| %>
+        <%= link_to c.name, "/#/contexts/#{c.id}", :id => "context#{c.id}", :class => "context-option" %>
+      <% end %>
+    </h2>
+    <div id="context"></div>
   </div>
 </div>
     
