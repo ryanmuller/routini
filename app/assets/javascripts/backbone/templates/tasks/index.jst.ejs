@@ -1,12 +1,23 @@
 <% tasks.each(function(task) { %>
-  <div class="span4">
+  <div class="span3">
     <a href="/#/tasks/<%= task.escape("id") %>" class="dash-task">
       <h3><%= task.escape("name") %></h3>
       <% if (task.get("display_type") == "binary") { %>
         <div class="bigcheck">x</div>
+      <% } else if (task.get("display_type") == "todo") { %>
+        <ul>
+          <% for (var i=0; i < task.get("dones").length; i++) { %>
+            <li><s><%= task.get("dones")[i] %></s></li>
+          <% } %>
+          <% for (var i=0; i < task.get("todos").length; i++) { %>
+            <li><%= task.get("todos")[i] %></li>
+          <% } %>
+        </ul>
       <% } else if (task.get("display_type") == "values") { %>
-        <div class="mini-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts=""></div>
-      <% } %> 
+        <div class="mini-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts="<%= JSON.stringify(task.get("value_pts")) %>"></div>
+      <% } else { %> 
+        <div class="mini-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts="<%= JSON.stringify(task.get("log_pts")) %>"></div>
+      <% } %>
     </a>
 
   </div>

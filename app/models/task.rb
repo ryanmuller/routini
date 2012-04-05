@@ -12,7 +12,13 @@ class Task < ActiveRecord::Base
   default_scope :order => 'created_at ASC'
 
   def as_json(options={})
-    super.merge({ :context_ids => self.situations.collect { |s| s.id } })
+    super.merge({ 
+      :context_ids => self.situations.collect { |s| s.id },
+      :value_pts => self.values_graph,
+      :log_pts => self.logs_graph,
+      :todos => self.microtasks.incomplete.collect { |m| m.name },
+      :dones => self.microtasks.complete.created_today(self.user.time_offset.hours).collect { |m| m.name }
+    })
   end
 
   def done_today

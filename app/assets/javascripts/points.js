@@ -13,7 +13,7 @@ plotDaily = function() {
         type: 'pie'
       },
       title: {
-        text: "Today's points"
+        text: null
       },
       series: [{
         type: 'pie',

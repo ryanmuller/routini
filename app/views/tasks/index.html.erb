@@ -21,27 +21,17 @@
     </div>
 
     <div id="daily-chart" style="width:270px;height:300px;" data-pts=""></div>
-    <br />
-    <br />
-    Current mood: Blah
-    <br />
-    Set: 
-    <% (1..10).each do |i| %>
-      <%= link_to i, "#" %>
-    <% end %>
   </div>
 
-  <div class="span5">
+  <div class="span9">
     <div id="task"></div>
-  </div>
-
-  <div class="span4">
+    <hr>
     <h2 id="context-options">
       <% @contexts.each do |c| %>
         <%= link_to c.name, "/#/contexts/#{c.id}", :id => "context#{c.id}", :class => "context-option" %>
       <% end %>
     </h2>
-    <div id="context"></div>
+    <div id="context" class="row"></div>
   </div>
 </div>
     
