@@ -39,6 +39,13 @@ window.ShuffCharts =
 
   renderValues: (el) ->
     data = $(el).data('pts')
+    for item in data
+      parts = item[0].split("-")
+      item[0] = Date.UTC(parts[0], parts[1], parts[2])
+      item[1] = parseInt(item[1])
+
+    data = data.slice(-14)
+    
     elid = $(el).attr('id')
 
     chart = new Highcharts.Chart({

@@ -2,6 +2,10 @@ Shuff.Views.Tasks ||= {}
 
 class Shuff.Views.Tasks.ShowView extends Backbone.View
   template: JST["backbone/templates/tasks/show"]
+
+  events: {
+    "submit": "finish"
+  }
   
   renderTask: ->
     @$('#task-description').text(@model.get('description'))
@@ -21,3 +25,19 @@ class Shuff.Views.Tasks.ShowView extends Backbone.View
     @renderTask()
     @renderMicrotasks()
     return this
+
+  renderNoTask: ->
+    $('#task-name').text("Doing nothing!")
+    $('#task').html("")
+
+  finish: (e) ->
+    e.preventDefault()
+    
+    logUrl = '/tasks/' + @model.get('id') + '/logs.json'
+    logData = { log: { value: $('#log-value').val() }}
+    console.log(logUrl, logData)
+    $.post(logUrl, logData, @renderNoTask)
+
+    return false
+
+

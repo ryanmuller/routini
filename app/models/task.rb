@@ -56,35 +56,10 @@ class Task < ActiveRecord::Base
 
   def values_graph(span=14)
     data = []
-    i = 0
     return data if logs.with_value.empty?
 
-    if Date.today - logs.with_value.first.created_at.to_date > span
-      reset_time = Date.today - span.days + user.time_offset.hours
-    else
-      reset_time = logs.with_value.first.created_at.to_date + user.time_offset.hours
-    end
-
     logs.with_value.each do |log|
-      next if Date.today - log.created_at.to_date > span
-      reset_time ||= log.created_at.to_date + user.time_offset.hours
-
-      while reset_time < log.created_at
-        i += 1
-        data << [i,0]
-        reset_time += 1.day
-      end
-
-      if log.value
-        data.last[1] = log.value.to_i
-      end
-
-    end
-
-
-
-    data.each do |pt|
-      pt[0] = pt[0] - i
+      data << ["#{log.created_at.year}-#{log.created_at.month-1}-#{log.created_at.day}", log.value]
     end
 
     return data

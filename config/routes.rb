@@ -6,8 +6,8 @@ Routini::Application.routes.draw do
 
   resources :tasks, :only => [ :create, :destroy, :index, :show, :edit, :update ] do
     resources :microtasks, :only => [ :create, :update ]
+    resources :logs, :only => [ :create ]
   end
-  resources :logs, :only => [ :create ]
   resources :situations, :only => [ :create, :destroy, :show, :edit, :update ]
 
   match "/contexts/:id" => "situations#show"

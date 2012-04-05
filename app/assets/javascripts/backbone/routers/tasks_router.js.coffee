@@ -4,7 +4,8 @@ class Shuff.Routers.TasksRouter extends Backbone.Router
     @tasks.reset options.tasks
 
   routes:
-    "/tasks/:id" : "show"
+    "/tasks/:id"    : "show",
+    "/tasks/none"   : "doNothing"
 
   show: (id) ->
     task = @tasks.get(id)
@@ -17,4 +18,7 @@ class Shuff.Routers.TasksRouter extends Backbone.Router
         $('#context').html("")
     })
 
+  doNothing: () ->
+    view = new Shuff.Views.Tasks.ShowView()
+    view.doNothing()
 
