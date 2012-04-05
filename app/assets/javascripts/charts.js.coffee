@@ -26,7 +26,10 @@ window.ShuffCharts =
       },
       plotOptions: {
         column: {
-          borderWidth: 0
+          shadow: false,
+          borderWidth: 0,
+          pointWidth: 2,
+          pointPadding: 1,
         }
       },
       series: [{

@@ -51,7 +51,7 @@ class Task < ActiveRecord::Base
       reset_time += 1.day
     end
 
-    return data
+    return data[-21..-1]
   end
 
   def values_graph(span=14)
