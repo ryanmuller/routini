@@ -26,7 +26,7 @@ class Task < ActiveRecord::Base
   end
 
   def logs_graph
-    data = [[0,0]]
+    data = [0]
     i = 0
     return data if logs.empty?
     reset_time = logs.first.created_at.to_date + user.time_offset.hours
@@ -36,23 +36,19 @@ class Task < ActiveRecord::Base
 
       while reset_time < log.created_at
         i += 1
-        data << [i,0]
+        data << 0
         reset_time += 1.day
       end
 
-      data.last[1] += 1
+      data[-1] += 1
     end
 
 
     # fill in zeros until today
     while reset_time < Time.now.utc
       i += 1
-      data << [i, 0]
+      data << 0
       reset_time += 1.day
-    end
-
-    data.each do |pt|
-      pt[0] = pt[0] - i
     end
 
     return data

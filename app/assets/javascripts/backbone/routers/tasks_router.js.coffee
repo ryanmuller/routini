@@ -14,6 +14,7 @@ class Shuff.Routers.TasksRouter extends Backbone.Router
         $('#task').html(view.render().el)
         $('#task-name').text(task.get("name"))
         ShuffClock.reset()
+        $('#context').html("")
     })
 
 

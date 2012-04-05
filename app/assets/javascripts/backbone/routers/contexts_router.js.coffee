@@ -13,8 +13,11 @@ class Shuff.Routers.ContextsRouter extends Backbone.Router
     $("#context"+id).addClass("selected-context")
 
   renderCharts: ->
-    $('.mini-chart').each(() ->
-      ShuffCharts.renderChart(this)
+    $('.log-chart').each(() ->
+      ShuffCharts.renderLogs(this)
+    )
+    $('.value-chart').each(() ->
+      ShuffCharts.renderValues(this)
     )
   
   show: (id) ->
