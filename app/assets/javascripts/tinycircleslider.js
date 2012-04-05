@@ -26,7 +26,6 @@
 		var oCircle = $(this);
 		var oCircleX = oCircle.outerWidth();
 		var oCircleY = oCircle.outerHeight();
-    console.log(oCircleX);
 		var oThumb = $('.thumb', oCircle)[0];
 		var oThumbX = $(oThumb).outerWidth();
 		var oThumbY = $(oThumb).outerHeight();	
@@ -47,9 +46,12 @@
 		  	//setCircular();
 			//oOverview[0].style.width = iPageX * oChildren.length +'px';
 			if(options.snaptodots){setDots()};
-			gotoSlide(0);
-			iOrginalAngle = 1;
+      iCurrent = 600;
+			iOrginalAngle = Math.ceil(iCurrent) * (360 / iChildsLength) * (Math.PI/180);
+			gotoSlide(iCurrent);
 			setEvents();
+      ShuffClock.updateEndTime(Math.floor(iCurrent/60));
+
 			if(options.interval){setTimer(true)}
 		};		
 		function setEvents(){
