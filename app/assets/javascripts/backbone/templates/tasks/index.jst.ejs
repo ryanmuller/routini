@@ -2,27 +2,32 @@
   <div class="span3">
     <a href="/#/tasks/<%= task.escape("id") %>" class="dash-task">
       <h3><%= task.escape("name") %></h3>
-      <% if (task.get("display_type") == "binary") { %>
-        <div class="bigcheck">x</div>
-      <% } else if (task.get("display_type") == "todo") { %>
-        <ul>
+    </a>
+    <% if (task.get("display_type") == "binary") { %>
+      <div class="bigcheck">x</div>
+    <% } else if (task.get("display_type") == "todo") { %>
+      <ul>
+        <% if (task.get("dones") != null) { %>
           <% for (var i=0; i < task.get("dones").length; i++) { %>
             <li><s><%= task.get("dones")[i] %></s></li>
           <% } %>
+        <% } %>
+        <% if (task.get("todos") != null) { %>
           <% for (var i=0; i < task.get("todos").length; i++) { %>
             <li><%= task.get("todos")[i] %></li>
           <% } %>
-        </ul>
-      <% } else if (task.get("display_type") == "values") { %>
+        <% } %>
+      </ul>
+    <% } else if (task.get("display_type") == "values") { %>
+      <% if (task.get("value_pts") != null) { %>
         <div class="value-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts='<%= JSON.stringify(task.get("value_pts")) %>'></div>
         Last value: <%= task.get("value_pts")[task.get("value_pts").length-1].toString().split(",")[1] %>
-      <% } else { %> 
+      <% } %>
+    <% } else { %> 
+      <% if (task.get("log_pts") != null) { %>
         <div class="log-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts="<%= JSON.stringify(task.get("log_pts")) %>"></div>
         Completed today: <%= task.get("log_pts")[task.get("log_pts").length-1] %>
       <% } %>
-    </a>
-
+    <% } %>
   </div>
-
 <% }); %>
-
