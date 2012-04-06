@@ -1,4 +1,3 @@
-
 class Shuff.Models.Task extends Backbone.Model
   initialize: () ->
     @on("change:microtasks", @parseMicrotasks)
@@ -8,11 +7,12 @@ class Shuff.Models.Task extends Backbone.Model
 
   parseMicrotasks: () ->
     @microtasks = new Shuff.Collections.Microtasks(@get('microtasks'))
+    @microtasks.url = '/tasks/' + @get('id') + '/microtasks'
     @incompleteMicrotasks = if @microtasks then @microtasks.incomplete() else []
 
   isInContext: (contextId) ->
     return @get('context_ids').indexOf(contextId) != -1
-   
+
 
 
 class Shuff.Collections.Tasks extends Backbone.Collection
