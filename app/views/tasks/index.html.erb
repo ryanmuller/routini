@@ -25,12 +25,13 @@
 
   <div class="span9">
     <div id="task"></div>
-    <hr>
-    <h2 id="context-options">
-      <% @contexts.each do |c| %>
-        <%= link_to c.name, "/#/contexts/#{c.id}", :id => "context#{c.id}", :class => "context-option" %>
-      <% end %>
-    </h2>
+    <div id="context-chooser" class="well">
+      <h2 id="context-options">
+        <% @contexts.each do |c| %>
+          <%= link_to c.name, "/#/contexts/#{c.id}", :id => "context#{c.id}", :class => "context-option" %>
+        <% end %>
+      </h2>
+    </div>
     <div id="context" class="row"></div>
   </div>
 </div>

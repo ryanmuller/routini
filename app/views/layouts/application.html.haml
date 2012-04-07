@@ -11,9 +11,9 @@
     %div.container
       %div.row
         %div.span12
-          %h3
+          %span.logo
             Shuff.dash
-          = link_to 'Help', '/help'
+          -# link_to 'Help', '/help'
           - if user_signed_in?
             = link_to('Setup', '/#/contexts')
             = link_to('Account', edit_user_registration_path)
