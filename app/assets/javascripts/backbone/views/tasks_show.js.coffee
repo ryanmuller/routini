@@ -1,6 +1,9 @@
 class Shuff.Views.TasksShow extends Backbone.View
   initialize: () ->
-    #@model.on("change", @render)
+    _.bindAll(this, "render")
+    @model.bind("change", @render)
+    @model.microtasks.bind("add", @render)
+    @model.microtasks.bind("remove", @render)
     
   template: JST["backbone/templates/tasks/show"]
 
@@ -16,7 +19,8 @@ class Shuff.Views.TasksShow extends Backbone.View
     return unless @model.incompleteMicrotasks
     $microtasks = @$('#microtasks')
     $microtasks.html('')
-    @model.incompleteMicrotasks.each((microtask) ->
+
+    @model.microtasks.incomplete().each((microtask) ->
       view = new Shuff.Views.MicrotasksItem({ model: microtask })
       $microtasks.append(view.render().el)
     )
@@ -43,17 +47,9 @@ class Shuff.Views.TasksShow extends Backbone.View
   submit: (e) ->
     e.preventDefault()
 
-    microtask = new Shuff.Models.Microtask()
+    microtask = new Shuff.Models.Microtask({ name: @$('input[name=microtask_name]').val() })
     microtask.url = '/tasks/' + @model.get('id') + '/microtasks'
-    microtask.set({ name: @$('input[name=microtask_name]').val() })
-    microtask.save({}, {
-      success: (model, response) =>
-        @$('input[name=microtask_name]').val("")
-        # hack because I can't figure out how to bind renderMicrotasks
-        # correctly
-        $microtasks = @$('#microtasks')
-        view = new Shuff.Views.MicrotasksItem({ model: model })
-        $microtasks.append(view.render().el)
-    })
+    @model.microtasks.create(microtask)
+    @$('input[name=microtask_name]').val('')
     return false
 

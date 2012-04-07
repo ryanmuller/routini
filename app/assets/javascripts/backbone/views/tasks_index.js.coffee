@@ -30,8 +30,10 @@ class Shuff.Views.TasksIndex extends Backbone.View
     else
       el.append($('<p>').text('No values logged.'))
 
-  renderLastValue: (task,el) ->
-
+  renderLastValueDisplay: (task,el) ->
+    if task.has('value_pts') and task.get('value_pts').length > 0
+      last_val = task.get('value_pts')[task.get('value_pts').length-1].toString().split(',')[1]
+      el.append($('<p>').text(last_val))
 
   renderLogsDisplay: (task, el) ->
     if task.has('log_pts') and task.get('log_pts').length > 0
