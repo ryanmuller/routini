@@ -19,9 +19,15 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = current_user.tasks.includes(:task_contexts => :situation)
-    @contexts = current_user.situations
-    @context = current_user.situations.first
+    if current_user
+      @tasks = current_user.tasks.includes(:task_contexts => :situation)
+      @contexts = current_user.situations
+      @context = current_user.situations.first
+    else
+      @tasks = []
+      @contexts = []
+      @context = []
+    end
   end
 
   def show
@@ -40,12 +46,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
-
-    if @task.update_attributes(params[:task])
-      redirect_to task_path(@task)
-    else
-      render 'edit'
-    end
+    @task = current_user.tasks.find(params[:id])
+    @task.update_attributes(params[:task])
+    respond_with @task
   end
 end

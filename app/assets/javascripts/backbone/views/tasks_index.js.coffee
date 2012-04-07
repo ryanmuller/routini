@@ -17,7 +17,7 @@ class Shuff.Views.TasksIndex extends Backbone.View
     el.append($ul)
 
   renderValuesDisplay: (task, el) ->
-    if task.get('value_pts').length > 0
+    if task.has('value_pts') and task.get('value_pts').length > 0
       chart = $('<div>').addClass('value-chart')
                         .attr('id', 'task' + task.get('id') + 'chart')
                         .css('width','210px')
@@ -34,7 +34,7 @@ class Shuff.Views.TasksIndex extends Backbone.View
 
 
   renderLogsDisplay: (task, el) ->
-    if task.get('log_pts').length > 0
+    if task.has('log_pts') and task.get('log_pts').length > 0
       chart = $('<div>').addClass('log-chart')
                         .attr('id', 'task' + task.get('id') + 'chart')
                         .css('width','210px')

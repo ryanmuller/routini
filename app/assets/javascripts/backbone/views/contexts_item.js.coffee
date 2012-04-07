@@ -8,9 +8,8 @@ class Shuff.Views.ContextsItem extends Backbone.View
   renderTasks: () ->
     $context_tasks = @$('.context-tasks')
     @model.tasks.each((task) ->
-      $item = $('<li>')
-      $item.append($('<p>').text(task.get('name')))
-      $context_tasks.append($item)
+      view = new Shuff.Views.TasksEdit({ model: task })
+      $context_tasks.append(view.render().el)
     )
 
   render: () ->
@@ -30,7 +29,6 @@ class Shuff.Views.ContextsItem extends Backbone.View
     task.url = '/situations/'+@model.get('id')+'/tasks'
     task.save({}, {
       success: (model, response) =>
-        console.log(model)
         @$('input[name=name]').val('')
         @$('input[name=time]').val('')
         @$('.context-tasks').append('<li>'+model.get('name')+'</li>')
