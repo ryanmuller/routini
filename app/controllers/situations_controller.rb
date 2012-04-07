@@ -1,24 +1,18 @@
 class SituationsController < ApplicationController
 
+  respond_to :html, :json
+
   def index
     @situations = current_user.situations
-    respond_to do |format|
-      format.html
-      format.json { render :json => @situations }
-    end
+    respond_with @situations
   end
 
 
   def create
-
     @context = Situation.new(params[:situation])
     @context.user = current_user
 
-    if @context.save
-      redirect_to root_path, :notice => 'Context added.'
-    else
-      render 'pages/index'
-    end
+    respond_with @context, :location => root_url
   end
 
   def destroy

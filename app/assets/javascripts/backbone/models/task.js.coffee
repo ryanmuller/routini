@@ -1,7 +1,7 @@
 class Shuff.Models.Task extends Backbone.Model
   initialize: () ->
     @on("change:microtasks", @parseMicrotasks)
-    @parseMicrotasks
+    @parseMicrotasks()
 
   urlRoot: '/tasks'
 

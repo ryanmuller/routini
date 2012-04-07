@@ -1,0 +1,36 @@
+<h3><%= context.get('name') %></h3>
+
+What do you do there?
+
+<ul class="context-tasks"></ul>
+
+<form class="new_task form-horizontal">
+  <div class="control-group">
+    <label class="control-label">Name</label>
+    <div class="controls">
+      <input type="text" name="name">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Display type</label>
+    <div class="controls">
+      <select name="display_type">
+        <option value="logs">Log chart</option>
+        <option value="values">Values chart</option>
+        <option value="binary">Binary</option>
+        <option value="last_value">Last value</option>
+        <option value="todo">Action list</option>
+        <option value="random">Random action</option>
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Default time</label>
+    <div class="controls">
+      <input type="text" name="time"> seconds
+    </div>
+  </div>
+  <div class="form-actions">
+    <input type="submit" class="btn" value="Add">
+  </div>
+</form>

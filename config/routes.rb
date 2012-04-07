@@ -4,11 +4,11 @@ Routini::Application.routes.draw do
   root :to => "tasks#index"
   match '/help' => 'pages#help'
 
-  resources :tasks, :only => [ :create, :destroy, :index, :show, :edit, :update ] do
+  resources :tasks, :only => [ :destroy, :index, :show, :edit, :update ] do
     resources :microtasks, :only => [ :create, :update, :index ]
     resources :logs, :only => [ :create ]
   end
-  resources :situations, :only => [ :create, :destroy, :show, :edit, :update ]
-
-  match "/contexts/:id" => "situations#show"
+  resources :situations, :only => [ :create, :destroy, :show, :edit, :update, :index ] do
+    resources :tasks, :only => [ :create ]
+  end
 end

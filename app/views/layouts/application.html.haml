@@ -15,6 +15,7 @@
             Shuff.dash
           = link_to 'Help', '/help'
           - if user_signed_in?
+            = link_to('Setup', '/#/contexts')
             = link_to('Account', edit_user_registration_path)
           - else
             = link_to('Sign up', new_user_registration_path)

@@ -1,15 +1,14 @@
 class TasksController < ApplicationController
   respond_to :json, :html
 
-  def create 
+  def create # from situations 
+    @situation = current_user.situations.find(params[:situation_id])
     @task = Task.new(params[:task])
     @task.user = current_user
+    @task.situations << @situation
+    @task.save 
 
-    if @task.save 
-      redirect_to root_path, :notice => 'Task added.'
-    else
-      render 'pages/index'
-    end
+    respond_with @task, :location => root_url
   end
 
   def destroy

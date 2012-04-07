@@ -7,6 +7,7 @@ class Shuff.Routers.ContextsRouter extends Backbone.Router
 
   routes:
     "/contexts/:id": "show"
+    "/contexts"    : "index"
   
   updateSelectedContext: (id) ->
     $(".context-option").removeClass("selected-context")
@@ -27,4 +28,12 @@ class Shuff.Routers.ContextsRouter extends Backbone.Router
     @renderCharts()
     @updateSelectedContext(id)
 
+  index: () ->
+    @contexts.fetch({
+      success: () =>
+        $("#context").html("")
+        $("#task").html("")
+        view = new Shuff.Views.ContextsIndex(collection: @contexts)
+        $("#context").html(view.render().el)
+    })
 
