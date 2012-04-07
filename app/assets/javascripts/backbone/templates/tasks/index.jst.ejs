@@ -19,7 +19,7 @@
         <% } %>
       </ul>
     <% } else if (task.get("display_type") == "values") { %>
-      <% if (task.get("value_pts") != null) { %>
+      <% if (task.get("value_pts") != null && task.get("value_pts").length != 0) { %>
         <div class="value-chart" id="task<%= task.get("id") %>chart" style="width:210px;height:150px;" data-pts='<%= JSON.stringify(task.get("value_pts")) %>'></div>
         Last value: <%= task.get("value_pts")[task.get("value_pts").length-1].toString().split(",")[1] %>
       <% } %>
