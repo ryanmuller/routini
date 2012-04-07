@@ -11,6 +11,7 @@ class SituationsController < ApplicationController
   def create
     @context = Situation.new(params[:situation])
     @context.user = current_user
+    @context.save
 
     respond_with @context, :location => root_url
   end
