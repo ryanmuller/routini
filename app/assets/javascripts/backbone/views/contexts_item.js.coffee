@@ -8,7 +8,9 @@ class Shuff.Views.ContextsItem extends Backbone.View
   renderTasks: () ->
     $context_tasks = @$('.context-tasks')
     @model.tasks.each((task) ->
-      $context_tasks.append("<li>"+task.get("name")+"</li>")
+      $item = $('<li>')
+      $item.append($('<p>').text(task.get('name')))
+      $context_tasks.append($item)
     )
 
   render: () ->
