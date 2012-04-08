@@ -1,4 +1,10 @@
 class Shuff.Views.ContextsIndex extends Backbone.View
+  initialize: () ->
+    _.bindAll(this, "render")
+    @collection.bind("change", @render)
+    @collection.bind("add",    @render)
+    @collection.bind("remove", @render)
+
   template: JST["backbone/templates/contexts/index"]
 
   events: {
