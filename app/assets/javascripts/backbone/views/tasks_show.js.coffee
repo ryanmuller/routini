@@ -8,8 +8,12 @@ class Shuff.Views.TasksShow extends Backbone.View
   template: JST["backbone/templates/tasks/show"]
 
   events: {
-    "submit #task-finish-form": "finish",
-    "submit #create_microtask": "submit"
+    "submit #task-finish-form"        : "finish",
+    "submit #create_microtask"        : "submit"
+    "click .edit"                     : "editTask"
+    "click .delete"                   : "deleteTask"
+    "focusout .edit_task_description" : "updateTask"
+    "change select"                   : "updateTask"
   }
   
   renderTask: ->
@@ -52,4 +56,38 @@ class Shuff.Views.TasksShow extends Backbone.View
     @model.microtasks.create(microtask)
     @$('input[name=microtask_name]').val('')
     return false
+
+  updateTask: () ->
+    @model.save({ description:  $('.edit_task_description').val(), display_type: $('select').val() },
+                { success: => @render() })
+
+  editTask: (e) ->
+    e.preventDefault()
+
+    $('.edit').hide()
+      
+    $description = $('<input>').addClass('edit_task_description')
+                                  .val(@model.get('description'))
+
+    $display_type = $(JST["backbone/templates/tasks/display_types"]())
+    if @model.get('display_type') != null
+      $display_type.val(@model.get('display_type'))
+
+    @$('#task-description').html('')
+                           .append($description)
+                           .append($display_type)
+
+    return false
+
+  deleteTask: (e) ->
+    $el = $(@el)
+    e.preventDefault()
+    if confirm("Are you sure you want to delete this task?")
+      @model.destroy({ success: (model, response) ->
+        $('#task-panel').hide()
+      })
+
+    return false
+
+
 

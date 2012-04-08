@@ -39,6 +39,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     )
   
   showContext: (id) ->
+    $('#task-panel').hide()
     context = @contexts.get(id)
     context.fetch({
       success: () =>
@@ -49,6 +50,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     })
 
   showTask: (id) ->
+    $('#task-panel').show()
     task = @tasks.get(id)
     task.fetch({
       success: () ->
