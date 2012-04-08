@@ -5,7 +5,7 @@
 <% end -%>
 
 
-<div class="row" id="dashboard">
+<div class="row">
   <div class="span3">
     <h1 id="task-name">Doing nothing!</h1>
     <br />
@@ -21,18 +21,27 @@
       <div class="overlay"></div>
       <div class="thumb"></div>
     </div>
+  </div>
 
+  <div class="span9">
+    <div id="task"></div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="span3">
     <div id="daily-chart" style="width:270px;height:300px;" data-pts=""></div>
 
     <div id="all-tasks"></div>
   </div>
 
   <div class="span9">
-    <div id="task"></div>
     <div id="context-chooser" class="well">
       <h2 id="context-options"></h2>
     </div>
+
     <div id="context" class="row"></div>
   </div>
 </div>
-    

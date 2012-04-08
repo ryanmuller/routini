@@ -16,6 +16,12 @@ class Shuff.Views.TasksIndex extends Backbone.View
 
     el.append($ul)
 
+  renderRandomDisplay: (task, el) ->
+    if task.get('todos') != null
+      n = task.get('todos').length
+      choice = Math.floor(Math.random() * n)
+      el.append($('<p>').html(ShuffUtils.replaceURLs(task.get('todos')[choice])))
+
   renderValuesDisplay: (task, el) ->
     if task.has('value_pts') and task.get('value_pts').length > 0
       chart = $('<div>').addClass('value-chart')
@@ -55,6 +61,7 @@ class Shuff.Views.TasksIndex extends Backbone.View
     todo = self.renderTodoDisplay
     values = self.renderValuesDisplay
     last_value = self.renderLastValueDisplay
+    random = self.renderRandomDisplay
 
     name = $('<a>').attr('href', '/#/tasks/' + task.escape('id'))
                    .addClass('dash-task')
@@ -67,6 +74,7 @@ class Shuff.Views.TasksIndex extends Backbone.View
       when "todo"       then todo(task, $task)
       when "values"     then values(task, $task)
       when "last_value" then last_value(task, $task)
+      when "random"     then random(task, $task)
       else                   logs(task, $task)
 
 
