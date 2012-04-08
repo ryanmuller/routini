@@ -50,6 +50,7 @@ class Shuff.Views.TasksIndex extends Backbone.View
       el.append($('<p>').text('None completed.'))
 
   render: ->
+
     binary = @renderBinaryDisplay
     logs = @renderLogsDisplay
     todo = @renderTodoDisplay

@@ -1,5 +1,5 @@
 class Shuff.Views.ContextsIndex extends Backbone.View
-  initialize: () ->
+  initialize: (options) ->
     _.bindAll(this, "render")
     @collection.bind("change", @render)
     @collection.bind("add",    @render)
@@ -27,8 +27,9 @@ class Shuff.Views.ContextsIndex extends Backbone.View
   submit: (e) ->
     e.preventDefault()
 
-    @$('input#context_name').val('')
-    context = new Shuff.Models.Context({ name: @$('input#context_name').val() })
+    $input = @$('input#context_name')
+    context = new Shuff.Models.Context({ name: $input.val() })
+    $input.val('')
     @collection.create(context, { wait: true })
 
     return false
