@@ -4,8 +4,20 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     @contexts.reset options.contexts
     @tasks = new Shuff.Collections.Tasks()
     @tasks.reset options.tasks
+
+    # render context chooser 
     view = new Shuff.Views.ContextsChooser(collection: @contexts)
     $('#context-options').html(view.render().el)
+
+    # render 'all' context if it exists
+    @contexts.each((context) ->
+      if context.get('name') == 'all'
+        context.fetch({
+          success: () ->
+            view = new Shuff.Views.TasksIndex(collection: context.tasks)
+            $('#all-tasks').html(view.renderColumn().el)
+        })
+    )
 
 
   routes:
@@ -27,9 +39,9 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     )
   
   showContext: (id) ->
-    @contexts.fetch({
+    context = @contexts.get(id)
+    context.fetch({
       success: () =>
-        context = @contexts.get(id)
         view = new Shuff.Views.TasksIndex(collection: context.tasks)
         $("#context").html(view.render().el)
         @renderCharts()

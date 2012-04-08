@@ -49,16 +49,43 @@ class Shuff.Views.TasksIndex extends Backbone.View
     else
       el.append($('<p>').text('None completed.'))
 
+  renderTask: (task, $task, self) ->
+    binary = self.renderBinaryDisplay
+    logs = self.renderLogsDisplay
+    todo = self.renderTodoDisplay
+    values = self.renderValuesDisplay
+    last_value = self.renderLastValueDisplay
+
+    name = $('<a>').attr('href', '/#/tasks/' + task.escape('id'))
+                   .addClass('dash-task')
+                   .append($('<h3>').text(task.escape('name')))
+
+    $task.append(name)
+
+    switch task.get("display_type")
+      when "binary"     then binary(task, $task)
+      when "todo"       then todo(task, $task)
+      when "values"     then values(task, $task)
+      when "last_value" then last_value(task, $task)
+      else                   logs(task, $task)
+
+
+  renderColumn: ->
+    renderTask = @renderTask
+    self = this
+
+    @collection.each((task) ->
+      $task = $('<div>')
+      self.renderTask(task, $task, self)
+      $(self.el).append($task)
+    )
+    return this
+
   render: ->
-
-    binary = @renderBinaryDisplay
-    logs = @renderLogsDisplay
-    todo = @renderTodoDisplay
-    values = @renderValuesDisplay
-    last_value = @renderLastValueDisplay
-
     $el = $(@el)
     $row = $('<div>').addClass('row')
+
+    self = this
 
     @collection.each((task, index) ->
       if index != 0 and index % 3 == 0
@@ -67,18 +94,8 @@ class Shuff.Views.TasksIndex extends Backbone.View
         $row = $('<div>').addClass('row')
 
       $task = $('<div>').addClass('span3')
-      name = $('<a>').attr('href', '/#/tasks/' + task.escape('id'))
-                     .addClass('dash-task')
-                     .append($('<h3>').text(task.escape('name')))
 
-      $task.append(name)
-
-      switch task.get("display_type")
-        when "binary"     then binary(task, $task)
-        when "todo"       then todo(task, $task)
-        when "values"     then values(task, $task)
-        when "last_value" then last_value(task, $task)
-        else                   logs(task, $task)
+      self.renderTask(task, $task, self)
 
       $row.append($task)
     )

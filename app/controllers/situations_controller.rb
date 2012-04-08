@@ -38,12 +38,8 @@ class SituationsController < ApplicationController
   end
 
   def show 
-    @situation = Situation.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.josn { render :json => @situation }
-    end
+    @situation = current_user.situations.find(params[:id])
+    respond_with @situation
   end
 end
 

@@ -6,14 +6,14 @@ class Shuff.Views.ContextsChooser extends Backbone.View
     @collection.bind("remove", @render)
 
   render: ->
-    console.log("rendering chooser")
     $el = $(@el)
     $el.html('')
     @collection.each((context) ->
-      link = $('<a>').text(context.get('name'))
-                     .attr('id', 'context'+context.id)
-                     .addClass('context-option')
-                     .attr('href', '/#/contexts/'+context.id)
-      $el.append(link)
+      if context.get('name') != 'all'
+        link = $('<a>').text(context.get('name'))
+                       .attr('id', 'context'+context.id)
+                       .addClass('context-option')
+                       .attr('href', '/#/contexts/'+context.id)
+        $el.append(link)
     )
     return this
