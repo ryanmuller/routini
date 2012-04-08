@@ -27,16 +27,9 @@ class Shuff.Views.ContextsIndex extends Backbone.View
   submit: (e) ->
     e.preventDefault()
 
-    context = new Shuff.Models.Context()
-    context.set({
-      name: @$('input#context_name').val()
-    })
-    context.save({}, {
-      success: (model, response) =>
-        @$('input#context_name').val('')
-        view = new Shuff.Views.ContextsItem({ model: model })
-        @$('#contexts').append(view.render().el)
-    })
-    return false
+    @$('input#context_name').val('')
+    context = new Shuff.Models.Context({ name: @$('input#context_name').val() })
+    @collection.create(context, { wait: true })
 
+    return false
 
