@@ -135,9 +135,12 @@ position: absolute; left: 0; top: 0; height:150px; width:150px; }
 #rotatescroll .dot { background:url(bg-dot2.png) no-repeat 0 0; display: none; height: 12px; width: 12px; position: absolute; left: 155px; top: 3px; z-index: 100; }
 #rotatescroll .dot span { display: none; }
 
-#context-options {
-  a {
+#context-chooser {
+  a.context-option {
     padding: 2px;
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: bold;
   }
 
   .selected-context {

@@ -7,7 +7,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
 
     # render context chooser 
     view = new Shuff.Views.ContextsChooser(collection: @contexts)
-    $('#context-options').html(view.render().el)
+    $('#context-chooser').html(view.render().el)
 
     # render 'all' context if it exists
     @contexts.each((context) ->
