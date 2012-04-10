@@ -33,14 +33,14 @@ window.ShuffClock =
   updateEndTime: (offset) ->
     $('#timer-end').text(@currentTime(offset))
 
-  renderTimer: () ->
+  renderTimer: (initialTime) ->
     $('#rotatescroll').tinycircleslider({
       interval: true,
       intervaltime: 1000,
       radius: 70,
       hidedots: false,
+      start: initialTime
     })
     this.reset()
+    #$('#rotatescroll').gotoSlide(initialTime)
 
-$ ->
-  ShuffClock.renderTimer()

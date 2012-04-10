@@ -55,9 +55,9 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     task.fetch({
       success: () ->
         view = new Shuff.Views.TasksShow(model: task)
-        $('#task').html(view.render().el)
-        $('#task-name').text(task.get("name"))
-        ShuffClock.reset()
+        $('#task-panel').html(view.render().el)
+        $('#task-name').text(task.get('name'))
+        ShuffClock.renderTimer(task.get('time'))
     })
 
   doNothing: () ->

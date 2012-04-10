@@ -19,7 +19,8 @@
 			hidedots: true, //fadesout the dots when user stops dragging.
 			radius: 140, // Used to determine the size of the circleslider
 			lightbox: false, // when you have links with a lightbox attached this most be true for normal links to work correctly this must be false.
-			callback: null // function that executes after every move
+			callback: null,// function that executes after every move
+      start: 600
 		};
 		var options = $.extend(defaults, options);  
 		
@@ -46,7 +47,7 @@
 		  	//setCircular();
 			//oOverview[0].style.width = iPageX * oChildren.length +'px';
 			if(options.snaptodots){setDots()};
-      iCurrent = 600;
+      iCurrent = options.start;
 			iOrginalAngle = Math.ceil(iCurrent) * (360 / iChildsLength) * (Math.PI/180);
 			gotoSlide(iCurrent);
 			setEvents();
@@ -106,7 +107,7 @@
 		};
 		function setTimer(bFirst){
 			//oTimer3 = setTimeout(function(){gotoSlide(iChildsLength * Math.random(), true)}, (bFirst ? 50 : options.intervaltime));
-      oTimer3 = setTimeout(function(){iCurrent = iCurrent - 1; gotoSlide(iCurrent, true)}, (bFirst ? 50 : options.intervaltime));
+      oTimer3 = setTimeout(function(){gotoSlide(iCurrent-1, true)}, (bFirst ? 50 : options.intervaltime));
 		};
 		function setDots() {
 			oDot = $('.dot', oCircle);
@@ -123,11 +124,16 @@
 			oDot = $('.dot', oCircle);
 		};
 		function gotoSlide(iNum, bTimed){
+      iCurrent = iNum;
 			var angle = Math.ceil(iNum) * (360 / iChildsLength) * (Math.PI/180);
 			iFramerate = Math.max(1,Math.round(Math.abs((angle* 100) - (iOrginalAngle * 100 )) /10));
 			var iRatio = ((angle* 100) - (iOrginalAngle * 100 )) / iFramerate;
 			stepMove(iRatio, bTimed);
+
+      if (iNum == 0)
+        $('#beep').get(0).play();
 		};
+
 		function drag(oEvent){
 			oEvent.preventDefault();
 			if(typeof(oEvent.touches) != 'undefined' && oEvent.touches.length == 1){ 

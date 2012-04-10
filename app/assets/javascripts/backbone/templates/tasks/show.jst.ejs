@@ -1,21 +1,41 @@
-<form class="form-inline" id="task-finish-form">
-  <input type="text" id="log-value" class="input-small" placeholder="New value">
-  <input type="submit" class="btn" value="Finished!">
-</form>
-
-<p id="task-description">Task description</p>
-
-
-<div id="microtasks">
+<div class="span3">
+  <h1 id="task-name"></h1>
+  <br />
+  <div id="rotatescroll">
+    <div class="viewport">
+      <div class="overview">
+        <p>Start time: <span id="timer-start"></span></p>
+        <p id="timer-time">0:00</p>
+        <p>End time: <span id="timer-end"></span></p>
+      </div>
+    </div>
+    <div class="dot"></div>
+    <div class="overlay"></div>
+    <div class="thumb"></div>
+    <audio id="beep" preload="auto" autobuffer><source src="https://s3.amazonaws.com/shuff/timer.wav"></audio>
+  </div>
 </div>
+  
+<div class="span9">
+  <form class="form-inline" id="task-finish-form">
+    <input type="text" id="log-value" class="input-small" placeholder="New value">
+    <input type="submit" class="btn" value="Finished!">
+  </form>
 
-<form class="form-inline" id="create_microtask">
-  <input type="text" name="microtask_name">
-  <input type="submit" class="btn" value="Add action">
-</form>
+  <p id="task-description">Task description</p>
 
-<div>
-  <a href="#" class="btn btn-mini edit">Edit <i class="icon-pencil"></i></a>
-  <a href="#" class="btn btn-mini delete">Delete <i class="icon-trash"></i></a>
+
+  <div id="microtasks">
+  </div>
+
+  <form class="form-inline" id="create_microtask">
+    <input type="text" name="microtask_name">
+    <input type="submit" class="btn" value="Add action">
+  </form>
+
+  <div>
+    <a href="#" class="btn btn-mini edit">Edit <i class="icon-pencil"></i></a>
+    <a href="#" class="btn btn-mini delete">Delete <i class="icon-trash"></i></a>
+  </div>
 </div>
 
