@@ -42,5 +42,4 @@ window.ShuffClock =
       start: initialTime
     })
     this.reset()
-    #$('#rotatescroll').gotoSlide(initialTime)
 

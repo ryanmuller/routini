@@ -13,12 +13,13 @@ class Shuff.Views.TasksShow extends Backbone.View
     "click .edit"              : "editTask"
     "click .delete"            : "deleteTask"
     "click .edit_task_save"    : "updateTask"
-    'click .cancel'            : 'render'
+    'click .cancel'            : 'renderAndClock'
   }
   
   renderTask: ->
+    @$('#task-name').text(@model.get('name'))
     @$('#task-description').html(ShuffUtils.replaceURLs(@model.get('description')))
-
+    
   renderMicrotasks: ->
     return unless @model.incompleteMicrotasks
     $microtasks = @$('#microtasks')
@@ -34,6 +35,10 @@ class Shuff.Views.TasksShow extends Backbone.View
     @renderTask()
     @renderMicrotasks()
     return this
+
+  renderAndClock: ->
+    @render()
+    ShuffClock.renderTimer(@model.get('time'))
 
   renderNoTask: ->
     $('#task-name').text("Doing nothing!")
@@ -62,7 +67,7 @@ class Shuff.Views.TasksShow extends Backbone.View
 
     $el = $(@el)
 
-    @model.save({ name: $el.find('input[name=name]').val(), description: $el.find('input[name=description]').val(), time: $el.find('input[name=time]').val(), display_type: $el.find('select[name=display_type]').val() }, { success: => @render() })
+    @model.save({ name: $el.find('input[name=name]').val(), description: $el.find('input[name=description]').val(), time: $el.find('input[name=time]').val(), display_type: $el.find('select[name=display_type]').val() }, { success: => @renderAndClock() })
     return false
 
   editTask: (e) ->
