@@ -1,6 +1,5 @@
 window.ShuffUtils =
   truncate: (str, len) ->
-    console.log(str)
     if str.length > len
       return str.slice(0, len) + "..."
     else

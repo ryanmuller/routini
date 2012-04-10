@@ -1,0 +1,35 @@
+<form class="form-horizontal well">
+  <div class="control-group">
+    <label class="control-label">Name</label>
+    <div class="controls">
+      <input type="text" name="name">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Description</label>
+    <div class="controls">
+      <input type="text" name="description">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Display type</label>
+    <div class="controls">
+      <select name="display_type">
+        <option value="logs">Log chart</option>
+        <option value="values">Values chart</option>
+        <option value="binary">Binary</option>
+        <option value="last_value">Last value</option>
+        <option value="todo">Action list</option>
+        <option value="random">Random action</option>
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Default time</label>
+    <div class="controls">
+      <input type="text" name="time"> seconds
+    </div>
+  </div>
+  <a href="#" class="edit_task_save btn">Save</a>
+  <a href="#" class="cancel btn">Cancel</a>
+</form>

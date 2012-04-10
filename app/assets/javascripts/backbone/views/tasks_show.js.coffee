@@ -8,12 +8,12 @@ class Shuff.Views.TasksShow extends Backbone.View
   template: JST["backbone/templates/tasks/show"]
 
   events: {
-    "submit #task-finish-form"        : "finish",
-    "submit #create_microtask"        : "submit"
-    "click .edit"                     : "editTask"
-    "click .delete"                   : "deleteTask"
-    "focusout .edit_task_description" : "updateTask"
-    "change select"                   : "updateTask"
+    "submit #task-finish-form" : "finish",
+    "submit #create_microtask" : "submit"
+    "click .edit"              : "editTask"
+    "click .delete"            : "deleteTask"
+    "click .edit_task_save"    : "updateTask"
+    'click .cancel'            : 'render'
   }
   
   renderTask: ->
@@ -57,25 +57,45 @@ class Shuff.Views.TasksShow extends Backbone.View
     @$('input[name=microtask_name]').val('')
     return false
 
-  updateTask: () ->
-    @model.save({ description:  $('.edit_task_description').val(), display_type: $('select').val() },
-                { success: => @render() })
+  updateTask: (e) ->
+    e.preventDefault()
+
+    $el = $(@el)
+
+    @model.save({ name: $el.find('input[name=name]').val(), description: $el.find('input[name=description]').val(), time: $el.find('input[name=time]').val(), display_type: $el.find('select[name=display_type]').val() }, { success: => @render() })
+    return false
 
   editTask: (e) ->
     e.preventDefault()
 
-    $('.edit').hide()
-      
-    $description = $('<input>').addClass('edit_task_description')
-                                  .val(@model.get('description'))
+    $form = $(JST["backbone/templates/tasks/form"]())
+    $form.find('input[name=name]').val(@model.get('name'))
+    $form.find('input[name=description]').val(@model.get('description'))
+    $form.find('select[name=display_type]').val(@model.get('display_type'))
+    $form.find('input[name=time]').val(@model.get('time'))
 
-    $display_type = $(JST["backbone/templates/tasks/display_types"]())
-    if @model.get('display_type') != null
-      $display_type.val(@model.get('display_type'))
+    @$('#task-info').html('')
+                    .html($form)
 
-    @$('#task-description').html('')
-                           .append($description)
-                           .append($display_type)
+    
+    #@$('#microtasks div').each(() ->
+    #  $this = $(this)
+    #  #id = $this.data('microtaskid')
+    #  id = 0
+    #  $x = $('<a>').attr('href', '#')
+    #               .append($('<i>').addClass('icon-remove'))
+    #               .css('margin-right', '8px')
+    #               .addClass('context-delete')
+    #               .attr('data-contextid', id)
+    #               .after('<br>')
+    #  $edit = $('<input>').attr('type','text')
+    #                      .val($this.text())
+    #                      .addClass('edit-context-text input')
+    #                      .attr('data-contextid', id)
+    #  $this.after($x)
+    #  $this.replaceWith($edit)
+    #)
+
 
     return false
 
@@ -88,6 +108,5 @@ class Shuff.Views.TasksShow extends Backbone.View
       })
 
     return false
-
 
 
