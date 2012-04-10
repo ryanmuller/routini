@@ -8,11 +8,11 @@ class Shuff.Views.TasksIndex extends Backbone.View
     $ul = $('<ul>')
 
     for k,item of task.get('dones')
-      $ul.append($('<li>').text(item)
+      $ul.append($('<li>').html(ShuffUtils.replaceURLs(item))
                           .css('text-decoration', 'line-through'))
 
     for k,item of task.get('todos')
-      $ul.append($('<li>').text(item))
+      $ul.append($('<li>').html(ShuffUtils.replaceURLs(item)))
 
     el.append($ul)
 

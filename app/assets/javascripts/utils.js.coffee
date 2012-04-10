@@ -1,7 +1,15 @@
 window.ShuffUtils =
+  truncate: (str, len) ->
+    console.log(str)
+    if str.length > len
+      return str.slice(0, len) + "..."
+    else
+      return str
+
   replaceURLs: (text) ->
     return if text == null
     # http://stackoverflow.com/a/37687/604093
     exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
-    return text.replace(exp,"<a href='$1'>$1</a>")
+    link = text.replace(exp, (match, $1) -> '<a href="' + $1 + '" target="_blank">' + ShuffUtils.truncate($1, 35) + '</a>')
+    return link
 
