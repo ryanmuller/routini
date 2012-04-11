@@ -32,7 +32,8 @@
 		var oThumbY = $(oThumb).outerHeight();	
 		var oOverview = $('.overview', oCircle);
 		var oDot = {};
-		var oTimer, oTimer2, oTimer3;
+		var oTimer, oTimer2;
+    //oTimer3;
 		var oChildren = oOverview.children();
 		var oLinks = $('a',oChildren);
 		var iPageX = $(oChildren[0]).outerWidth(true);
@@ -46,6 +47,7 @@
 		function initialize(){
 		  	//setCircular();
 			//oOverview[0].style.width = iPageX * oChildren.length +'px';
+			clearTimeout(window.oTimer3);
 			if(options.snaptodots){setDots()};
       iCurrent = options.start;
 			iOrginalAngle = Math.ceil(iCurrent) * (360 / iChildsLength) * (Math.PI/180);
@@ -75,7 +77,7 @@
 			if(options.snaptodots){oDot.click(function(){if(iCounter == 0)gotoSlide($(this).text()-1)});}
 		};
 		function start(oEvent){
-			clearTimeout(oTimer3);
+			clearTimeout(window.oTimer3);
 			$(document).mousemove(drag);
 			document.ontouchmove = function(oEvent){
 				$(document).unbind('mousemove');
@@ -107,7 +109,7 @@
 		};
 		function setTimer(bFirst){
 			//oTimer3 = setTimeout(function(){gotoSlide(iChildsLength * Math.random(), true)}, (bFirst ? 50 : options.intervaltime));
-      oTimer3 = setTimeout(function(){gotoSlide(iCurrent-1, true)}, (bFirst ? 50 : options.intervaltime));
+      window.oTimer3 = setTimeout(function(){gotoSlide(iCurrent-1, true)}, (bFirst ? 50 : options.intervaltime));
 		};
 		function setDots() {
 			oDot = $('.dot', oCircle);
