@@ -114,12 +114,33 @@
   line-height: 60px;
 }
 
-a.dash-task {
-  color: black;
-  display: block;
-  &:hover {
-    background-color: #f8f8f8;
-    text-decoration: none;
+#context { 
+  background-color: white;
+
+  .span3 {
+    border: 3px solid whiteSmoke;
+    height: 210px;
+    background-color: white;
+    margin-bottom: 30px;
+    @include rounded-corners(5px);
+    text-align: center;
+    
+    ul {
+      text-align: left;
+    }
+  }
+
+  .new-task-area {
+    background-color: whiteSmoke;
+  }
+
+  a.dash-task {
+    color: black;
+    display: block;
+    &:hover {
+      background-color: #f8f8f8;
+      text-decoration: none;
+    }
   }
 }
 

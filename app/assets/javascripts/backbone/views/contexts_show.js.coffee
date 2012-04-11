@@ -10,7 +10,26 @@ class Shuff.Views.ContextsShow extends Backbone.View
   preventAndRender: (e) ->
     e.preventDefault()
     @render()
+    @renderCharts()
+
     return false
+
+  renderCharts: ->
+    $('.log-chart').each(() ->
+      ShuffCharts.renderLogs(this)
+    )
+    $('.value-chart').each(() ->
+      ShuffCharts.renderValues(this)
+    )
+  
+  renderCharts: ->
+    $('.log-chart').each(() ->
+      ShuffCharts.renderLogs(this)
+    )
+    $('.value-chart').each(() ->
+      ShuffCharts.renderValues(this)
+    )
+  
 
   renderBinaryDisplay: (task, el) ->
     el.append('<div class="bigcheck">x</div>')
@@ -101,8 +120,10 @@ class Shuff.Views.ContextsShow extends Backbone.View
     )
     return this
 
-  renderNewTask: ->
+  renderNewTask: (e) ->
+    e.preventDefault()
     @$('.new-task-area').html(JST['backbone/templates/tasks/form']())
+    return false
 
 
   render: ->
@@ -132,7 +153,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
 
     #$newtask = $(JST["backbone/templates/tasks/form"]())
 
-    $newtaskbtn = $('<a>').addClass('btn new-task-btn').text('New task')
+    $newtaskbtn = $('<a>').attr('href', '#').addClass('new-task-btn').text('New task')
     $newtask = $('<div>').addClass('span3 new-task-area').append($newtaskbtn)
 
     $row.append($newtask)

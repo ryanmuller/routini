@@ -27,14 +27,6 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     $(".context-option").removeClass("selected-context")
     $("#context"+id).addClass("selected-context")
 
-  renderCharts: ->
-    $('.log-chart').each(() ->
-      ShuffCharts.renderLogs(this)
-    )
-    $('.value-chart').each(() ->
-      ShuffCharts.renderValues(this)
-    )
-  
   showContext: (id) ->
     $('#task-panel').hide()
     context = @contexts.get(id)
@@ -42,7 +34,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
       success: () =>
         view = new Shuff.Views.ContextsShow(model: context)
         $("#context").html(view.render().el)
-        @renderCharts()
+        view.renderCharts()
         @updateSelectedContext(id)
     })
 
