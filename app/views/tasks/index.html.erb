@@ -1,6 +1,6 @@
 <%= javascript_tag do %>
   $(document).ready(function() {
-  Shuff.init(<%= @tasks.to_json.html_safe %>, <%= @contexts.to_json.html_safe %>);
+  Shuff.init(<%= @contexts.to_json.html_safe %>);
     });
 <% end -%>
 

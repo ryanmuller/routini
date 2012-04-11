@@ -41,8 +41,7 @@ class Shuff.Views.TasksShow extends Backbone.View
     ShuffClock.renderTimer(@model.get('time'))
 
   renderNoTask: ->
-    $('#task-name').text("Doing nothing!")
-    $('#task').html("")
+    $('#task-panel').html("")
 
   finish: (e) ->
     e.preventDefault()
