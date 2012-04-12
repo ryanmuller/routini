@@ -1,4 +1,5 @@
-<div class="span3">
+<hr>
+<div class="span3" id="task-timer">
   <h1 id="task-name"></h1>
   <br />
   <div id="rotatescroll">
@@ -14,24 +15,27 @@
     <div class="thumb"></div>
     <audio id="beep" preload="auto" autobuffer><source src="https://s3.amazonaws.com/shuff/timer.wav"></audio>
   </div>
+  <br>
+  <form class="form-inline" id="task-finish-form">
+    <input type="text" id="log-value" class="input-small" placeholder="New value">
+    <input type="submit" class="btn btn-mini btn-primary" value="Finished!">
+  </form>
 </div>
   
 <div id="task-info" class="span9">
-  <form class="form-inline" id="task-finish-form">
-    <input type="text" id="log-value" class="input-small" placeholder="New value">
-    <input type="submit" class="btn" value="Finished!">
-  </form>
 
   <p id="task-description">Task description</p>
 
 
-  <div id="microtasks">
-  </div>
+  <div id="microtask-area" class="well">
+    <div id="microtasks">
+    </div>
 
-  <form class="form-inline" id="create_microtask">
-    <input type="text" name="microtask_name">
-    <input type="submit" class="btn" value="Add action">
-  </form>
+    <form class="form-inline" id="create_microtask">
+      <input type="text" name="microtask_name">
+      <input type="submit" class="btn btn-mini" value="Add action">
+    </form>
+  </div>
 
   <div>
     <a href="#" class="btn btn-mini edit">Edit <i class="icon-pencil"></i></a>

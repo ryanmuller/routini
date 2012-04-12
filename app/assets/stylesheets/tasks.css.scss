@@ -144,7 +144,7 @@
   }
 }
 
-#rotatescroll { height:150px; position:relative; width:150px; }
+#rotatescroll { height:150px; position:relative; width:150px; margin: auto; }
 #rotatescroll .viewport{ height:150px; position: relative; margin:0 auto;
 overflow:hidden; width:150px; }
 #rotatescroll .overview { position: absolute; width: 150px; list-style: none;
@@ -169,6 +169,11 @@ position: absolute; left: 0; top: 0; height:150px; width:150px; }
     background-color: blue;
   }
 }
+
+#task-timer {
+  text-align: center;
+}
+
 
 
 h1 {

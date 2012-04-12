@@ -20,7 +20,7 @@ class Shuff.Views.TasksShow extends Backbone.View
     @$('#task-name').text(@model.get('name'))
     @$('#task-description').html('')
     if @model.has('description')
-      @$('#task-description').html(ShuffUtils.replaceURLs(@model.get('description')))
+      @$('#task-description').html(ShuffUtils.replaceURLs(@model.get('description'), 80))
     
   renderMicrotasks: ->
     $microtasks = @$('#microtasks')
