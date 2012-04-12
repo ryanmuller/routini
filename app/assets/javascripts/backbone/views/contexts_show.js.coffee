@@ -73,18 +73,16 @@ class Shuff.Views.ContextsShow extends Backbone.View
       el.append($('<p>').text(last_val))
 
   renderLogsDisplay: (task, el) ->
-    if task.has('log_pts') and task.get('log_pts').length > 0
-      chart = $('<div>').addClass('log-chart')
-                        .attr('id', 'task' + task.get('id') + 'chart')
-                        .css('width','210px')
-                        .css('height','150px')
-                        .attr('data-pts', JSON.stringify(task.get('log_pts')))
-      el.append(chart)
+    logPoints = task.logPoints(14)
+    chart = $('<div>').addClass('log-chart')
+                      .attr('id', 'task' + task.get('id') + 'chart')
+                      .css('width','210px')
+                      .css('height','150px')
+                      .attr('data-pts', JSON.stringify(logPoints))
+    el.append(chart)
 
-      last_val = task.get('log_pts')[task.get('log_pts').length-1]
-      el.append($('<p>').text('Completed today: ' + last_val))
-    else
-      el.append($('<p>').text('None completed.'))
+    last_val = logPoints[logPoints.length-1]
+    el.append($('<p>').text('Completed today: ' + last_val))
 
   renderTask: (task, $task, self) ->
     binary = self.renderBinaryDisplay

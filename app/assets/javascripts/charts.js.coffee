@@ -1,11 +1,8 @@
 window.ShuffCharts =
   renderDaily: (el, data) ->
 
-    console.log(data)
-    #data = $(el).attr('data-pts')
     elid = $(el).attr('id')
 
-    #data = JSON.parse(data.replace(/'/g, '"'))
     total_pts =  0
     for datum in data
       total_pts += datum.data[6]

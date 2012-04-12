@@ -46,9 +46,9 @@ class Shuff.Views.TasksShow extends Backbone.View
   finish: (e) ->
     e.preventDefault()
     
-    logUrl = '/tasks/' + @model.get('id') + '/logs.json'
-    logData = { log: { value: $('#log-value').val() }}
-    $.post(logUrl, logData, @renderNoTask)
+    log = new Shuff.Models.Log({ value: @$('#log-value').val() })
+    log.url = '/tasks/' + @model.get('id') + '/logs.json'
+    @model.logs.create(log)
 
     return false
 

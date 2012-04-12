@@ -7,6 +7,10 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     view = new Shuff.Views.ContextsChooser(collection: @contexts)
     $('#context-chooser').html(view.render().el)
 
+    view = new Shuff.Views.ContextsChart(collection: @contexts)
+    $('#info-panel').prepend(view.render().el)
+    #ShuffCharts.renderDaily($('#daily-chart'), view.chartData())
+
     # render 'all' context if it exists
     @contexts.each((context) ->
       if context.get('name') == 'all'
@@ -17,22 +21,11 @@ class Shuff.Routers.AppRouter extends Backbone.Router
         })
     )
 
-    # render main graph
-    data = []
-    @contexts.each((context) ->
-      data.push({ name: context.escape('name'), data: context.get('points') })
-    )
-    #data = JSON.stringify(data)
-    #data = data.replace(/"/g, '\'')
-    #console.log("data", data)
-    #$('#daily-chart').attr('data-pts', data)
-
-    ShuffCharts.renderDaily($('#daily-chart'), data)
 
   routes:
     "/contexts/:cid/tasks/:tid" : "showTask",
     "/contexts/:id"             : "showContext"
-    "/contexts"                 : "index"
+    #"/contexts"                 : "index"
   
   updateSelectedContext: (id) ->
     $(".context-option").removeClass("selected-context")
@@ -61,11 +54,11 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     })
 
   index: () ->
-    @contexts.fetch({
-      success: () =>
-        $("#context").html("")
-        $("#task").html("")
-        view = new Shuff.Views.ContextsIndex(collection: @contexts)
-        $("#context").html(view.render().el)
-    })
+    #  @contexts.fetch({
+    #    success: () =>
+    #      $("#context").html("")
+    #      $("#task").html("")
+    #      view = new Shuff.Views.ContextsIndex(collection: @contexts)
+    #      $("#context").html(view.render().el)
+    #  })
 

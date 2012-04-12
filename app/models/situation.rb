@@ -6,7 +6,7 @@ class Situation < ActiveRecord::Base
   def points
 
     data = []
-    day = Date.today - 6.days
+    day = Date.today - 5.days
 
     (0..6).each do |i|
       points = 0
@@ -22,6 +22,7 @@ class Situation < ActiveRecord::Base
 
   def as_json(options={})
     super.merge({
+      :tasks => self.tasks,
       :points => self.points
     })
   end

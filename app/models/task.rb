@@ -17,7 +17,9 @@ class Task < ActiveRecord::Base
       :value_pts => self.values_graph,
       :log_pts => self.logs_graph,
       :todos => self.microtasks.incomplete.collect { |m| m.name },
-      :dones => self.microtasks.complete.created_today(self.user.time_offset.hours).collect { |m| m.name }
+      :dones => self.microtasks.complete.created_today(self.user.time_offset.hours).collect { |m| m.name },
+      :logs => self.logs,
+      :microtasks => self.microtasks
     })
   end
 
