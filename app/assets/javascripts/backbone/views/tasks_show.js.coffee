@@ -52,7 +52,6 @@ class Shuff.Views.TasksShow extends Backbone.View
     @model.logs.create(log)
     
     # TODO such a hack
-    console.log(window.location)
     window.location.replace(window.location.hash.split('/').slice(0,3).join('/'))
 
     return false

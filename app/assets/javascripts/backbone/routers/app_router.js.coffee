@@ -34,13 +34,10 @@ class Shuff.Routers.AppRouter extends Backbone.Router
   showContext: (id) ->
     $('#task-panel').hide()
     context = @contexts.get(id)
-    context.fetch({
-      success: () =>
-        view = new Shuff.Views.ContextsShow(model: context)
-        $("#context").html(view.render().el)
-        view.renderCharts()
-        @updateSelectedContext(id)
-    })
+    view = new Shuff.Views.ContextsShow(model: context)
+    $("#context").html(view.render().el)
+    view.renderCharts()
+    @updateSelectedContext(id)
 
   showTask: (cid, tid) ->
     $('#task-panel').show()
