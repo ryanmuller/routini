@@ -4,11 +4,20 @@ class Situation < ActiveRecord::Base
   has_many :tasks, :through => :task_contexts
 
   def points
-    points = 0
-    tasks.each do |task|
-      points += task.logs.today(user.time_offset.hours).count
+
+    data = []
+    day = Date.today - 6.days
+
+    (0..6).each do |i|
+      points = 0
+      tasks.each do |task|
+        points += task.logs.from_day(day, user.time_offset.hours).count
+      end
+      data << points
+      day += 1.day
     end
-    return points
+
+    return data
   end
 
   def as_json(options={})

@@ -1,30 +1,65 @@
 window.ShuffCharts =
-  renderDaily: (el) ->
+  renderDaily: (el, data) ->
 
-    data = $(el).attr('data-pts')
+    console.log(data)
+    #data = $(el).attr('data-pts')
     elid = $(el).attr('id')
 
-    data = JSON.parse(data.replace(/'/g, '"'))
+    #data = JSON.parse(data.replace(/'/g, '"'))
     total_pts =  0
     for datum in data
-      total_pts += datum[1]
+      total_pts += datum.data[6]
 
     chart = new Highcharts.Chart({
       chart: {
         renderTo: elid,
-        type: 'pie',
+        type: 'column'
       },
       title: {
         text: "Tasks completed today: " + total_pts,
-      }
-      series: [{
-        type: 'pie',
-        name: 'Points',
-        size: '40%',
-        innerSize: '20%',
-        data: data
-      }]
+      },
+      legend: {
+        layout: 'horizontal',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 20,
+        y: 20,
+        floating: true,
+        borderWidth: 1,
+      },
+      yAxis: {
+        title: {
+          text: null
+        }
+      },
+      plotOptions: {
+        column: {
+          fillOpacity: 1,
+          stacking: 'normal',
+          lineWidth: 0,
+          groupPadding: 0,
+          pointPadding: 0,
+          shadow: false
+        }
+      },
+      series: data
     })
+    #chart = new Highcharts.Chart({
+    #  chart: {
+    #    renderTo: elid,
+    #    type: 'pie',
+    #  },
+    #  title: {
+    #    text: "Tasks completed today: " + total_pts,
+    #  }
+    #  series: [{
+    #    type: 'pie',
+    #    name: 'Points',
+    #    size: '40%',
+    #    innerSize: '20%',
+    #    data: data
+    #  }]
+    #})
 
 
   renderLogs: (el) ->

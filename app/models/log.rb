@@ -4,6 +4,7 @@ class Log < ActiveRecord::Base
 
   default_scope :order => 'created_at ASC'
   scope :today, lambda { |offset| where("created_at > ?", Time.now.utc - offset) }
+  scope :from_day, lambda { |day, offset| where("created_at >= ? AND created_at < ?", day - offset, day + 1.day - offset) }
   scope :with_value, where("value IS NOT NULL")
 
   def self.plot_data(user, task)
