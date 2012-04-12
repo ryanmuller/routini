@@ -4,6 +4,9 @@ child(:tasks) do
   child(:logs) do
     attributes(:id, :value, :time, :created_at)
   end
+  child(:microtasks) do
+    attributes(:id, :name, :status, :created_at, :updated_at)
+  end
   attributes(:id, :name, :display_type, :time) 
   node(:value_pts) { |task| task.values_graph }
   node(:log_pts)   { |task| task.logs_graph }

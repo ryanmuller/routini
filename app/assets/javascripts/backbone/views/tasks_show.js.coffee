@@ -18,10 +18,11 @@ class Shuff.Views.TasksShow extends Backbone.View
   
   renderTask: ->
     @$('#task-name').text(@model.get('name'))
-    @$('#task-description').html(ShuffUtils.replaceURLs(@model.get('description')))
+    @$('#task-description').html('')
+    if @model.has('description')
+      @$('#task-description').html(ShuffUtils.replaceURLs(@model.get('description')))
     
   renderMicrotasks: ->
-    return unless @model.incompleteMicrotasks
     $microtasks = @$('#microtasks')
     $microtasks.html('')
 
@@ -49,6 +50,10 @@ class Shuff.Views.TasksShow extends Backbone.View
     log = new Shuff.Models.Log({ value: @$('#log-value').val() })
     log.url = '/tasks/' + @model.get('id') + '/logs.json'
     @model.logs.create(log)
+    
+    # TODO such a hack
+    console.log(window.location)
+    window.location.replace(window.location.hash.split('/').slice(0,3).join('/'))
 
     return false
 

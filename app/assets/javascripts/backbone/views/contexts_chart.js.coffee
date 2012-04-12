@@ -10,12 +10,10 @@ class Shuff.Views.ContextsChart extends Backbone.View
   renderChart: ->
     data = []
     @collection.each((context) ->
-      console.log(context)
       # TODO move logic to model
       points = [0,0,0,0,0,0,0]
       context.tasks.each((task) ->
         logPts = task.logPoints(7)
-        console.log(task.get('name'), logPts)
 
         for i in [0,1,2,3,4,5,6]
           points[i] += logPts[i]
