@@ -88,8 +88,8 @@ window.ShuffCharts =
         column: {
           shadow: false,
           borderWidth: 0,
-          pointWidth: 2,
-          pointPadding: 1,
+          groupPadding: 0,
+          pointPadding: 0.1,
         }
       },
       series: [{
