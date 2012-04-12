@@ -17,6 +17,17 @@ class Shuff.Routers.AppRouter extends Backbone.Router
         })
     )
 
+    # render main graph
+    data = []
+    @contexts.each((context) ->
+      data.push([context.escape('name'), context.get('points')])
+    )
+    data = JSON.stringify(data)
+    data = data.replace(/"/g, '\'')
+    #console.log("data", data)
+    $('#daily-chart').attr('data-pts', data)
+
+    ShuffCharts.renderDaily($('#daily-chart'))
 
   routes:
     "/contexts/:cid/tasks/:tid" : "showTask",

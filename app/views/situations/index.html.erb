@@ -1,0 +1,27 @@
+<%= javascript_tag do %>
+  $(document).ready(function() {
+  Shuff.init(<%= @situations.to_json.html_safe %>);
+    });
+<% end -%>
+
+
+<div class="row" id="task-panel">
+</div>
+
+
+<div class="row">
+  <hr>
+  <div class="span3">
+    <div id="daily-chart" style="width:270px;height:300px;" data-pts=""></div>
+
+    <div id="all-tasks"></div>
+  </div>
+
+  <div class="span9">
+    <div id="context-chooser" class="well">
+    </div>
+
+    <div id="context" class="row"></div>
+  </div>
+</div>
+

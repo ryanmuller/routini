@@ -1,4 +1,32 @@
 window.ShuffCharts =
+  renderDaily: (el) ->
+
+    data = $(el).attr('data-pts')
+    elid = $(el).attr('id')
+
+    data = JSON.parse(data.replace(/'/g, '"'))
+    total_pts =  0
+    for datum in data
+      total_pts += datum[1]
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: elid,
+        type: 'pie',
+      },
+      title: {
+        text: "Tasks completed today: " + total_pts,
+      }
+      series: [{
+        type: 'pie',
+        name: 'Points',
+        size: '40%',
+        innerSize: '20%',
+        data: data
+      }]
+    })
+
+
   renderLogs: (el) ->
     data = $(el).data('pts')
     elid = $(el).attr('id')
