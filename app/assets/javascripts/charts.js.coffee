@@ -38,7 +38,7 @@ window.ShuffCharts =
           stacking: 'normal',
           lineWidth: 0,
           groupPadding: 0,
-          pointPadding: 0,
+          pointPadding: 0.05,
           shadow: false
         }
       },
