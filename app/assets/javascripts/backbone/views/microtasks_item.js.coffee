@@ -11,6 +11,7 @@ class Shuff.Views.MicrotasksItem extends Backbone.View
 
   update: () ->
     status = if @$('input').prop('checked') then "complete" else "incomplete"
+    @$('.action-name').css('text-decoration', 'line-through')
     @model.save({ status: status })
 
 
