@@ -1,4 +1,13 @@
 class Shuff.Views.ContextsShow extends Backbone.View
+  initialize: () ->
+    _.bindAll(this, "render", "renderPlusCharts")
+    #@model.bind("change", @render)
+    #@model.bind("add", @render)
+    #@model.bind("remove", @render)
+    @model.tasks.bind("add", @renderPlusCharts)
+    @model.tasks.bind("remove", @renderPlusCharts)
+    @model.tasks.bind("change", @renderPlusCharts)
+
   template: JST["backbone/templates/contexts/show"]
   
   events: {
@@ -6,6 +15,10 @@ class Shuff.Views.ContextsShow extends Backbone.View
     'click .edit_task_save' : 'submitTask'
     'click .cancel'         : 'preventAndRender'
   }
+
+  renderPlusCharts: () ->
+    @render()
+    @renderCharts()
 
   preventAndRender: (e) ->
     e.preventDefault()
