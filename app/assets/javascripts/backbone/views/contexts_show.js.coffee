@@ -1,5 +1,5 @@
 class Shuff.Views.ContextsShow extends Backbone.View
-  initialize: () ->
+  initialize: (options) ->
     _.bindAll(this, "render", "renderPlusCharts")
     #@model.bind("change", @render)
     #@model.bind("add", @render)
@@ -7,6 +7,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
     @model.tasks.bind("add", @renderPlusCharts)
     @model.tasks.bind("remove", @renderPlusCharts)
     @model.tasks.bind("change", @renderPlusCharts)
+    options.evt.bind("finishTask", @renderPlusCharts)
 
   template: JST["backbone/templates/contexts/show"]
   
@@ -72,7 +73,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
                         .attr('id', 'task' + task.get('id') + 'chart')
                         .css('width','210px')
                         .css('height','150px')
-                        .attr('data-pts', JSON.stringify(task.get('value_pts')))
+                        .attr('data-pts', JSON.stringify(task.valuePoints(50)))
       el.append(chart)
 
       last_val = task.get('value_pts')[task.get('value_pts').length-1].toString().split(',')[1]
@@ -81,9 +82,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
       el.append($('<p>').text('No values logged.'))
 
   renderLastValueDisplay: (task,el) ->
-    if task.has('value_pts') and task.get('value_pts').length > 0
-      last_val = task.get('value_pts')[task.get('value_pts').length-1].toString().split(',')[1]
-      el.append($('<p>').text(last_val))
+    el.append($('<p>').text(task.lastValue()))
 
   renderLogsDisplay: (task, el) ->
     logPoints = task.logPoints(14)
@@ -118,18 +117,6 @@ class Shuff.Views.ContextsShow extends Backbone.View
       when "last_value" then last_value(task, $task)
       when "random"     then random(task, $task)
       else                   logs(task, $task)
-
-
-  renderColumn: ->
-    renderTask = @renderTask
-    self = this
-
-    @model.tasks.each((task) ->
-      $task = $('<div>')
-      self.renderTask(task, $task, self)
-      $(self.el).append($task)
-    )
-    return this
 
   renderNewTask: (e) ->
     e.preventDefault()

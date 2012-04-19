@@ -7,18 +7,19 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     view = new Shuff.Views.ContextsChooser(collection: @contexts)
     $('#context-chooser').html(view.render().el)
 
+    # render main chart
     view = new Shuff.Views.ContextsChart(collection: @contexts)
     $('#info-panel').prepend(view.render().el)
-    #ShuffCharts.renderDaily($('#daily-chart'), view.chartData())
+    view.renderChart()
+    
+    @evt = _.extend({}, Backbone.Events)
+    evt = @evt
 
     # render 'all' context if it exists
     @contexts.each((context) ->
       if context.get('name') == 'all'
-        context.fetch({
-          success: () ->
-            view = new Shuff.Views.ContextsShow(model: context)
-            $('#all-tasks').html(view.renderColumn().el)
-        })
+        view = new Shuff.Views.ContextsShow({ model: context, evt: evt })
+        $('#all-tasks').html(view.render().el)
     )
 
 
@@ -34,7 +35,8 @@ class Shuff.Routers.AppRouter extends Backbone.Router
   showContext: (id) ->
     $('#task-panel').hide()
     context = @contexts.get(id)
-    view = new Shuff.Views.ContextsShow(model: context)
+    evt = @evt
+    view = new Shuff.Views.ContextsShow({ model: context, evt: evt })
     $("#context").html(view.render().el)
     view.renderCharts()
     @updateSelectedContext(id)
@@ -43,7 +45,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     $('#task-panel').show()
     context = @contexts.get(cid)
     task = context.tasks.get(tid)
-    view = new Shuff.Views.TasksShow(model: task)
+    view = new Shuff.Views.TasksShow({ model: task, evt: @evt })
     $('#task-panel').html(view.render().el)
     ShuffClock.renderTimer(task.get('time'))
 

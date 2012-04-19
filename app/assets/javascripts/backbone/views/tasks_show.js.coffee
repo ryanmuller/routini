@@ -1,9 +1,9 @@
 class Shuff.Views.TasksShow extends Backbone.View
-  initialize: () ->
+  initialize: (options) ->
     _.bindAll(this, "render", "renderMicrotasks")
-    #@model.bind('change", @render)
     @model.microtasks.bind("add", @renderMicrotasks)
     @model.microtasks.bind("remove", @renderMicrotasks)
+    @evt = options.evt
     
   template: JST["backbone/templates/tasks/show"]
 
@@ -49,7 +49,9 @@ class Shuff.Views.TasksShow extends Backbone.View
     
     log = new Shuff.Models.Log({ value: @$('#log-value').val() })
     log.url = '/tasks/' + @model.get('id') + '/logs.json'
-    @model.logs.create(log)
+    @model.logs.create(log, { wait: true })
+
+    @evt.trigger("finishTask")
     
     # TODO such a hack
     window.location.replace(window.location.hash.split('/').slice(0,3).join('/'))
@@ -61,7 +63,7 @@ class Shuff.Views.TasksShow extends Backbone.View
 
     microtask = new Shuff.Models.Microtask({ name: @$('input[name=microtask_name]').val() })
     microtask.url = '/tasks/' + @model.get('id') + '/microtasks'
-    @model.microtasks.create(microtask)
+    @model.microtasks.create(microtask, { wait: true })
     @$('input[name=microtask_name]').val('')
     return false
 
@@ -70,7 +72,17 @@ class Shuff.Views.TasksShow extends Backbone.View
 
     $el = $(@el)
 
-    @model.save({ name: $el.find('input[name=name]').val(), description: $el.find('input[name=description]').val(), time: $el.find('input[name=time]').val(), display_type: $el.find('select[name=display_type]').val() }, { success: => @renderAndClock() })
+    task_params =
+      name:         $el.find('input[name=name]').val()
+      description:  $el.find('input[name=description]').val()
+      time:         $el.find('input[name=time]').val()
+      display_type: $el.find('select[name=display_type]').val()
+
+    other_params =
+      success: () => @renderAndClock()
+      wait:    true
+
+    @model.save(task_params, other_params)
     return false
 
   editTask: (e) ->
@@ -108,12 +120,14 @@ class Shuff.Views.TasksShow extends Backbone.View
     return false
 
   deleteTask: (e) ->
-    $el = $(@el)
     e.preventDefault()
+
+    params =
+      success: (model, response) -> $('#task-panel').hide()
+      wait:    true
+
     if confirm("Are you sure you want to delete this task?")
-      @model.destroy({ success: (model, response) ->
-        $('#task-panel').hide()
-      })
+      @model.destroy(params)
 
     return false
 

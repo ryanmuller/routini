@@ -103,8 +103,11 @@ window.ShuffCharts =
   renderValues: (el) ->
     data = $(el).data('pts')
     for item in data
-      parts = item[0].split("-")
-      item[0] = Date.UTC(parts[0], parts[1], parts[2])
+      # deal with getting time as int
+      # TODO no idea why this is happening...
+      if typeof(item[0]) == 'string'
+        parts = item[0].split("-")
+        item[0] = Date.UTC(parts[0], parts[1], parts[2])
       item[1] = parseInt(item[1])
 
     data = data.slice(-14)
