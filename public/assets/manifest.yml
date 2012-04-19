@@ -1,21 +1,8 @@
 --- 
 bg-dot2.png: bg-dot2-505a810739c81f6a4b476abac20bcf41.png
 bg-rotatescroll.png: bg-rotatescroll-df5792f42215c02fc967be8f61857492.png
-bg-thumb copy.png: bg-thumb copy-133683a9d050558d3ae1fa9de073be58.png
 bg-thumb.png: bg-thumb-746f51f356c424f18fdc26df5afb0415.png
-chart.png: chart-cc97055896522b8f36e5af69209fb837.png
-pause.png: pause-6b9aa63efd8226ddaff3579edde28e32.png
-pausealt.png: pausealt-bfa17df7fb2b78e6636c72b359737df9.png
-pausesmall.png: pausesmall-d93335c80b892dcc8e3e6cc8f799617f.png
-play.png: play-dd3e19131eba7a1d44623b0210d2e489.png
-playalt.png: playalt-cbce2273d0bac912f53915d8fd0ddb03.png
-playsmall.png: playsmall-cbeae09d317c8f2dedbd8532752164aa.png
-rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
-reset.png: reset-afa43a80dbbcab76efa041e7137a910b.png
-undo.png: undo-b7d8cf18c96e1bba553081372864c6ef.png
-undoalt.png: undoalt-89f1f84faea316e07bf094c1c868352c.png
-undosmall.png: undosmall-b7d8cf18c96e1bba553081372864c6ef.png
-application.js: application-ffe464281f9707d4080ae2ffa8795972.js
-application.css: application-964b5d3c247c6cbf7bdbdb21d98d4d51.css
+application.js: application-a46e732f9db6ae39271e5a64683e1577.js
+application.css: application-bd09211a762752479a1f76fc2e596242.css
 twitter/bootstrap/glyphicons-halflings-white.png: twitter/bootstrap/glyphicons-halflings-white-33137abcd2c204b90921315632a32a69.png
 twitter/bootstrap/glyphicons-halflings.png: twitter/bootstrap/glyphicons-halflings-16cd9c1e6492843e6e32e0ab12967378.png
