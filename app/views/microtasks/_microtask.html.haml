@@ -1,6 +1,0 @@
-= form_for [@task, microtask], :remote => true do |f|
-  %input.action-cb{:type=>'checkbox'}
-  %span.action-name
-    = auto_link microtask.name, :html => { :target => '_blank' }
-  = f.hidden_field :status, { :value => "incomplete" }
-

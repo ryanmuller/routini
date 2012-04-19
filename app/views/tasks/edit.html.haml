@@ -1,8 +1,0 @@
-%h1
-  Edit routine
-
-= render "form"
-
-= form_for @task, :html => { :method => :delete } do |f|
-  = f.submit "Remove", :class => [ "btn", "danger" ]
-

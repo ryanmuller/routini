@@ -76,7 +76,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
                         .attr('data-pts', JSON.stringify(task.valuePoints(50)))
       el.append(chart)
 
-      last_val = task.get('value_pts')[task.get('value_pts').length-1].toString().split(',')[1]
+      last_val = task.lastValue()
       el.append($('<p>').text('Last value: ' + last_val))
     else
       el.append($('<p>').text('No values logged.'))

@@ -12,6 +12,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     $('#info-panel').prepend(view.render().el)
     view.renderChart()
     
+    # event aggregator http://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/
     @evt = _.extend({}, Backbone.Events)
     evt = @evt
 
@@ -26,7 +27,6 @@ class Shuff.Routers.AppRouter extends Backbone.Router
   routes:
     "/contexts/:cid/tasks/:tid" : "showTask",
     "/contexts/:id"             : "showContext"
-    #"/contexts"                 : "index"
   
   updateSelectedContext: (id) ->
     $(".context-option").removeClass("selected-context")
@@ -48,13 +48,3 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     view = new Shuff.Views.TasksShow({ model: task, evt: @evt })
     $('#task-panel').html(view.render().el)
     ShuffClock.renderTimer(task.get('time'))
-
-  index: () ->
-    #  @contexts.fetch({
-    #    success: () =>
-    #      $("#context").html("")
-    #      $("#task").html("")
-    #      view = new Shuff.Views.ContextsIndex(collection: @contexts)
-    #      $("#context").html(view.render().el)
-    #  })
-
