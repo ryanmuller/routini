@@ -1,25 +1,30 @@
-<%= javascript_tag do %>
-  $(document).ready(function() {
-  Shuff.init(<%= @situations.to_json.html_safe %>);
-    });
-<% end -%>
+<% if current_user %>
+  
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+    Shuff.init(<%= @situations.to_json.html_safe %>);
+      });
+  <% end -%>
 
 
-<div class="row" id="task-panel">
-</div>
-
-
-<div class="row">
-  <hr>
-  <div class="span3" id="info-panel">
-    <div id="all-tasks"></div>
+  <div class="row" id="task-panel">
   </div>
 
-  <div class="span9">
-    <div id="context-chooser" class="well">
+
+  <div class="row">
+    <hr>
+    <div class="span3" id="info-panel">
+      <div id="all-tasks"></div>
     </div>
 
-    <div id="context" class="row"></div>
-  </div>
-</div>
+    <div class="span9">
+      <div id="context-chooser" class="well">
+      </div>
 
+      <div id="context" class="row"></div>
+    </div>
+  </div>
+<% else %>
+  <h1>Welcome to Shuff!</h1> 
+  <h3>Learn more <%= link_to "in this blog post", "http://blog.learnstream.org/2012/04/introducing-shuff-v3/" %> then <%= link_to 'sign up', new_user_registration_path %></h3>
+<% end %>

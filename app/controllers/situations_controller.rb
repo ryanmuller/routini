@@ -3,7 +3,12 @@ class SituationsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @situations = current_user.situations
+    if current_user
+      @situations = current_user.situations
+    else 
+      @situations = []
+    end
+
     respond_with @situations
   end
 
