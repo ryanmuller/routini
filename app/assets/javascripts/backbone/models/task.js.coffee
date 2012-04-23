@@ -33,6 +33,8 @@ class Shuff.Models.Task extends Backbone.Model
 
     points = []
     @logs.each((log) ->
+      #console.log("Handling log with task id ", log.get('task_id'))
+
       created = Date.parse(log.get('created_at'))
 
       while day < created
@@ -46,6 +48,7 @@ class Shuff.Models.Task extends Backbone.Model
       points.push(0)
       day = day + dday
 
+    console.log("Return log points ", points)
     return points
 
   valuePoints: (n) ->

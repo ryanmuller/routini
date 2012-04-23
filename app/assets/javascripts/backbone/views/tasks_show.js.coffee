@@ -26,8 +26,9 @@ class Shuff.Views.TasksShow extends Backbone.View
     $microtasks = @$('#microtasks')
     $microtasks.html('')
 
+    evt = @evt
     @model.microtasks.incomplete().each((microtask) ->
-      view = new Shuff.Views.MicrotasksItem({ model: microtask })
+      view = new Shuff.Views.MicrotasksItem({ model: microtask, evt: evt })
       $microtasks.append(view.render().el)
     )
 
@@ -49,12 +50,14 @@ class Shuff.Views.TasksShow extends Backbone.View
     
     log = new Shuff.Models.Log({ value: @$('#log-value').val() })
     log.url = '/tasks/' + @model.get('id') + '/logs.json'
-    @model.logs.create(log, { wait: true })
+    params =
+      wait: true
+      success: (model, response) =>
+        @evt.trigger("finishTask")
+        # TODO better way to do this?
+        window.location.replace(window.location.hash.split('/').slice(0,3).join('/'))
 
-    @evt.trigger("finishTask")
-    
-    # TODO such a hack
-    window.location.replace(window.location.hash.split('/').slice(0,3).join('/'))
+    @model.logs.create(log, params)
 
     return false
 
@@ -63,7 +66,12 @@ class Shuff.Views.TasksShow extends Backbone.View
 
     microtask = new Shuff.Models.Microtask({ name: @$('input[name=microtask_name]').val() })
     microtask.url = '/tasks/' + @model.get('id') + '/microtasks'
-    @model.microtasks.create(microtask, { wait: true })
+    params =
+      wait: true
+      success: (model, response) =>
+        @evt.trigger('changeMicrotasks')
+
+    @model.microtasks.create(microtask, params)
     @$('input[name=microtask_name]').val('')
     return false
 

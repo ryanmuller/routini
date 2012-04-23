@@ -8,6 +8,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
     @model.tasks.bind("remove", @renderPlusCharts)
     @model.tasks.bind("change", @renderPlusCharts)
     options.evt.bind("finishTask", @renderPlusCharts)
+    options.evt.bind('changeMicrotasks', @renderPlusCharts)
 
   template: JST["backbone/templates/contexts/show"]
   

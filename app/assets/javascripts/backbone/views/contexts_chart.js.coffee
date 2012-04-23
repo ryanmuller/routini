@@ -4,6 +4,8 @@ class Shuff.Views.ContextsChart extends Backbone.View
     @collection.bind("change", @renderUpdate)
     @collection.bind("add",    @renderUpdate)
     @collection.bind("remove", @renderUpdate)
+    options.evt.bind("finishTask", @renderUpdate)
+
 
   template: JST['backbone/templates/contexts/chart']
 

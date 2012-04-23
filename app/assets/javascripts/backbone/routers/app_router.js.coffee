@@ -3,18 +3,19 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     @contexts = new Shuff.Collections.Contexts()
     @contexts.reset options.contexts
 
+    # event aggregator http://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/
+    @evt = _.extend({}, Backbone.Events)
+    evt = @evt
+
     # render context chooser 
     view = new Shuff.Views.ContextsChooser(collection: @contexts)
     $('#context-chooser').html(view.render().el)
 
     # render main chart
-    view = new Shuff.Views.ContextsChart(collection: @contexts)
+    view = new Shuff.Views.ContextsChart(collection: @contexts, evt: evt)
     $('#info-panel').prepend(view.render().el)
     view.renderChart()
     
-    # event aggregator http://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/
-    @evt = _.extend({}, Backbone.Events)
-    evt = @evt
 
     # render 'all' context if it exists
     @contexts.each((context) ->
