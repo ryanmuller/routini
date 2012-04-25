@@ -90,7 +90,7 @@ class Shuff.Views.ContextsChooser extends Backbone.View
                       .addClass('cancel btn btn-mini')
                       .text('Cancel')
     $form.append($text).append($save).append($cancel)
-    @$('.context-option').last().after($form)
+    @$('.context-add').before($form)
     @$('.context-add').hide()
     @$('.context-edit').hide()
 
