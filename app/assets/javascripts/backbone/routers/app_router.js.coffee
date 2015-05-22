@@ -7,7 +7,7 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     @evt = _.extend({}, Backbone.Events)
     evt = @evt
 
-    # render context chooser 
+    # render context chooser
     view = new Shuff.Views.ContextsChooser(collection: @contexts)
     $('#context-chooser').html(view.render().el)
 
@@ -15,7 +15,6 @@ class Shuff.Routers.AppRouter extends Backbone.Router
     view = new Shuff.Views.ContextsChart(collection: @contexts, evt: evt)
     $('#info-panel').prepend(view.render().el)
     view.renderChart()
-    
 
     # render 'all' context if it exists
     @contexts.each((context) ->
@@ -24,11 +23,10 @@ class Shuff.Routers.AppRouter extends Backbone.Router
         $('#all-tasks').html(view.render().el)
     )
 
-
   routes:
-    "/contexts/:cid/tasks/:tid" : "showTask",
-    "/contexts/:id"             : "showContext"
-  
+    "contexts/:cid/tasks/:tid" : "showTask",
+    "contexts/:id"             : "showContext"
+
   updateSelectedContext: (id) ->
     $(".context-option").removeClass("selected-context")
     $("#context"+id).addClass("selected-context")

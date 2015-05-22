@@ -1,5 +1,4 @@
 class MicrotasksController < ApplicationController
-
   respond_to :json
 
   def index
@@ -9,7 +8,7 @@ class MicrotasksController < ApplicationController
 
   def create
     @task = current_user.tasks.find(params[:task_id])
-    @microtask = @task.microtasks.build(params[:microtask])
+    @microtask = @task.microtasks.build(microtask_params)
     @microtask.save
     respond_with @microtask, :location => root_url
   end
@@ -17,8 +16,13 @@ class MicrotasksController < ApplicationController
   def update
     @task = current_user.tasks.find(params[:task_id])
     @microtask = @task.microtasks.find(params[:id])
-    @microtask.update_attributes(params[:microtask])
+    @microtask.update_attributes(microtask_params)
     respond_with @microtask, :location => root_url
   end
-  
+
+  private
+
+  def microtask_params
+    params.require(:microtask).permit(:name)
+  end
 end

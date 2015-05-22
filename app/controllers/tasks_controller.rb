@@ -1,12 +1,10 @@
 class TasksController < ApplicationController
   respond_to :json, :html
 
-  def create # from situations 
+  def create
     @situation = current_user.situations.find(params[:situation_id])
-    @task = Task.new(params[:task])
-    @task.user = current_user
-    @task.situations << @situation
-    @task.save 
+    @task = @situation.tasks.build(task_params)
+    @task.save
 
     respond_with @task, :location => root_url
   end
@@ -38,7 +36,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     current_user.situations.each do |context|
-      unless tc = @task.task_contexts.find_by_situation_id(context.id)
+      unless @task.task_contexts.find_by_situation_id(context.id)
         @task.task_contexts.build(:situation_id => context.id)
       end
     end
@@ -49,5 +47,14 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
     @task.update_attributes(params[:task])
     respond_with @task
+  end
+
+  private
+
+  def task_params
+    params.
+      require(:task).
+      permit(:name, :description, :display_type, :time).
+      merge(:user => current_user)
   end
 end

@@ -11,7 +11,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
     options.evt.bind('changeMicrotasks', @renderPlusCharts)
 
   template: JST["backbone/templates/contexts/show"]
-  
+
   events: {
     'click .new-task-btn'   : 'renderNewTask'
     'click .edit_task_save' : 'submitTask'
@@ -36,7 +36,7 @@ class Shuff.Views.ContextsShow extends Backbone.View
     $('.value-chart').each(() ->
       ShuffCharts.renderValues(this)
     )
-  
+
   renderCharts: ->
     $('.log-chart').each(() ->
       ShuffCharts.renderLogs(this)
@@ -44,7 +44,6 @@ class Shuff.Views.ContextsShow extends Backbone.View
     $('.value-chart').each(() ->
       ShuffCharts.renderValues(this)
     )
-  
 
   renderBinaryDisplay: (task, el) ->
     el.append('<div class="bigcheck">x</div>')
@@ -123,7 +122,6 @@ class Shuff.Views.ContextsShow extends Backbone.View
     e.preventDefault()
     @$('.new-task-area').html(JST['backbone/templates/tasks/form']())
     return false
-
 
   render: ->
     $el = $(@el)

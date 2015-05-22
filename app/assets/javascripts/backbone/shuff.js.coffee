@@ -9,8 +9,3 @@ window.Shuff =
   Collections: {}
   Routers: {}
   Views: {}
-  init: (contexts) ->
-    new Shuff.Routers.AppRouter({contexts: contexts})
-    Backbone.history.start()
-
-

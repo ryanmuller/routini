@@ -4,7 +4,7 @@ class Shuff.Views.TasksShow extends Backbone.View
     @model.microtasks.bind("add", @renderMicrotasks)
     @model.microtasks.bind("remove", @renderMicrotasks)
     @evt = options.evt
-    
+
   template: JST["backbone/templates/tasks/show"]
 
   events: {

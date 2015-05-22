@@ -5,7 +5,7 @@ class SituationsController < ApplicationController
   def index
     if current_user
       @situations = current_user.situations
-    else 
+    else
       @situations = []
     end
 
@@ -14,7 +14,7 @@ class SituationsController < ApplicationController
 
 
   def create
-    @context = Situation.new(params[:situation])
+    @context = Situation.new(situation_params)
     @context.user = current_user
     @context.save
 
@@ -35,16 +35,22 @@ class SituationsController < ApplicationController
   def update
     @context = Situation.find(params[:id])
 
-    if @context.update_attributes(params[:situation])
+    if @context.update_attributes(situation_params)
       redirect_to root_path, :notice => "Context updated."
     else
       render 'edit'
     end
   end
 
-  def show 
+  def show
     @situation = current_user.situations.find(params[:id])
     respond_with @situation
+  end
+
+  private
+
+  def situation_params
+    params.require(:situation).permit(:name)
   end
 end
 

@@ -1,15 +1,13 @@
 <% if current_user %>
-  
   <%= javascript_tag do %>
-    $(document).ready(function() {
-    Shuff.init(<%= @situations.to_json.html_safe %>);
-      });
+    $(function() {
+      window.router = new Shuff.Routers.AppRouter({ contexts: <%= @situations.to_json.html_safe -%>})
+      Backbone.history.start()
+    });
   <% end -%>
-
 
   <div class="row" id="task-panel">
   </div>
-
 
   <div class="row">
     <hr>
@@ -25,6 +23,6 @@
     </div>
   </div>
 <% else %>
-  <h1>Welcome to Shuff!</h1> 
+  <h1>Welcome to Shuff!</h1>
   <h3>Learn more <%= link_to "in this blog post", "http://blog.learnstream.org/2012/04/introducing-shuff-v3/" %> then <%= link_to 'sign up', new_user_registration_path %></h3>
 <% end %>
