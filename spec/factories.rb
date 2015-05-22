@@ -1,11 +1,15 @@
-Factory.define :user do |user|
-  user.name                  "Test User"
-  user.email                 "foo@example.com"
-  user.password              "foobar"
-  user.password_confirmation "foobar"
+FactoryGirl.define do
+  factory :user do
+    name                  "Test User"
+    email                 "foo@example.com"
+    password              "foobar"
+    password_confirmation "foobar"
+  end
 end
 
-Factory.define :task do |task|
-  task.name     "Task"
+FactoryGirl.define do
+  factory :task do
+    name     "Task"
+  end
 end
 

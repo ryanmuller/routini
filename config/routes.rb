@@ -2,7 +2,7 @@ Routini::Application.routes.draw do
   devise_for :users
 
   root :to => "situations#index"
-  match '/help' => 'pages#help'
+  get "/help", to: "pages#help"
 
   resources :tasks, :only => [ :destroy, :index, :show, :edit, :update ] do
     resources :microtasks, :only => [ :create, :update, :index ]
