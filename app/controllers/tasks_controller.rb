@@ -3,8 +3,8 @@ class TasksController < ApplicationController
 
   def create
     @situation = current_user.situations.find(params[:situation_id])
-    @task = @situation.tasks.build(task_params)
-    @task.save
+    @task = Task.create(task_params)
+    @situation.task_contexts.create(:task_id => @task.id)
 
     respond_with @task, :location => root_url
   end
